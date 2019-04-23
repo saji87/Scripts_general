@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-var child_process = require('child_process');
-var path = require('path');
-var fs = require('fs');
-var os = require('os');
+let child_process = require('child_process');
+let path = require('path');
+let fs = require('fs');
+let os = require('os');
 
 // Work out current folder
-var cwd = process.cwd();
-var folderName = path.parse(cwd).name;
+let cwd = process.cwd();
+let folderName = path.parse(cwd).name;
 
 // ------------ Platform/Environment Checks --------------
 
@@ -19,28 +19,26 @@ if (os.platform() != "linux")
 }
 
 // Find Xilinx tools
-var xilinxDir = "/opt/Xilinx/14.7/";
+let xilinxDir = "/opt/Xilinx/14.7/";
 if (!fs.existsSync(xilinxDir))
 {
     console.log(`Xilinx tools not found at ${xilinxDir}`);
     process.exit(7);
 }
-
-var xilinxBin = path.join(xilinxDir, "ISE_DS/ISE/bin/lin64");
+let xilinxBin = path.join(xilinxDir, "ISE_DS/ISE/bin/lin64");
 
 
 // ------------ Settings --------------
 
-var action = "";
-var debug = false;
-var verbose = false;
-var intStyle = "ise";
-var settings = {
+let action = "";
+let debug = false;
+let verbose = false;
+let intStyle = "ise";
+let settings = {
     projectName: null,
     intDir: null,
     outDir: null,
     device: null,
-    startupClock: null,
     topModule: null,
     device: null,
     hdlLanguage: null,
@@ -53,23 +51,301 @@ var settings = {
     sourceFiles: [],
 };
 
-// ------------ Command Line Parse --------------
 
-/*
-if (process.argv[2] == 'help' || process.argv[2] == '-h' || process.argv[2] == '--help' || process.argv[2] == '/?')
+
+// ------------ Main --------------
+
+async function Main()
 {
-    showHelp();
-}
-*/
+    try
+    {
+        // Process settings
+        processCommandLine(process.argv.slice(2));
+        resolveDefaultSettings();
+        
+        // Invoke selected action
+        switch (action)
+        {
+            case "help":
+                showHelp();
+                break;
 
+            case "settings":
+                console.log(settings);
+                break;
+                
+            case "build":
+            case "rebuild":
+                build();
+                break;
+        
+            case "clean":
+                clean();
+                break;
+
+            case "coregen":
+                launchXilinxTool("coregen");
+                break;
+
+            case "ise":
+                launchXilinxTool("ise");
+                break;
+
+            case "xlcm":
+                launchXilinxTool("xlcm");
+                break;
+
+            default:
+                throw new Error(`Unknown action: '${action}'`);
+        }
+    }
+    catch (err)
+    {
+        console.log(`${err.message}`);
+    }
+}
+
+// Invoke main
+Main();
+
+
+// ------------ Build Actions ------------
+
+function createDirectories()
+{
+    // Ensure folders exist
+    mkdirp(settings.intDir);
+    mkdirp(settings.outDir);
+}
+
+function clean()
+{
+    rmdir(settings.intDir);
+    rm(path.join(settings.intDir, settings.projectName + ".bit"));
+}
+
+function build()
+{
+    // Ensure folder exist
+    createDirectories();
+
+    // Check if settings have changed
+    if (action == "build" && haveSettingsChanged())
+    {
+        console.log("Settings have changed, rebuilding...");
+        action = "rebuild";
+    }
+
+    // Create XST files
+    createXstProjectFile();
+    createXstCommandFile();
+
+    // Run the build...
+    runXst();
+    runNgdBuild();
+    runMap();
+    runPar();
+    runBitGen();
+}
+
+function launchXilinxTool(name)
+{
+    var cp = child_process.spawn("bash", ['-c', `source ${xilinxDir}/ISE_DS/settings64.sh; ${name}`], {detached: true, stdio: 'ignore', shell: false});
+    cp.unref();
+    console.log(`Launched ${name}`);
+}
+
+
+// ------------ Xilinx Build Actions ------------
+
+
+function runXst()
+{
+    // Check if up to date
+    let outputFile = path.join(settings.intDir, settings.projectName + ".ngc")
+    let inputFiles = settings.sourceFiles.slice();
+    inputFiles.push(settings.ucfFile);
+    if (isUpToDate(outputFile, inputFiles))
+        return;
+
+    // Run it
+    run(`${xilinxBin}/xst`, 
+        [ 
+            "-intstyle", intStyle, 
+            "-ifn", `${settings.projectName}.xst`,
+            "-ofn", `${settings.projectName}.syr`,
+        ],
+        {
+            cwd: settings.intDir,
+        }
+    );
+}
+
+function runNgdBuild()
+{
+    let outputFile = path.join(settings.intDir, settings.projectName + ".ngd")
+    let inputFiles = [
+        path.join(settings.intDir, settings.projectName + ".ngc"),
+        settings.ucfFile,
+    ];
+    if (isUpToDate(outputFile, inputFiles))
+        return;
+
+    let flags = settings.ngdBuildFlags.concat([
+        "-intstyle", intStyle, 
+        '-uc', path.resolve(settings.ucfFile),
+        '-dd', '.',
+        '-sd', 'ipcore_dir',
+        '-p', settings.device,
+        `${settings.projectName}.ngc`,
+        `${settings.projectName}.ngd`
+    ]);
+    
+
+    // Run it
+    run(`${xilinxBin}/ngdbuild`, flags,  
+        {
+            cwd: settings.intDir,
+        }
+    );    
+}
+
+function runMap()
+{
+    let outputFile = path.join(settings.intDir, settings.projectName + "_map.ncd")
+    let inputFiles = [
+        path.join(settings.intDir, settings.projectName + ".ngd"),
+        settings.ucfFile,
+    ];
+    if (isUpToDate(outputFile, inputFiles))
+        return;
+
+    let flags = settings.mapFlags.concat([
+        "-intstyle", intStyle, 
+        '-p', settings.device,
+        '-o', settings.projectName + "_map.ncd",
+        `${settings.projectName}.ngd`,
+        `${settings.projectName}.pcf`,
+    ]);
+    
+
+    // Run it
+    run(`${xilinxBin}/map`, flags,  
+        {
+            cwd: settings.intDir,
+        }
+    );    
+}
+
+
+function runPar()
+{
+    let outputFile = path.join(settings.intDir, settings.projectName + ".ncd")
+    let inputFiles = [
+        path.join(settings.intDir, settings.projectName + "_map.ncd"),
+        path.join(settings.intDir, settings.projectName + ".pcf"),
+    ];
+    if (isUpToDate(outputFile, inputFiles))
+        return;
+
+    let flags = settings.parFlags.concat([
+        "-intstyle", intStyle, 
+        `${settings.projectName}_map.ncd`,
+        `${settings.projectName}.ncd`,
+        `${settings.projectName}.pcf`,
+    ]);
+
+    // Run it
+    run(`${xilinxBin}/par`, flags,  
+        {
+            cwd: settings.intDir,
+        }
+    );    
+}
+
+
+function runBitGen()
+{
+    let outputFile = path.join(settings.outDir, settings.projectName + ".bit")
+    let inputFiles = [
+        path.join(settings.intDir, settings.projectName + ".ncd"),
+        path.join(settings.intDir, settings.projectName + ".pcf"),
+    ];
+    if (isUpToDate(outputFile, inputFiles))
+        return;
+
+    let flags = settings.bitGenFlags.concat([
+        "-intstyle", intStyle, 
+        `${settings.projectName}.ncd`,
+        `${path.resolve(outputFile)}`,
+        `${settings.projectName}.pcf`,
+    ]);
+
+    // Run it
+    run(`${xilinxBin}/bitgen`, flags,  
+        {
+            cwd: settings.intDir,
+        }
+    );    
+}
+
+// ------------ XST --------------
+
+function createXstProjectFile()
+{
+    let sb = "";
+    for (let i=0; i<settings.sourceFiles.length; i++)
+    {
+        let file = path.resolve(settings.sourceFiles[i]);
+        let ext = path.extname(settings.sourceFiles[i]);
+
+        switch (ext.toLowerCase())
+        {
+            case ".vhdl":
+            case ".vhd":
+                sb += "vhdl work \"" + file + "\"\n";
+                break;
+
+            case ".v":
+                sb += "verilog work \"" + file + "\"\n";
+                break;
+
+            default:
+                throw new Error(`Internal error unknown source file type: ${file}`);
+        }
+    }
+
+    fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".prj"), sb);
+}
+
+function createXstCommandFile()
+{
+    let sb = "";
+    sb += `set -tmpdir .\n`;
+    sb += `set -xsthdpdir "xst"\n`;
+    sb += `run\n`;
+    sb += `-ifn "${settings.projectName}.prj"\n`;
+    sb += `-ifmt mixed\n`;
+    sb += `-ofn "${settings.projectName}"\n`;
+    sb += `-ofmt NGC\n`
+    sb += `-top ${settings.topModule}\n`;
+    sb += `-p ${settings.device}\n`;
+    sb += `-opt_mode Speed\n`;
+    sb += `-opt_level 1\n`;
+    fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".xst"), sb);
+}
+
+
+
+// ------------ Command Line Parse --------------
 
 function processCommandLine(argv)
 {
-	for (var i=0; i<argv.length; i++)
+	for (let i=0; i<argv.length; i++)
 	{
-		var a = argv[i];
+		let a = argv[i];
 
-		var isSwitch = false;
+		let isSwitch = false;
 		if (a.startsWith("--"))
 		{
 			isSwitch = true;
@@ -83,7 +359,7 @@ function processCommandLine(argv)
 
 		if (isSwitch)
 		{
-            var parts = a.split(':');
+            let parts = a.split(':');
             if (parts.length > 2)
             {
                 parts = [parts[0], parts.slice(1).join(":")]
@@ -158,14 +434,6 @@ function processCommandLine(argv)
                     settings.device = parts[1];
                     break;
 
-                case "startupclock":
-                    if (settings.startupClock)
-                        throw new Error("Duplicate startupClock setting");
-                    if (parts.length < 2)
-                        throw new Error("startupClock argument missing");
-                    settings.startupClock = parts[1];
-                    break;
-
                 case "topmodule":
                     if (settings.topModule)
                         throw new Error("Duplicate topModule setting");
@@ -194,12 +462,12 @@ function processCommandLine(argv)
                 default:
                     throw new Error(`Unrecognized switch: --${parts[0]}`)
                     /*
-                var xstFlags = [];
-                var ngdBuildFlags = [];
-                var mapFlags = [];
-                var parFlags = [];
-                var bitGenFlags = [];
-                var sourceFiles = [];
+                let xstFlags = [];
+                let ngdBuildFlags = [];
+                let mapFlags = [];
+                let parFlags = [];
+                let bitGenFlags = [];
+                let sourceFiles = [];
                       */          
             }
 		}
@@ -238,211 +506,6 @@ function processCommandLine(argv)
 	}
 }
 
-processCommandLine(process.argv.slice(2));
-
-
-// ------------ Resolve Defaults ------------
-
-if (!settings.projectName)
-    settings.projectName = folderName;
-if (!settings.topModule)
-    settings.topModule = settings.projectName;
-if (!settings.ucfFile)
-    settings.ucfFile = settings.projectName + ".ucf";
-if (!settings.startupClock)
-    settings.startupClock = "CCLK";
-if (!settings.hdlLanguage)
-    settings.hdlLanguage = "VHDL";
-if (!action)
-    action = "build";
-if (!settings.intDir)
-    settings.intDir = "./build";
-if (!settings.outDir)
-    settings.outDir = settings.intDir;
-
-
-switch (action)
-{
-    case "settings":
-        console.log(settings);
-        break;
-        
-    case "build":
-    case "rebuild":
-        build();
-        break;
-
-    case "clean":
-        clean();
-        break;
-}
-
-
-function createDirectories()
-{
-    // Ensure folders exist
-    mkdirp(settings.intDir);
-    mkdirp(settings.outDir);
-}
-
-function clean()
-{
-    rmdir(settings.intDir);
-    rm(path.join(settings.intDir, settings.projectName + ".bit"));
-}
-
-function build()
-{
-    // Ensure folder exist
-    createDirectories();
-
-    // Check if settings have changed
-    if (action == "build" && haveSettingsChanged())
-    {
-        console.log("Settings have changed, rebuilding...");
-        action = "rebuild";
-    }
-
-    // Create XST files
-    createXstProjectFile();
-    createXstCommandFile();
-
-    runXst();
-    runNgdBuild();
-    runMap();
-    runPar();
-    runBitGen();
-}
-
-function runXst()
-{
-    // Check if up to date
-    var outputFile = path.join(settings.intDir, settings.projectName + ".ngc")
-    var inputFiles = settings.sourceFiles.slice();
-    inputFiles.push(settings.ucfFile);
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
-    // Run it
-    run(`${xilinxBin}/xst`, 
-        [ 
-            "-intstyle", intStyle, 
-            "-ifn", `${settings.projectName}.xst`,
-            "-ofn", `${settings.projectName}.syr`,
-        ],
-        {
-            cwd: settings.intDir,
-        }
-    );
-}
-
-function runNgdBuild()
-{
-    var outputFile = path.join(settings.intDir, settings.projectName + ".ngd")
-    var inputFiles = [
-        path.join(settings.intDir, settings.projectName + ".ngc"),
-        settings.ucfFile,
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
-    var flags = settings.ngdBuildFlags.concat([
-        "-intstyle", intStyle, 
-        '-uc', path.resolve(settings.ucfFile),
-        '-dd', '.',
-        '-sd', 'ipcore_dir',
-        '-p', settings.device,
-        `${settings.projectName}.ngc`,
-        `${settings.projectName}.ngd`
-    ]);
-    
-
-    // Run it
-    run(`${xilinxBin}/ngdbuild`, flags,  
-        {
-            cwd: settings.intDir,
-        }
-    );    
-}
-
-function runMap()
-{
-    var outputFile = path.join(settings.intDir, settings.projectName + "_map.ncd")
-    var inputFiles = [
-        path.join(settings.intDir, settings.projectName + ".ngd"),
-        settings.ucfFile,
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
-    var flags = settings.mapFlags.concat([
-        "-intstyle", intStyle, 
-        '-p', settings.device,
-        '-o', settings.projectName + "_map.ncd",
-        `${settings.projectName}.ngd`,
-        `${settings.projectName}.pcf`,
-    ]);
-    
-
-    // Run it
-    run(`${xilinxBin}/map`, flags,  
-        {
-            cwd: settings.intDir,
-        }
-    );    
-}
-
-
-function runPar()
-{
-    var outputFile = path.join(settings.intDir, settings.projectName + ".ncd")
-    var inputFiles = [
-        path.join(settings.intDir, settings.projectName + "_map.ncd"),
-        path.join(settings.intDir, settings.projectName + ".pcf"),
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
-    var flags = settings.parFlags.concat([
-        "-intstyle", intStyle, 
-        `${settings.projectName}_map.ncd`,
-        `${settings.projectName}.ncd`,
-        `${settings.projectName}.pcf`,
-    ]);
-
-    // Run it
-    run(`${xilinxBin}/par`, flags,  
-        {
-            cwd: settings.intDir,
-        }
-    );    
-}
-
-
-function runBitGen()
-{
-    var outputFile = path.join(settings.outDir, settings.projectName + ".bit")
-    var inputFiles = [
-        path.join(settings.intDir, settings.projectName + ".ncd"),
-        path.join(settings.intDir, settings.projectName + ".pcf"),
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
-    var flags = settings.bitGenFlags.concat([
-        "-intstyle", intStyle, 
-        `${settings.projectName}.ncd`,
-        `${path.resolve(outputFile)}`,
-        `${settings.projectName}.pcf`,
-    ]);
-
-    // Run it
-    run(`${xilinxBin}/bitgen`, flags,  
-        {
-            cwd: settings.intDir,
-        }
-    );    
-}
 
 
 // ------------ Settings -----------
@@ -450,18 +513,18 @@ function runBitGen()
 function haveSettingsChanged()
 {
     // Settings file
-    var settingsFile = path.join(settings.intDir, "xilt.json"); 
+    let settingsFile = path.join(settings.intDir, "xilt.json"); 
 
     // Get new settings
-    var newSettingsStr = JSON.stringify(settings);
+    let newSettingsStr = JSON.stringify(settings);
 
     // Get old settings
-    var oldSettingsStr = null;
+    let oldSettingsStr = null;
     if (fs.existsSync(settingsFile))
          oldSettingsStr = fs.readFileSync(settingsFile, 'utf8');
 
     // If they changed, clean the int dir
-    var changed = newSettingsStr != oldSettingsStr;
+    let changed = newSettingsStr != oldSettingsStr;
     if (changed)
     {
         clean();
@@ -473,52 +536,22 @@ function haveSettingsChanged()
     return changed;
 }
 
-
-
-// ------------ XST --------------
-
-function createXstProjectFile()
+function resolveDefaultSettings()
 {
-    let sb = "";
-    for (let i=0; i<settings.sourceFiles.length; i++)
-    {
-        var file = path.resolve(settings.sourceFiles[i]);
-        var ext = path.extname(settings.sourceFiles[i]);
-
-        switch (ext.toLowerCase())
-        {
-            case ".vhdl":
-            case ".vhd":
-                sb += "vhdl work \"" + file + "\"\n";
-                break;
-
-            case ".v":
-                sb += "verilog work \"" + file + "\"\n";
-                break;
-
-            default:
-                throw new Error(`Internal error unknown source file type: ${file}`);
-        }
-    }
-
-    fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".prj"), sb);
-}
-
-function createXstCommandFile()
-{
-    var sb = "";
-    sb += `set -tmpdir .\n`;
-    sb += `set -xsthdpdir "xst"\n`;
-    sb += `run\n`;
-    sb += `-ifn "${settings.projectName}.prj"\n`;
-    sb += `-ifmt mixed\n`;
-    sb += `-ofn "${settings.projectName}"\n`;
-    sb += `-ofmt NGC\n`
-    sb += `-top ${settings.topModule}\n`;
-    sb += `-p ${settings.device}\n`;
-    sb += `-opt_mode Speed\n`;
-    sb += `-opt_level 1\n`;
-    fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".xst"), sb);
+    if (!settings.projectName)
+        settings.projectName = folderName;
+    if (!settings.topModule)
+        settings.topModule = settings.projectName;
+    if (!settings.ucfFile)
+        settings.ucfFile = settings.projectName + ".ucf";
+    if (!settings.hdlLanguage)
+        settings.hdlLanguage = "VHDL";
+    if (!action)
+        action = "build";
+    if (!settings.intDir)
+        settings.intDir = "./build";
+    if (!settings.outDir)
+        settings.outDir = settings.intDir;
 }
 
 // ------------ Help --------------
@@ -528,6 +561,36 @@ function showHelp()
     console.log("xilt - Xilinx Command Line Tools");
     console.log("Copyright (C) 2019 Topten Software.  All Rights Reserved");
     console.log();
+    console.log("USAGE: xilt action [Options] [SourceFiles] [UCFFile]");
+    console.log();
+    console.log("Actions:");
+    console.log("    build                   build the project");
+    console.log("    clean                   remove all output files and folders");
+    console.log("    coregen                 launch Xilinx Core Generator");
+    console.log("    help                    show this help");
+    console.log("    ise                     launch Xilinx ISE");
+    console.log("    rebuild                 force rebuild the project");
+    console.log("    settings                show all resolved build settings");
+    console.log("    xlcm                    launch Xilinx license manager");
+    console.log();
+    console.log("Options:");
+    console.log("    --debug                 show file dependency checks");
+    console.log("    --device:val            set the Xilinx device name (required)");
+    console.log("    --help                  show this help");
+    console.log("    --intDir:val            set the intermediate build directory (default: ./build");
+    console.log("    --outDir:val            set the output folder for .bit file (default: intermediate directory)");
+    console.log("    --projectName:val       set the name of the project (default: folder name)");
+    console.log("    --topModule:val         set the name of the top module (default: project name)");
+    console.log("    --verbose               show verbose output");
+    console.log();
+    console.log("Xilinx Tools Passthrough:")
+    console.log("    --xst_<name>[:val]      sets additional arguments to pass to xst");
+    console.log("    --ngcbuild_<name>[:val] sets additional arguments to pass to ngdbuild");
+    console.log("    --map_<name>[:val]      sets additional arguments to pass to map");
+    console.log("    --par_<name>[:val]      sets additional arguments to pass to par");
+    console.log("    --bitgen_<name>[:val]   sets additional arguments to pass to bitgen");
+    console.log("");
+    console.log("eg: '--bitgen_g:StartupClk:CCLK' will invoke bitgen with '-g StartupClk:CCLK'");
 }
 
 // ------------ Utility Functions --------------
@@ -539,8 +602,8 @@ function merge(x, y)
     if (!y)
         return x;
 
-    var keys = Object.keys(y);
-    for (var i=0; i<keys.length; i++)
+    let keys = Object.keys(y);
+    for (let i=0; i<keys.length; i++)
     {
         x[keys[i]] = y[keys[i]];
     }
@@ -553,8 +616,8 @@ function mergeMissing(x, y)
     if (!y)
         return x;
 
-    var keys = Object.keys(y);
-    for (var i=0; i<keys.length; i++)
+    let keys = Object.keys(y);
+    for (let i=0; i<keys.length; i++)
     {
         if (!x[keys[i]])
         {
@@ -572,7 +635,7 @@ function parseOptions(file)
 
     try
     {
-        var options = JSON.parse(fs.readFileSync(file, 'UTF8'));
+        let options = JSON.parse(fs.readFileSync(file, 'UTF8'));
 
         if (options[os.platform()])
         {
@@ -622,7 +685,7 @@ function pushOneOrArray(target, arg, value)
 {
     if (Array.isArray(value))
     {
-        for (var i=0; i<value.length; i++)
+        for (let i=0; i<value.length; i++)
         {
             target.push(arg);
             target.push(value[i]);
@@ -656,7 +719,7 @@ function rmdir(folder)
     {
         fs.readdirSync(folder).forEach(function(file,index)
         {
-            var curPath = path.join(folder, file);
+            let curPath = path.join(folder, file);
             if(fs.lstatSync(curPath).isDirectory()) 
             { 
                 rmdir(curPath);
@@ -703,7 +766,7 @@ function isUpToDate(outputFile, inputFiles)
 	}
 	
 	// Get the target file time
-	var targetTime = filetime(outputFile);
+	let targetTime = filetime(outputFile);
 	if (targetTime == 0)
 	{
 		if (debug)
@@ -717,7 +780,7 @@ function isUpToDate(outputFile, inputFiles)
 		return false;
 
 	// Check each
-	for (var f of inputFiles)
+	for (let f of inputFiles)
 	{
 		if (filetime(f) > targetTime)
 		{
@@ -730,7 +793,7 @@ function isUpToDate(outputFile, inputFiles)
 	if (debug)
 	{
 		console.log(`Target file '${outputFile}' is update to date with respect to:`);
-		for (var f of inputFiles)
+		for (let f of inputFiles)
 		{
 			console.log(`    ${f}`);
 		}
@@ -743,7 +806,7 @@ function isUpToDate(outputFile, inputFiles)
 // Run a command
 function run(cmd, args, opts)
 {
-    var opts = merge({
+    let opts = merge({
 //    	stdio: 'inherit',
 		shell: true,
     }, opts);
@@ -754,7 +817,7 @@ function run(cmd, args, opts)
     }
 
     // Spawn process
-    var r = child_process.spawnSync(cmd, args, opts);
+    let r = child_process.spawnSync(cmd, args, opts);
 
     // Failed to launch
     if (r.error)
