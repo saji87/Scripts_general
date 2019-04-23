@@ -1,0 +1,2615 @@
+Reading design: FpgaBee_PapilioDuo.prj
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/SDCardController.vhd" into library work
+Parsing package <SDStatusBits>.
+Parsing entity <SDCardController>.
+Parsing architecture <Behavioral> of entity <sdcardcontroller>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/ClockCore.vhd" into library work
+Parsing entity <ClockCore>.
+Parsing architecture <xilinx> of entity <clockcore>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/t80/T80_Pack.vhd" into library work
+Parsing package <T80_Pack>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/t80/T80se.vhd" into library work
+Parsing entity <T80se>.
+Parsing architecture <rtl> of entity <t80se>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Crtc6545.vhd" into library work
+Parsing entity <Crtc6545>.
+Parsing architecture <Behavioral> of entity <crtc6545>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/RamInferred.vhd" into library work
+Parsing entity <RamInferred>.
+Parsing architecture <behavior> of entity <raminferred>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Ram.vhd" into library work
+Parsing entity <Ram>.
+Parsing architecture <behavior> of entity <ram>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/CharRom.vhd" into library work
+Parsing entity <CharRom>.
+Parsing architecture <behavior> of entity <charrom>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/PcuCharRom.vhd" into library work
+Parsing entity <PcuCharRom>.
+Parsing architecture <behavior> of entity <pcucharrom>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/PcuVideoController.vhd" into library work
+Parsing entity <PcuVideoController>.
+Parsing architecture <Behavioral> of entity <pcuvideocontroller>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/vga_controller_800_60.vhd" into library work
+Parsing entity <vga_controller_800_60>.
+Parsing architecture <Behavioral> of entity <vga_controller_800_60>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/StatusCharRom.vhd" into library work
+Parsing entity <StatusCharRom>.
+Parsing architecture <behavior> of entity <statuscharrom>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/StatusPanel.vhd" into library work
+Parsing entity <StatusPanel>.
+Parsing architecture <behavior> of entity <statuspanel>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/ps2interface.vhd" into library work
+Parsing entity <ps2interface>.
+Parsing architecture <Behavioral> of entity <ps2interface>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/KeyboardPort.vhd" into library work
+Parsing entity <KeyboardPort>.
+Parsing architecture <Behavioral> of entity <keyboardport>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/ScanCodes.vhd" into library work
+Parsing package <ScanCodes>.
+Parsing package body <ScanCodes>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/ScanCodeMapper.vhd" into library work
+Parsing entity <ScanCodeMapper>.
+Parsing architecture <Behavioral> of entity <scancodemapper>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/MicrobeeKeyboardDecoder.vhd" into library work
+Parsing entity <MicrobeeKeyboardDecoder>.
+Parsing architecture <Behavioral> of entity <microbeekeyboarddecoder>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/PriorityArbiter.vhd" into library work
+Parsing entity <PriorityArbiter>.
+Parsing architecture <Behavioral> of entity <priorityarbiter>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskConstants.vhd" into library work
+Parsing package <DiskConstants>.
+Parsing package body <DiskConstants>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/TapeController.vhd" into library work
+Parsing entity <TapeController>.
+Parsing architecture <behavior> of entity <tapecontroller>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1002.vhd" into library work
+Parsing entity <DiskControllerWD1002>.
+Parsing architecture <behavior> of entity <diskcontrollerwd1002>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/TrackParser.vhd" into library work
+Parsing entity <TrackParser>.
+Parsing architecture <behavior> of entity <trackparser>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1793.vhd" into library work
+Parsing entity <DiskControllerWD1793>.
+Parsing architecture <behavior> of entity <diskcontrollerwd1793>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerSelector.vhd" into library work
+Parsing entity <DiskControllerSelector>.
+Parsing architecture <behavior> of entity <diskcontrollerselector>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerMultiplier.vhd" into library work
+Parsing entity <DiskControllerMultiplier>.
+Parsing architecture <behavior> of entity <diskcontrollermultiplier>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskGeometry.vhd" into library work
+Parsing entity <DiskGeometry>.
+Parsing architecture <behavior> of entity <diskgeometry>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/VirtualDiskController.vhd" into library work
+Parsing entity <VirtualDiskController>.
+Parsing architecture <behavior> of entity <virtualdiskcontroller>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerPcu.vhd" into library work
+Parsing entity <DiskControllerPcu>.
+Parsing architecture <behavior> of entity <diskcontrollerpcu>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Dac.vhd" into library work
+Parsing entity <Dac>.
+Parsing architecture <rtl> of entity <dac>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_comp_pack-p.vhd" into library work
+Parsing package <sn76489_comp_pack>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_top.vhd" into library work
+Parsing entity <sn76489_top>.
+Parsing architecture <struct> of entity <sn76489_top>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" into library work
+Parsing entity <FpgaBeeCore>.
+Parsing architecture <Behavioral> of entity <fpgabeecore>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/BootRom.vhd" into library work
+Parsing entity <BootRom>.
+Parsing architecture <behavior> of entity <bootrom>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/FpgaBee_PapilioDuo.vhd" into library work
+Parsing entity <FpgaBee_PapilioDuo>.
+Parsing architecture <Behavioral> of entity <fpgabee_papilioduo>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FlashMemoryController.vhd" into library work
+Parsing entity <FlashMemoryController>.
+Parsing architecture <Behavioral> of entity <flashmemorycontroller>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/StatusLedMatrix.vhd" into library work
+Parsing entity <StatusLedMatrix>.
+Parsing architecture <Behavioral> of entity <statusledmatrix>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/seg7_decoder.vhd" into library work
+Parsing entity <seg7_decoder>.
+Parsing architecture <Behavioral> of entity <seg7_decoder>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/seg7_addr_display.vhd" into library work
+Parsing entity <seg7_addr_display>.
+Parsing architecture <Behavioral> of entity <seg7_addr_display>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Utils.vhd" into library work
+Parsing package <Utils>.
+Parsing package body <Utils>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Fifo.vhd" into library work
+Parsing entity <Fifo>.
+Parsing architecture <behavior> of entity <fifo>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/t80/T80.vhd" into library work
+Parsing entity <T80>.
+Parsing architecture <rtl> of entity <t80>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/t80/T80_ALU.vhd" into library work
+Parsing entity <T80_ALU>.
+Parsing architecture <rtl> of entity <t80_alu>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/t80/T80_MCode.vhd" into library work
+Parsing entity <T80_MCode>.
+Parsing architecture <rtl> of entity <t80_mcode>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/t80/T80_Reg.vhd" into library work
+Parsing entity <T80_Reg>.
+Parsing architecture <rtl> of entity <t80_reg>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_latch_ctrl.vhd" into library work
+Parsing entity <sn76489_latch_ctrl>.
+Parsing architecture <rtl> of entity <sn76489_latch_ctrl>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_clock_div.vhd" into library work
+Parsing entity <sn76489_clock_div>.
+Parsing architecture <rtl> of entity <sn76489_clock_div>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_attenuator.vhd" into library work
+Parsing entity <sn76489_attenuator>.
+Parsing architecture <rtl> of entity <sn76489_attenuator>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_tone.vhd" into library work
+Parsing entity <sn76489_tone>.
+Parsing architecture <rtl> of entity <sn76489_tone>.
+Parsing VHDL file "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_noise.vhd" into library work
+Parsing entity <sn76489_noise>.
+Parsing architecture <rtl> of entity <sn76489_noise>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating entity <FpgaBee_PapilioDuo> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <ClockCore> (architecture <xilinx>) from library <work>.
+
+Elaborating entity <FpgaBeeCore> (architecture <Behavioral>) from library <work>.
+WARNING:HDLCompiler:871 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" Line 264: Using initial value "11110000" for speaker_volume since it is never assigned
+WARNING:HDLCompiler:871 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" Line 266: Using initial value "11110000" for tape_volume since it is never assigned
+WARNING:HDLCompiler:92 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" Line 317: clken_3_375_divider_mask should be on the sensitivity list of the process
+WARNING:HDLCompiler:1127 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" Line 435: Assignment to hex_reg ignored, since the identifier is never used
+WARNING:HDLCompiler:92 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" Line 918: tape_intreq should be on the sensitivity list of the process
+WARNING:HDLCompiler:92 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" Line 922: clken_3_375_divider_mask should be on the sensitivity list of the process
+
+Elaborating entity <T80se> (architecture <rtl>) with generics from library <work>.
+
+Elaborating entity <T80> (architecture <rtl>) with generics from library <work>.
+
+Elaborating entity <T80_MCode> (architecture <rtl>) with generics from library <work>.
+
+Elaborating entity <T80_ALU> (architecture <rtl>) with generics from library <work>.
+
+Elaborating entity <T80_Reg> (architecture <rtl>) from library <work>.
+
+Elaborating entity <Crtc6545> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <Ram> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <RamInferred> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <Ram> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <RamInferred> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <CharRom> (architecture <behavior>) from library <work>.
+
+Elaborating entity <Ram> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <RamInferred> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <PcuVideoController> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <PcuCharRom> (architecture <behavior>) from library <work>.
+
+Elaborating entity <vga_controller_800_60> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <StatusPanel> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <StatusCharRom> (architecture <behavior>) from library <work>.
+
+Elaborating entity <KeyboardPort> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <ps2interface> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <MicrobeeKeyboardDecoder> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <ScanCodeMapper> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <SDCardController> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <PriorityArbiter> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <TapeController> (architecture <behavior>) from library <work>.
+
+Elaborating entity <RamInferred> (architecture <behavior>) with generics from library <work>.
+
+Elaborating entity <DiskControllerSelector> (architecture <behavior>) from library <work>.
+
+Elaborating entity <DiskControllerWD1002> (architecture <behavior>) from library <work>.
+
+Elaborating entity <DiskControllerWD1793> (architecture <behavior>) from library <work>.
+INFO:HDLCompiler:679 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1793.vhd" Line 872. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1793.vhd" Line 909. Case statement is complete. others clause is never selected
+
+Elaborating entity <TrackParser> (architecture <behavior>) from library <work>.
+INFO:HDLCompiler:679 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/TrackParser.vhd" Line 165. Case statement is complete. others clause is never selected
+
+Elaborating entity <VirtualDiskController> (architecture <behavior>) from library <work>.
+INFO:HDLCompiler:679 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/VirtualDiskController.vhd" Line 300. Case statement is complete. others clause is never selected
+
+Elaborating entity <DiskGeometry> (architecture <behavior>) from library <work>.
+
+Elaborating entity <DiskControllerMultiplier> (architecture <behavior>) from library <work>.
+
+Elaborating entity <DiskControllerPcu> (architecture <behavior>) from library <work>.
+
+Elaborating entity <Dac> (architecture <rtl>) with generics from library <work>.
+
+Elaborating entity <sn76489_top> (architecture <struct>) with generics from library <work>.
+
+Elaborating entity <sn76489_clock_div> (architecture <rtl>) with generics from library <work>.
+
+Elaborating entity <sn76489_latch_ctrl> (architecture <rtl>) from library <work>.
+
+Elaborating entity <sn76489_tone> (architecture <rtl>) from library <work>.
+
+Elaborating entity <sn76489_attenuator> (architecture <rtl>) from library <work>.
+
+Elaborating entity <sn76489_noise> (architecture <rtl>) from library <work>.
+
+Elaborating entity <BootRom> (architecture <behavior>) from library <work>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <FpgaBee_PapilioDuo>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/FpgaBee_PapilioDuo.vhd".
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/FpgaBee_PapilioDuo.vhd" line 111: Output port <vga_pixel_x> of the instance <FpgaBeeCore> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/FpgaBee_PapilioDuo.vhd" line 111: Output port <vga_pixel_y> of the instance <FpgaBeeCore> is unconnected or connected to loadless signal.
+    Found 1-bit tristate buffer for signal <sram_data<7>> created at line 159
+    Found 1-bit tristate buffer for signal <sram_data<6>> created at line 159
+    Found 1-bit tristate buffer for signal <sram_data<5>> created at line 159
+    Found 1-bit tristate buffer for signal <sram_data<4>> created at line 159
+    Found 1-bit tristate buffer for signal <sram_data<3>> created at line 159
+    Found 1-bit tristate buffer for signal <sram_data<2>> created at line 159
+    Found 1-bit tristate buffer for signal <sram_data<1>> created at line 159
+    Found 1-bit tristate buffer for signal <sram_data<0>> created at line 159
+    Summary:
+	inferred   1 Multiplexer(s).
+	inferred   8 Tristate(s).
+Unit <FpgaBee_PapilioDuo> synthesized.
+
+Synthesizing Unit <ClockCore>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/ClockCore.vhd".
+    Summary:
+	no macro.
+Unit <ClockCore> synthesized.
+
+Synthesizing Unit <FpgaBeeCore>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd".
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" line 932: Output port <RFSH_n> of the instance <z80_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" line 932: Output port <HALT_n> of the instance <z80_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" line 932: Output port <BUSAK_n> of the instance <z80_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" line 1336: Output port <debugA> of the instance <DiskControllerSelector> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" line 1336: Output port <debugS> of the instance <DiskControllerSelector> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" line 1370: Output port <debugA> of the instance <VirtualDiskController> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/FpgaBeeCore.vhd" line 1370: Output port <debugS> of the instance <VirtualDiskController> is unconnected or connected to loadless signal.
+    Found 8-bit register for signal <soft_reset_shifter>.
+    Found 10-bit register for signal <clken_3_375_divider_mask>.
+    Found 8-bit register for signal <system_flags>.
+    Found 1-bit register for signal <boot_scan>.
+    Found 1-bit register for signal <latch_rom>.
+    Found 8-bit register for signal <port_1c>.
+    Found 8-bit register for signal <port_08>.
+    Found 8-bit register for signal <port_50>.
+    Found 8-bit register for signal <port_D0>.
+    Found 8-bit register for signal <led_reg>.
+    Found 1-bit register for signal <z80_nmi_n>.
+    Found 1-bit register for signal <pcu_mode>.
+    Found 1-bit register for signal <pcu_exit_request>.
+    Found 8-bit register for signal <pcu_display_mode>.
+    Found 1-bit register for signal <request_soft_reset>.
+    Found 1-bit register for signal <pio_port_b<7>>.
+    Found 1-bit register for signal <pio_port_b<6>>.
+    Found 1-bit register for signal <pio_port_b<5>>.
+    Found 1-bit register for signal <pio_port_b<4>>.
+    Found 1-bit register for signal <pio_port_b<3>>.
+    Found 1-bit register for signal <pio_port_b<2>>.
+    Found 1-bit register for signal <pio_port_b<1>>.
+    Found 16-bit register for signal <current_pc>.
+    Found 1-bit register for signal <pcu_key_available>.
+    Found 10-bit register for signal <pcu_key_data>.
+    Found 1-bit register for signal <KeyboardMessageAvailable_prev>.
+    Found 10-bit register for signal <clken_3_375_divider>.
+    Found 10-bit adder for signal <clken_3_375_divider[9]_GND_16_o_add_0_OUT> created at line 1241.
+    Found 8-bit adder for signal <n0623> created at line 1492.
+    Found 8-bit adder for signal <n0626> created at line 1492.
+    Found 8-bit adder for signal <dac_i> created at line 1241.
+    Summary:
+	inferred   4 Adder/Subtractor(s).
+	inferred 125 D-type flip-flop(s).
+	inferred 137 Multiplexer(s).
+Unit <FpgaBeeCore> synthesized.
+
+Synthesizing Unit <T80se>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/t80/T80se.vhd".
+        Mode = 0
+        T2Write = 1
+        IOWait = 1
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/t80/T80se.vhd" line 107: Output port <IntE> of the instance <u0> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/t80/T80se.vhd" line 107: Output port <Stop> of the instance <u0> is unconnected or connected to loadless signal.
+    Found 1-bit register for signal <WR_n>.
+    Found 1-bit register for signal <IORQ_n>.
+    Found 1-bit register for signal <MREQ_n>.
+    Found 1-bit register for signal <RD_n>.
+    Found 8-bit register for signal <DI_Reg>.
+    Summary:
+	inferred  12 D-type flip-flop(s).
+	inferred  11 Multiplexer(s).
+Unit <T80se> synthesized.
+
+Synthesizing Unit <T80>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/t80/T80.vhd".
+        Mode = 0
+        IOWait = 1
+        Flag_C = 0
+        Flag_N = 1
+        Flag_P = 2
+        Flag_X = 3
+        Flag_H = 4
+        Flag_Y = 5
+        Flag_Z = 6
+        Flag_S = 7
+    Found 1-bit register for signal <RFSH_n>.
+    Found 1-bit register for signal <M1_n>.
+    Found 1-bit register for signal <Alternate>.
+    Found 1-bit register for signal <Arith16_r>.
+    Found 1-bit register for signal <BTR_r>.
+    Found 1-bit register for signal <Z16_r>.
+    Found 1-bit register for signal <Save_ALU_r>.
+    Found 1-bit register for signal <PreserveC_r>.
+    Found 1-bit register for signal <XY_Ind>.
+    Found 1-bit register for signal <BusReq_s>.
+    Found 1-bit register for signal <INT_s>.
+    Found 1-bit register for signal <NMI_s>.
+    Found 1-bit register for signal <OldNMI_n>.
+    Found 1-bit register for signal <Halt_FF>.
+    Found 1-bit register for signal <BusAck>.
+    Found 1-bit register for signal <NMICycle>.
+    Found 1-bit register for signal <IntCycle>.
+    Found 1-bit register for signal <IntE_FF1>.
+    Found 1-bit register for signal <IntE_FF2>.
+    Found 1-bit register for signal <No_BTR>.
+    Found 1-bit register for signal <Auto_Wait_t1>.
+    Found 1-bit register for signal <Auto_Wait_t2>.
+    Found 16-bit register for signal <SP>.
+    Found 8-bit register for signal <F>.
+    Found 8-bit register for signal <Ap>.
+    Found 8-bit register for signal <Fp>.
+    Found 8-bit register for signal <ACC>.
+    Found 16-bit register for signal <A>.
+    Found 16-bit register for signal <TmpAddr>.
+    Found 16-bit register for signal <PC>.
+    Found 8-bit register for signal <IR>.
+    Found 8-bit register for signal <DO>.
+    Found 8-bit register for signal <I>.
+    Found 8-bit register for signal <R>.
+    Found 2-bit register for signal <ISet>.
+    Found 2-bit register for signal <XY_State>.
+    Found 2-bit register for signal <IStatus>.
+    Found 3-bit register for signal <MCycles>.
+    Found 3-bit register for signal <TState>.
+    Found 3-bit register for signal <Pre_XY_F_M>.
+    Found 5-bit register for signal <Read_To_Reg_r>.
+    Found 4-bit register for signal <ALU_Op_r>.
+    Found 3-bit register for signal <MCycle>.
+    Found 3-bit register for signal <RegAddrA_r>.
+    Found 3-bit register for signal <RegAddrB_r>.
+    Found 3-bit register for signal <RegAddrC>.
+    Found 1-bit register for signal <IncDecZ>.
+    Found 16-bit register for signal <RegBusA_r>.
+    Found 8-bit register for signal <BusB>.
+    Found 8-bit register for signal <BusA>.
+    Found 7-bit adder for signal <R[6]_GND_19_o_add_15_OUT> created at line 1241.
+    Found 16-bit adder for signal <TmpAddr[15]_GND_19_o_add_46_OUT> created at line 1241.
+    Found 16-bit adder for signal <PC[15]_DI_Reg[7]_add_69_OUT> created at line 554.
+    Found 16-bit adder for signal <PC[15]_GND_19_o_add_70_OUT> created at line 1241.
+    Found 16-bit adder for signal <RegBusC[15]_DI_Reg[7]_add_81_OUT> created at line 567.
+    Found 16-bit adder for signal <SP[15]_GND_19_o_add_88_OUT> created at line 1241.
+    Found 16-bit adder for signal <RegBusA[15]_GND_19_o_add_214_OUT> created at line 1253.
+    Found 3-bit adder for signal <Pre_XY_F_M[2]_GND_19_o_add_265_OUT> created at line 1241.
+    Found 3-bit adder for signal <MCycle[2]_GND_19_o_add_270_OUT> created at line 1241.
+    Found 3-bit adder for signal <TState[2]_GND_19_o_add_278_OUT> created at line 1241.
+    Found 16-bit subtractor for signal <GND_19_o_GND_19_o_sub_74_OUT<15:0>> created at line 1308.
+    Found 16-bit subtractor for signal <GND_19_o_GND_19_o_sub_88_OUT<15:0>> created at line 1308.
+    Found 16-bit subtractor for signal <RegBusA[15]_GND_19_o_sub_216_OUT<15:0>> created at line 1320.
+    Found 16-bit 7-to-1 multiplexer for signal <Set_Addr_To[2]_I[7]_mux_49_OUT> created at line 474.
+    Found 8-bit 3-to-1 multiplexer for signal <Special_LD[1]_ACC[7]_wide_mux_110_OUT> created at line 603.
+    Found 8-bit 11-to-1 multiplexer for signal <Set_BusB_To[3]_X_13_o_wide_mux_242_OUT> created at line 846.
+    Found 8-bit 3-to-1 multiplexer for signal <_n1666> created at line 603.
+    Found 3-bit comparator equal for signal <T_Res> created at line 334
+    Found 3-bit comparator equal for signal <MCycles[2]_MCycle[2]_equal_267_o> created at line 1030
+    Summary:
+	inferred  10 Adder/Subtractor(s).
+	inferred 213 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred 233 Multiplexer(s).
+Unit <T80> synthesized.
+
+Synthesizing Unit <T80_MCode>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/t80/T80_MCode.vhd".
+        Mode = 0
+        Flag_C = 0
+        Flag_N = 1
+        Flag_P = 2
+        Flag_X = 3
+        Flag_H = 4
+        Flag_Y = 5
+        Flag_Z = 6
+        Flag_S = 7
+WARNING:Xst:647 - Input <F<1:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <F<5:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 256x25-bit Read Only RAM for signal <_n2085>
+    Found 1-bit 8-to-1 multiplexer for signal <IR[5]_F[7]_Mux_192_o> created at line 171.
+    Found 4-bit 3-to-1 multiplexer for signal <ISet[1]_IR[7]_wide_mux_462_OUT> created at line 248.
+    Found 4-bit 3-to-1 multiplexer for signal <Set_BusA_To> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <Read_To_Reg> created at line 248.
+    Found 3-bit 3-to-1 multiplexer for signal <MCycles> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <ISet[1]_IR[7]_Mux_467_o> created at line 248.
+    Found 3-bit 3-to-1 multiplexer for signal <ISet[1]_IR[7]_wide_mux_468_OUT> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <Write> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <Read_To_Acc> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <LDZ> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <LDW> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <Inc_WZ> created at line 248.
+    Found 3-bit 3-to-1 multiplexer for signal <ISet[1]_IR[7]_wide_mux_474_OUT> created at line 248.
+    Found 4-bit 3-to-1 multiplexer for signal <IncDec_16> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <Save_ALU> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <PreserveC> created at line 248.
+    Found 4-bit 3-to-1 multiplexer for signal <ALU_Op> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <Jump> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <ISet[1]_IR[7]_Mux_490_o> created at line 248.
+    Found 1-bit 3-to-1 multiplexer for signal <IORQ> created at line 248.
+    Summary:
+	inferred   1 RAM(s).
+	inferred 388 Multiplexer(s).
+Unit <T80_MCode> synthesized.
+
+Synthesizing Unit <T80_ALU>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/t80/T80_ALU.vhd".
+        Mode = 0
+        Flag_C = 0
+        Flag_N = 1
+        Flag_P = 2
+        Flag_X = 3
+        Flag_H = 4
+        Flag_Y = 5
+        Flag_Z = 6
+        Flag_S = 7
+    Found 6-bit adder for signal <n0124> created at line 104.
+    Found 5-bit adder for signal <n0123> created at line 104.
+    Found 3-bit adder for signal <n0122> created at line 104.
+    Found 9-bit adder for signal <GND_21_o_GND_21_o_add_21_OUT> created at line 1241.
+    Found 9-bit adder for signal <GND_21_o_GND_21_o_add_24_OUT> created at line 1241.
+    Found 8-bit subtractor for signal <GND_21_o_GND_21_o_sub_29_OUT<7:0>> created at line 1308.
+    Found 9-bit subtractor for signal <GND_21_o_GND_21_o_sub_32_OUT<8:0>> created at line 1308.
+    Found 8-bit 8-to-1 multiplexer for signal <IR[5]_GND_21_o_wide_mux_42_OUT> created at line 288.
+    Found 5-bit comparator greater for signal <GND_21_o_GND_21_o_LessThan_24_o> created at line 214
+    Found 4-bit comparator greater for signal <PWR_15_o_BusA[3]_LessThan_27_o> created at line 219
+    Found 4-bit comparator greater for signal <GND_21_o_BusA[3]_LessThan_28_o> created at line 220
+    Found 8-bit comparator greater for signal <PWR_15_o_BusA[7]_LessThan_31_o> created at line 225
+    Summary:
+	inferred   7 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+	inferred  57 Multiplexer(s).
+Unit <T80_ALU> synthesized.
+
+Synthesizing Unit <T80_Reg>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/t80/T80_Reg.vhd".
+    Found 8x8-bit dual-port RAM <Mram_RegsH> for signal <RegsH>.
+    Found 8x8-bit dual-port RAM <Mram_RegsL> for signal <RegsL>.
+    Summary:
+	inferred   4 RAM(s).
+Unit <T80_Reg> synthesized.
+
+Synthesizing Unit <Crtc6545>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Crtc6545.vhd".
+WARNING:Xst:647 - Input <attr_ram_dout<7:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 5-bit register for signal <reg_addr>.
+    Found 7-bit register for signal <reg_screen_width_chars>.
+    Found 7-bit register for signal <reg_screen_height_chars>.
+    Found 5-bit register for signal <reg_char_height_minus_1>.
+    Found 2-bit register for signal <reg_cursor_mode>.
+    Found 5-bit register for signal <reg_cursor_startline>.
+    Found 5-bit register for signal <reg_cursor_endline>.
+    Found 14-bit register for signal <reg_base_addr>.
+    Found 14-bit register for signal <reg_cursor_pos>.
+    Found 14-bit register for signal <reg_light_pen>.
+    Found 14-bit register for signal <reg_update_addr>.
+    Found 1-bit register for signal <reg_status_light_pen_ready>.
+    Found 6-bit register for signal <key_scan_addr>.
+    Found 7-bit register for signal <key_scan_disable>.
+    Found 8-bit register for signal <dout>.
+    Found 24-bit register for signal <retrace_counter>.
+    Found 1-bit register for signal <pcg_select>.
+    Found 8-bit register for signal <color_delayed>.
+    Found 11-bit register for signal <vert_resolution>.
+    Found 7-bit register for signal <iter_rows_left>.
+    Found 11-bit register for signal <accum_vert_resolution>.
+    Found 14-bit register for signal <vram_addr_row>.
+    Found 5-bit register for signal <current_ypos_in_char>.
+    Found 7-bit register for signal <current_char_row>.
+    Found 27-bit register for signal <blink_counter>.
+    Found 13-bit subtractor for signal <n0251> created at line 1314.
+    Found 12-bit subtractor for signal <n0252> created at line 1314.
+    Found 27-bit adder for signal <blink_counter[26]_GND_25_o_add_0_OUT> created at line 1241.
+    Found 6-bit adder for signal <key_scan_addr[5]_GND_25_o_add_3_OUT> created at line 1241.
+    Found 24-bit adder for signal <retrace_counter[23]_GND_25_o_add_95_OUT> created at line 1241.
+    Found 5-bit adder for signal <char_height> created at line 1241.
+    Found 11-bit adder for signal <accum_vert_resolution[10]_GND_25_o_add_102_OUT> created at line 373.
+    Found 14-bit adder for signal <vram_addr_row[13]_GND_25_o_add_116_OUT> created at line 407.
+    Found 7-bit adder for signal <current_char_row[6]_GND_25_o_add_117_OUT> created at line 1241.
+    Found 5-bit adder for signal <current_ypos_in_char[4]_GND_25_o_add_118_OUT> created at line 1241.
+    Found 11-bit adder for signal <current_x_coord[10]_GND_25_o_add_143_OUT> created at line 1241.
+    Found 14-bit adder for signal <vram_addr_current> created at line 469.
+    Found 14-bit adder for signal <vram_addr_upcoming> created at line 472.
+    Found 7-bit subtractor for signal <GND_25_o_GND_25_o_sub_6_OUT<6:0>> created at line 1308.
+    Found 7-bit subtractor for signal <GND_25_o_GND_25_o_sub_104_OUT<6:0>> created at line 1308.
+    Found 11-bit subtractor for signal <current_x_coord> created at line 102.
+    Found 1-bit 64-to-1 multiplexer for signal <key_scan_addr[5]_MicrobeeSwitches[63]_Mux_6_o> created at line 194.
+    Found 1-bit 64-to-1 multiplexer for signal <reg_update_addr[9]_MicrobeeSwitches[63]_Mux_8_o> created at line 259.
+    Found 1-bit 8-to-1 multiplexer for signal <current_pixel> created at line 503.
+    Found 1-bit 4-to-1 multiplexer for signal <cursor_on> created at line 114.
+    Found 24-bit comparator greater for signal <in_retrace> created at line 342
+    Found 11-bit comparator equal for signal <blank_lines_at_top[10]_vga_pixel_y[10]_equal_115_o> created at line 396
+    Found 5-bit comparator equal for signal <reg_char_height_minus_1[4]_current_ypos_in_char[4]_equal_116_o> created at line 406
+    Found 7-bit comparator greater for signal <pixel_in_x_range> created at line 465
+    Found 7-bit comparator greater for signal <pixel_in_y_range> created at line 466
+    Found 5-bit comparator lessequal for signal <n0196> created at line 497
+    Found 5-bit comparator lessequal for signal <n0198> created at line 498
+    Found 14-bit comparator equal for signal <reg_cursor_pos[13]_vram_addr_current[13]_equal_163_o> created at line 499
+    Summary:
+	inferred  16 Adder/Subtractor(s).
+	inferred 229 D-type flip-flop(s).
+	inferred   8 Comparator(s).
+	inferred  61 Multiplexer(s).
+Unit <Crtc6545> synthesized.
+
+Synthesizing Unit <Ram_1>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Ram.vhd".
+        ADDR_WIDTH = 11
+        DATA_WIDTH = 8
+    Summary:
+	no macro.
+Unit <Ram_1> synthesized.
+
+Synthesizing Unit <RamInferred_1>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/RamInferred.vhd".
+        ADDR_WIDTH = 11
+        DATA_WIDTH = 8
+    Found 2048x8-bit dual-port RAM <Mram_ram> for signal <ram>.
+    Found 8-bit register for signal <dout_b>.
+    Found 8-bit register for signal <dout_a>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <RamInferred_1> synthesized.
+
+Synthesizing Unit <Ram_2>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Ram.vhd".
+        ADDR_WIDTH = 14
+        DATA_WIDTH = 8
+    Summary:
+	no macro.
+Unit <Ram_2> synthesized.
+
+Synthesizing Unit <RamInferred_2>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/RamInferred.vhd".
+        ADDR_WIDTH = 14
+        DATA_WIDTH = 8
+    Found 16384x8-bit dual-port RAM <Mram_ram> for signal <ram>.
+    Found 8-bit register for signal <dout_b>.
+    Found 8-bit register for signal <dout_a>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <RamInferred_2> synthesized.
+
+Synthesizing Unit <CharRom>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/CharRom.vhd".
+WARNING:Xst:2999 - Signal 'ram', unconnected in block 'CharRom', is tied to its initial value.
+    Found 4096x8-bit dual-port Read Only RAM <Mram_ram> for signal <ram>.
+    Found 8-bit register for signal <dout_b>.
+    Found 8-bit register for signal <dout_a>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+Unit <CharRom> synthesized.
+
+Synthesizing Unit <Ram_3>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Ram.vhd".
+        ADDR_WIDTH = 9
+        DATA_WIDTH = 8
+    Summary:
+	no macro.
+Unit <Ram_3> synthesized.
+
+Synthesizing Unit <RamInferred_3>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/RamInferred.vhd".
+        ADDR_WIDTH = 9
+        DATA_WIDTH = 8
+    Found 512x8-bit dual-port RAM <Mram_ram> for signal <ram>.
+    Found 8-bit register for signal <dout_b>.
+    Found 8-bit register for signal <dout_a>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <RamInferred_3> synthesized.
+
+Synthesizing Unit <PcuVideoController>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/PcuVideoController.vhd".
+WARNING:Xst:647 - Input <char_ram_dout<7:7>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 5-bit register for signal <current_ypos_in_char>.
+    Found 7-bit register for signal <current_char_row>.
+    Found 8-bit register for signal <color_delayed>.
+    Found 7-bit adder for signal <current_char_row[6]_GND_89_o_add_4_OUT> created at line 1241.
+    Found 5-bit adder for signal <current_ypos_in_char[4]_GND_89_o_add_5_OUT> created at line 1241.
+    Found 11-bit adder for signal <upcoming_x_coord> created at line 1241.
+    Found 11-bit subtractor for signal <current_x_coord> created at line 51.
+    Found 1-bit 8-to-1 multiplexer for signal <current_pixel> created at line 154.
+    Found 7-bit comparator greater for signal <pixel_in_x_range> created at line 138
+    Found 7-bit comparator greater for signal <pixel_in_y_range> created at line 139
+    Found 4-bit comparator not equal for signal <n0028> created at line 158
+    Summary:
+	inferred   4 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   3 Comparator(s).
+	inferred   5 Multiplexer(s).
+Unit <PcuVideoController> synthesized.
+
+Synthesizing Unit <PcuCharRom>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/PcuCharRom.vhd".
+WARNING:Xst:2999 - Signal 'ram', unconnected in block 'PcuCharRom', is tied to its initial value.
+    Found 2048x8-bit single-port Read Only RAM <Mram_ram> for signal <ram>.
+    Found 8-bit register for signal <dout>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   8 D-type flip-flop(s).
+Unit <PcuCharRom> synthesized.
+
+Synthesizing Unit <vga_controller_800_60>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/vga_controller_800_60.vhd".
+    Found 11-bit register for signal <hcounter>.
+    Found 11-bit register for signal <vcounter>.
+    Found 1-bit register for signal <HS>.
+    Found 1-bit register for signal <VS>.
+    Found 1-bit register for signal <blank>.
+    Found 11-bit adder for signal <hcounter[10]_GND_91_o_add_3_OUT> created at line 153.
+    Found 11-bit adder for signal <vcounter[10]_GND_91_o_add_9_OUT> created at line 170.
+    Found 11-bit comparator lessequal for signal <n0015> created at line 183
+    Found 11-bit comparator greater for signal <hcounter[10]_GND_91_o_LessThan_16_o> created at line 183
+    Found 11-bit comparator lessequal for signal <n0020> created at line 199
+    Found 11-bit comparator greater for signal <vcounter[10]_GND_91_o_LessThan_18_o> created at line 199
+    Found 11-bit comparator greater for signal <hcounter[10]_GND_91_o_LessThan_19_o> created at line 208
+    Found 11-bit comparator greater for signal <vcounter[10]_GND_91_o_LessThan_20_o> created at line 208
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  25 D-type flip-flop(s).
+	inferred   6 Comparator(s).
+	inferred   2 Multiplexer(s).
+Unit <vga_controller_800_60> synthesized.
+
+Synthesizing Unit <StatusPanel>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/StatusPanel.vhd".
+        x_offset = 0
+    Found 1-bit register for signal <x_in_range>.
+    Found 1-bit register for signal <pixel_bright>.
+    Found 11-bit adder for signal <vga_x_pixel_upcoming> created at line 1241.
+    Found 1-bit 8-to-1 multiplexer for signal <pixel> created at line 83.
+    Found 1-bit 8-to-1 multiplexer for signal <char_x_current[2]_leds[7]_Mux_13_o> created at line 144.
+    Found 5-bit 21-to-1 multiplexer for signal <_n0368> created at line 58.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 D-type flip-flop(s).
+	inferred   6 Multiplexer(s).
+Unit <StatusPanel> synthesized.
+
+Synthesizing Unit <StatusCharRom>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/StatusCharRom.vhd".
+WARNING:Xst:2999 - Signal 'rom', unconnected in block 'StatusCharRom', is tied to its initial value.
+    Found 256x8-bit single-port Read Only RAM <Mram_rom> for signal <rom>.
+    Found 8-bit register for signal <dout>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   8 D-type flip-flop(s).
+Unit <StatusCharRom> synthesized.
+
+Synthesizing Unit <KeyboardPort>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/KeyboardPort.vhd".
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/KeyboardPort.vhd" line 48: Output port <busy> of the instance <ps2interface> is unconnected or connected to loadless signal.
+    Found 1-bit register for signal <keyb_state_extended>.
+    Found 5-bit register for signal <PulseCounter>.
+    Found 1-bit register for signal <KeyboardMessageAvailable>.
+    Found 1-bit register for signal <KeyboardMessageAvailable_delay1>.
+    Found 10-bit register for signal <KeyboardMessage>.
+    Found 1-bit register for signal <keyb_state_break>.
+    Found 5-bit adder for signal <PulseCounter_next> created at line 1241.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  19 D-type flip-flop(s).
+	inferred   5 Multiplexer(s).
+Unit <KeyboardPort> synthesized.
+
+Synthesizing Unit <ps2interface>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/ps2interface.vhd".
+    Set property "rom_extract = yes".
+    Set property "rom_style = distributed".
+    Found 4-bit register for signal <clk_count>.
+    Found 1-bit register for signal <ps2_clk_clean>.
+    Found 1-bit register for signal <data_inter>.
+    Found 4-bit register for signal <data_count>.
+    Found 1-bit register for signal <ps2_data_clean>.
+    Found 1-bit register for signal <ps2_clk_s>.
+    Found 1-bit register for signal <ps2_data_s>.
+    Found 1-bit register for signal <rx_parity>.
+    Found 1-bit register for signal <tx_parity>.
+    Found 5-bit register for signal <state>.
+    Found 1-bit register for signal <ps2_clk_h>.
+    Found 1-bit register for signal <ps2_data_h>.
+    Found 1-bit register for signal <load_tx_data>.
+    Found 1-bit register for signal <load_rx_data>.
+    Found 1-bit register for signal <read>.
+    Found 1-bit register for signal <err>.
+    Found 14-bit register for signal <delay_100us_count>.
+    Found 1-bit register for signal <delay_100us_done>.
+    Found 11-bit register for signal <delay_20us_count>.
+    Found 1-bit register for signal <delay_20us_done>.
+    Found 6-bit register for signal <delay_63clk_count>.
+    Found 1-bit register for signal <delay_63clk_done>.
+    Found 4-bit register for signal <bit_count>.
+    Found 11-bit register for signal <frame>.
+    Found 8-bit register for signal <rx_data>.
+    Found 1-bit register for signal <clk_inter>.
+INFO:Xst:1799 - State tx_force_clk_l is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_bring_data_down is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_release_clk is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_first_wait_down_edge is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_clk_l is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_wait_up_edge is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_clk_h is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_wait_up_edge_before_ack is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_wait_ack is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_received_ack is never reached in FSM <state>.
+INFO:Xst:1799 - State tx_error_no_ack is never reached in FSM <state>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 17                                             |
+    | Transitions        | 11                                             |
+    | Inputs             | 8                                              |
+    | Outputs            | 8                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | synchronous                                    |
+    | Reset State        | idle                                           |
+    | Power Up State     | idle                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit adder for signal <clk_count[3]_GND_95_o_add_1_OUT> created at line 374.
+    Found 4-bit adder for signal <data_count[3]_GND_95_o_add_6_OUT> created at line 398.
+    Found 14-bit adder for signal <delay_100us_count[13]_GND_95_o_add_47_OUT> created at line 708.
+    Found 11-bit adder for signal <delay_20us_count[10]_GND_95_o_add_53_OUT> created at line 732.
+    Found 6-bit adder for signal <delay_63clk_count[5]_GND_95_o_add_59_OUT> created at line 756.
+    Found 4-bit adder for signal <bit_count[3]_GND_95_o_add_63_OUT> created at line 778.
+    Found 256x1-bit Read Only RAM for signal <frame[8]_PWR_41_o_Mux_10_o>
+    Found 1-bit tristate buffer for signal <ps2_clk> created at line 416
+    Found 1-bit tristate buffer for signal <ps2_data> created at line 420
+    Summary:
+	inferred   1 RAM(s).
+	inferred   6 Adder/Subtractor(s).
+	inferred  77 D-type flip-flop(s).
+	inferred   3 Multiplexer(s).
+	inferred   2 Tristate(s).
+	inferred   1 Finite State Machine(s).
+Unit <ps2interface> synthesized.
+
+Synthesizing Unit <MicrobeeKeyboardDecoder>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/MicrobeeKeyboardDecoder.vhd".
+    Found 74-bit register for signal <shifted>.
+    Found 1-bit register for signal <KeyboardMessageAvailable_prev>.
+    Found 74-bit register for signal <keys>.
+    Found 1-bit 74-to-1 multiplexer for signal <mb_code[6]_X_37_o_Mux_0_o> created at line 77.
+    Summary:
+	inferred 149 D-type flip-flop(s).
+	inferred 241 Multiplexer(s).
+Unit <MicrobeeKeyboardDecoder> synthesized.
+
+Synthesizing Unit <ScanCodeMapper>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/ScanCodeMapper.vhd".
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <ScanCodeMapper> synthesized.
+
+Synthesizing Unit <SDCardController>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/SDCardController.vhd".
+    Found 6-bit register for signal <state>.
+    Found 1-bit register for signal <sclk_sig>.
+    Found 1-bit register for signal <op_wr_prev>.
+    Found 1-bit register for signal <do_deselect>.
+    Found 1-bit register for signal <din_used>.
+    Found 1-bit register for signal <dstart>.
+    Found 8-bit register for signal <status>.
+    Found 32-bit register for signal <last_block_number>.
+    Found 8-bit register for signal <clock_div_limit>.
+    Found 56-bit register for signal <tx_buf>.
+    Found 10-bit register for signal <byte_counter>.
+    Found 1-bit register for signal <sdhc>.
+    Found 8-bit register for signal <bit_counter>.
+    Found 6-bit register for signal <return_state>.
+    Found 1-bit register for signal <ss_n>.
+    Found 1-bit register for signal <mosi>.
+    Found 32-bit register for signal <rx_buf>.
+    Found 1-bit register for signal <in_tx_cmd>.
+    Found 8-bit register for signal <clock_div>.
+    Found 8-bit adder for signal <clock_div[7]_GND_110_o_add_2_OUT> created at line 1241.
+    Found 8-bit subtractor for signal <GND_110_o_GND_110_o_sub_1_OUT<7:0>> created at line 1308.
+    Found 10-bit subtractor for signal <GND_110_o_GND_110_o_sub_32_OUT<9:0>> created at line 347.
+    Found 8-bit subtractor for signal <GND_110_o_GND_110_o_sub_110_OUT<7:0>> created at line 621.
+    Found 8-bit comparator equal for signal <clock_en> created at line 178
+    Summary:
+	inferred   4 Adder/Subtractor(s).
+	inferred 183 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred 153 Multiplexer(s).
+Unit <SDCardController> synthesized.
+
+Synthesizing Unit <PriorityArbiter>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/PriorityArbiter.vhd".
+        CNT = 3
+    Found 3-bit register for signal <gntcur>.
+    Found 3-bit adder for signal <req[2]_GND_111_o_add_4_OUT> created at line 1241.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   3 D-type flip-flop(s).
+Unit <PriorityArbiter> synthesized.
+
+Synthesizing Unit <TapeController>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/TapeController.vhd".
+WARNING:Xst:647 - Input <sd_status<2:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <sd_status<7:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <cpu_rd_prev>.
+    Found 1-bit register for signal <exec_request>.
+    Found 1-bit register for signal <intreq>.
+    Found 96-bit register for signal <block_numbers>.
+    Found 2-bit register for signal <exec_cmd>.
+    Found 32-bit register for signal <block_number_used>.
+    Found 8-bit register for signal <cpu_dout>.
+    Found 11-bit register for signal <sampleRateDivideCounter>.
+    Found 1-bit register for signal <clken_sampleRate>.
+    Found 16-bit register for signal <audio4800DivideCounter>.
+    Found 1-bit register for signal <clken_audio4800>.
+    Found 3-bit register for signal <exec_state>.
+    Found 1-bit register for signal <exec_error>.
+    Found 1-bit register for signal <exec_finished>.
+    Found 1-bit register for signal <sd_op_wr>.
+    Found 2-bit register for signal <sd_op_cmd_int>.
+    Found 32-bit register for signal <sd_op_block_number_int>.
+    Found 10-bit register for signal <cpuram_addr>.
+    Found 1-bit register for signal <cpuram_we>.
+    Found 8-bit register for signal <cpuram_din>.
+    Found 1-bit register for signal <sdram_addr<9>>.
+    Found 11-bit register for signal <render_byte>.
+    Found 1-bit register for signal <is_playing>.
+    Found 1-bit register for signal <is_recording>.
+    Found 1-bit register for signal <is_rendering>.
+    Found 4-bit register for signal <audio_phaseCounter>.
+    Found 1-bit register for signal <render_1200baud>.
+    Found 1-bit register for signal <silent_bit>.
+    Found 16-bit register for signal <silent_sample_count>.
+    Found 1-bit register for signal <waiting_for_signal>.
+    Found 1-bit register for signal <audio_play>.
+    Found 1-bit register for signal <raise_interrupt>.
+    Found 11-bit register for signal <render_byte_mask>.
+    Found 1-bit register for signal <in_first_block>.
+    Found 1-bit register for signal <in_last_block>.
+    Found 1-bit register for signal <sd_arb_req>.
+    Found 1-bit register for signal <sdram_addr<8>>.
+    Found 1-bit register for signal <sdram_addr<7>>.
+    Found 1-bit register for signal <sdram_addr<6>>.
+    Found 1-bit register for signal <sdram_addr<5>>.
+    Found 1-bit register for signal <sdram_addr<4>>.
+    Found 1-bit register for signal <sdram_addr<3>>.
+    Found 1-bit register for signal <sdram_addr<2>>.
+    Found 1-bit register for signal <sdram_addr<1>>.
+    Found 1-bit register for signal <sdram_addr<0>>.
+    Found 1-bit register for signal <cpu_wr_prev>.
+    Found finite state machine <FSM_1> for signal <exec_state>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 98                                             |
+    | Inputs             | 20                                             |
+    | Outputs            | 8                                              |
+    | Clock              | clock_108_000 (rising_edge)                    |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | state_ready                                    |
+    | Power Up State     | state_ready                                    |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit adder for signal <audio_phaseCounter[3]_GND_113_o_add_48_OUT> created at line 1241.
+    Found 10-bit adder for signal <cpuram_addr[9]_GND_113_o_add_82_OUT> created at line 1241.
+    Found 32-bit adder for signal <sd_op_block_number_int[31]_GND_113_o_add_133_OUT> created at line 1241.
+    Found 9-bit adder for signal <sdram_addr[8]_GND_113_o_add_182_OUT> created at line 1241.
+    Found 11-bit subtractor for signal <GND_113_o_GND_113_o_sub_35_OUT<10:0>> created at line 1308.
+    Found 16-bit subtractor for signal <GND_113_o_GND_113_o_sub_41_OUT<15:0>> created at line 1308.
+    Found 16-bit subtractor for signal <GND_113_o_GND_113_o_sub_70_OUT<15:0>> created at line 1308.
+    Found 4x5-bit Read Only RAM for signal <_n1299>
+    Found 10-bit comparator equal for signal <speed_byte_index[9]_cpuram_addr[9]_equal_88_o> created at line 506
+    Found 32-bit comparator equal for signal <block_number_last[31]_sd_op_block_number_int[31]_equal_121_o> created at line 667
+    Found 9-bit comparator equal for signal <stop_byte_index[8]_cpuram_addr[8]_equal_127_o> created at line 709
+    Summary:
+	inferred   1 RAM(s).
+	inferred   7 Adder/Subtractor(s).
+	inferred 290 D-type flip-flop(s).
+	inferred   3 Comparator(s).
+	inferred 107 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <TapeController> synthesized.
+
+Synthesizing Unit <RamInferred_4>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/RamInferred.vhd".
+        ADDR_WIDTH = 10
+        DATA_WIDTH = 8
+    Found 1024x8-bit dual-port RAM <Mram_ram> for signal <ram>.
+    Found 8-bit register for signal <dout_b>.
+    Found 8-bit register for signal <dout_a>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  16 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <RamInferred_4> synthesized.
+
+Synthesizing Unit <DiskControllerSelector>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerSelector.vhd".
+    Summary:
+	inferred  21 Multiplexer(s).
+Unit <DiskControllerSelector> synthesized.
+
+Synthesizing Unit <DiskControllerWD1002>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1002.vhd".
+WARNING:Xst:647 - Input <cmd_status_track_error> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 8-bit register for signal <regfile<1>>.
+    Found 8-bit register for signal <regfile<2>>.
+    Found 8-bit register for signal <regfile<3>>.
+    Found 8-bit register for signal <regfile<4>>.
+    Found 8-bit register for signal <regfile<5>>.
+    Found 8-bit register for signal <regfile<6>>.
+    Found 8-bit register for signal <regfile<7>>.
+    Found 1-bit register for signal <reg_port48>.
+    Found 1-bit register for signal <cpu_wr_prev>.
+    Found 1-bit register for signal <cpu_rd_prev>.
+    Found 1-bit register for signal <write_pending>.
+    Found 1-bit register for signal <read_pending>.
+    Found 4-bit register for signal <cmd>.
+    Found 1-bit register for signal <reg_status_drq>.
+    Found 8-bit register for signal <cmd_din>.
+    Found 8-bit register for signal <cpu_dout>.
+    Found 8-bit register for signal <regfile<0>>.
+    Found 8-bit 8-to-1 multiplexer for signal <cpu_port[2]_regfile[7][7]_wide_mux_43_OUT> created at line 274.
+    Summary:
+	inferred  90 D-type flip-flop(s).
+	inferred  39 Multiplexer(s).
+Unit <DiskControllerWD1002> synthesized.
+
+Synthesizing Unit <DiskControllerWD1793>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1793.vhd".
+WARNING:Xst:647 - Input <cpu_port<2:2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1793.vhd" line 926: Output port <sector_id_seclen> of the instance <TrackParser> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerWD1793.vhd" line 926: Output port <sector_count> of the instance <TrackParser> is unconnected or connected to loadless signal.
+    Found 1-bit register for signal <cpu_rd_prev>.
+    Found 2-bit register for signal <reg_drive>.
+    Found 1-bit register for signal <reg_head>.
+    Found 8-bit register for signal <reg_sector>.
+    Found 8-bit register for signal <reg_track>.
+    Found 8-bit register for signal <reg_data>.
+    Found 1-bit register for signal <reg_stepDirIn>.
+    Found 8-bit register for signal <physical_track_positions<0>>.
+    Found 8-bit register for signal <physical_track_positions<1>>.
+    Found 8-bit register for signal <physical_track_positions<2>>.
+    Found 8-bit register for signal <physical_track_positions<3>>.
+    Found 5-bit register for signal <state>.
+    Found 1-bit register for signal <reg_status<11>>.
+    Found 1-bit register for signal <reg_status<10>>.
+    Found 1-bit register for signal <reg_status<9>>.
+    Found 1-bit register for signal <reg_status<8>>.
+    Found 1-bit register for signal <reg_status<7>>.
+    Found 1-bit register for signal <reg_status<6>>.
+    Found 1-bit register for signal <reg_status<5>>.
+    Found 1-bit register for signal <reg_status<4>>.
+    Found 1-bit register for signal <reg_status<3>>.
+    Found 1-bit register for signal <reg_status<1>>.
+    Found 1-bit register for signal <track_parser_cs>.
+    Found 4-bit register for signal <cmd>.
+    Found 1-bit register for signal <track_parser_we>.
+    Found 1-bit register for signal <vdc_buffer_full>.
+    Found 5-bit register for signal <state_next>.
+    Found 7-bit register for signal <data_stream_delay>.
+    Found 7-bit register for signal <byte_throttle_divider>.
+    Found 8-bit register for signal <cmd_din>.
+    Found 13-bit register for signal <track_bytes_remaining>.
+    Found 1-bit register for signal <reg_irq>.
+    Found 8-bit register for signal <reg_cmd>.
+    Found 1-bit register for signal <reg_mfm>.
+    Found 8-bit register for signal <cpu_dout>.
+    Found 1-bit register for signal <cpu_wr_prev>.
+    Found 8-bit adder for signal <physical_track[7]_GND_117_o_add_67_OUT> created at line 1241.
+    Found 8-bit adder for signal <reg_track[7]_GND_117_o_add_78_OUT> created at line 1241.
+    Found 8-bit adder for signal <reg_sector[7]_GND_117_o_add_142_OUT> created at line 1241.
+    Found 8-bit subtractor for signal <GND_117_o_GND_117_o_sub_82_OUT<7:0>> created at line 1308.
+    Found 8-bit subtractor for signal <GND_117_o_GND_117_o_sub_93_OUT<7:0>> created at line 1308.
+    Found 7-bit subtractor for signal <GND_117_o_GND_117_o_sub_106_OUT<6:0>> created at line 1308.
+    Found 7-bit subtractor for signal <GND_117_o_GND_117_o_sub_148_OUT<6:0>> created at line 1308.
+    Found 13-bit subtractor for signal <GND_117_o_GND_117_o_sub_154_OUT<12:0>> created at line 1308.
+    Found 8x4-bit Read Only RAM for signal <GND_117_o_GND_117_o_mux_53_OUT>
+    Found 8-bit 4-to-1 multiplexer for signal <physical_track> created at line 171.
+    Found 1-bit 4-to-1 multiplexer for signal <cpu_port[1]_GND_117_o_Mux_203_o> created at line 828.
+    Found 8-bit 4-to-1 multiplexer for signal <cpu_port[1]_reg_data[7]_wide_mux_222_OUT> created at line 889.
+    Found 8-bit comparator equal for signal <reg_track[7]_reg_data[7]_equal_16_o> created at line 291
+    Found 8-bit comparator greater for signal <reg_track[7]_reg_data[7]_LessThan_17_o> created at line 299
+    Found 8-bit comparator not equal for signal <n0177> created at line 614
+    Found 8-bit comparator equal for signal <physical_track[7]_track_parser_sector_id_track[7]_equal_160_o> created at line 772
+    Found 8-bit comparator equal for signal <GND_117_o_track_parser_sector_id_side[7]_equal_161_o> created at line 773
+    Summary:
+	inferred   1 RAM(s).
+	inferred   8 Adder/Subtractor(s).
+	inferred 137 D-type flip-flop(s).
+	inferred   5 Comparator(s).
+	inferred 230 Multiplexer(s).
+Unit <DiskControllerWD1793> synthesized.
+
+Synthesizing Unit <TrackParser>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/TrackParser.vhd".
+    Found 4-bit register for signal <state>.
+    Found 8-bit register for signal <r_sector_count>.
+    Found 1-bit register for signal <dout_we>.
+    Found 8-bit register for signal <sector_id_track>.
+    Found 8-bit register for signal <sector_id_side>.
+    Found 8-bit register for signal <sector_id_sector>.
+    Found 8-bit register for signal <sector_id_seclen>.
+    Found 10-bit register for signal <data_bytes_left>.
+    Found 8-bit register for signal <dout>.
+    Found 1-bit register for signal <cs_prev>.
+    Found finite state machine <FSM_2> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 13                                             |
+    | Transitions        | 77                                             |
+    | Inputs             | 9                                              |
+    | Outputs            | 7                                              |
+    | Clock              | clock_108_000 (rising_edge)                    |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | state_idle                                     |
+    | Power Up State     | state_idle                                     |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit adder for signal <r_sector_count[7]_GND_118_o_add_25_OUT> created at line 1241.
+    Found 10-bit subtractor for signal <GND_118_o_GND_118_o_sub_22_OUT<9:0>> created at line 1308.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  60 D-type flip-flop(s).
+	inferred   5 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <TrackParser> synthesized.
+
+Synthesizing Unit <VirtualDiskController>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/VirtualDiskController.vhd".
+WARNING:Xst:647 - Input <sd_status<2:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <sd_status<7:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <cpu_rd_prev>.
+    Found 9-bit register for signal <opram_addr>.
+    Found 1-bit register for signal <opram_we>.
+    Found 1-bit register for signal <exec_request>.
+    Found 2-bit register for signal <sd_op_cmd_int>.
+    Found 32-bit register for signal <pcu_base_block_reg>.
+    Found 32-bit register for signal <disk_info_array[0]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[0]_disk_type>.
+    Found 32-bit register for signal <disk_info_array[1]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[1]_disk_type>.
+    Found 32-bit register for signal <disk_info_array[2]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[2]_disk_type>.
+    Found 32-bit register for signal <disk_info_array[3]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[3]_disk_type>.
+    Found 32-bit register for signal <disk_info_array[4]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[4]_disk_type>.
+    Found 32-bit register for signal <disk_info_array[5]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[5]_disk_type>.
+    Found 32-bit register for signal <disk_info_array[6]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[6]_disk_type>.
+    Found 32-bit register for signal <disk_info_array[7]_base_block_number>.
+    Found 4-bit register for signal <disk_info_array[7]_disk_type>.
+    Found 1-bit register for signal <cmd_status_busy>.
+    Found 1-bit register for signal <cmd_status_error>.
+    Found 1-bit register for signal <cmd_status_geo_error>.
+    Found 1-bit register for signal <cmd_flag_buffer>.
+    Found 1-bit register for signal <dout_mode_sector_id>.
+    Found 8-bit register for signal <cpu_dout>.
+    Found 1-bit register for signal <sd_op_wr>.
+    Found 3-bit register for signal <exec_state>.
+    Found 32-bit register for signal <sd_op_block_number>.
+    Found 1-bit register for signal <exec_response>.
+    Found 2-bit register for signal <exec_result>.
+    Found 1-bit register for signal <geo_invoke>.
+    Found 1-bit register for signal <sd_arb_req>.
+    Found 9-bit register for signal <sdram_addr>.
+    Found 1-bit register for signal <cpu_wr_prev>.
+    Found finite state machine <FSM_3> for signal <exec_state>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 16                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clock_108_000 (rising_edge)                    |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | state_ready                                    |
+    | Power Up State     | state_ready                                    |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 9-bit adder for signal <opram_addr[8]_GND_119_o_add_11_OUT> created at line 1241.
+    Found 32-bit adder for signal <diskimage_base_block_number[31]_GND_119_o_add_148_OUT> created at line 444.
+    Found 9-bit adder for signal <sdram_addr[8]_GND_119_o_add_178_OUT> created at line 1241.
+    Found 4x1-bit Read Only RAM for signal <exec_result[1]_X_48_o_Mux_14_o>
+    Found 16x2-bit Read Only RAM for signal <_n0801>
+    Found 32-bit 8-to-1 multiplexer for signal <disk_info_base_block_number> created at line 156.
+    Found 4-bit 8-to-1 multiplexer for signal <disk_info_disk_type> created at line 156.
+    Summary:
+	inferred   2 RAM(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred 395 D-type flip-flop(s).
+	inferred  46 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <VirtualDiskController> synthesized.
+
+Synthesizing Unit <DiskGeometry>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskGeometry.vhd".
+    Found 9-bit register for signal <mult_a>.
+    Found 15-bit register for signal <track_times_sector_per_track>.
+    Found 8-bit register for signal <head_offset>.
+    Found 3-bit register for signal <state>.
+    Found finite state machine <FSM_4> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 13                                             |
+    | Inputs             | 2                                              |
+    | Outputs            | 4                                              |
+    | Clock              | clock (rising_edge)                            |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | state_ready                                    |
+    | Power Up State     | state_ready                                    |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 17-bit adder for signal <n0111> created at line 162.
+    Found 17-bit adder for signal <cluster> created at line 162.
+    Found 6-bit subtractor for signal <GND_120_o_GND_120_o_sub_25_OUT<5:0>> created at line 155.
+    Found 6-bit subtractor for signal <GND_120_o_GND_120_o_sub_26_OUT<5:0>> created at line 1308.
+    Found 16x25-bit Read Only RAM for signal <_n0172>
+    Found 9-bit comparator greater for signal <masked_track[8]_disk_tracks[8]_LessThan_3_o> created at line 90
+    Found 2-bit comparator lessequal for signal <n0014> created at line 95
+    Found 9-bit comparator lessequal for signal <n0034> created at line 154
+    Found 3-bit comparator lessequal for signal <n0046> created at line 208
+    Found 6-bit comparator lessequal for signal <n0048> created at line 210
+    Summary:
+	inferred   1 RAM(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred  32 D-type flip-flop(s).
+	inferred   5 Comparator(s).
+	inferred  13 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <DiskGeometry> synthesized.
+
+Synthesizing Unit <DiskControllerMultiplier>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerMultiplier.vhd".
+    Found 15-bit register for signal <pipe2>.
+    Found 15-bit register for signal <pipe3>.
+    Found 15-bit register for signal <pipe1>.
+    Found 9x6-bit multiplier for signal <R_mul> created at line 44.
+    Summary:
+	inferred   1 Multiplier(s).
+	inferred  45 D-type flip-flop(s).
+Unit <DiskControllerMultiplier> synthesized.
+
+Synthesizing Unit <DiskControllerPcu>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/DiskControllerPcu.vhd".
+WARNING:Xst:647 - Input <sd_status<2:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <sd_status<7:5>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <cpu_rd_prev>.
+    Found 9-bit register for signal <cpuram_addr>.
+    Found 1-bit register for signal <cpuram_we>.
+    Found 1-bit register for signal <exec_request>.
+    Found 1-bit register for signal <busy>.
+    Found 2-bit register for signal <op_cmd>.
+    Found 1-bit register for signal <intreq>.
+    Found 1-bit register for signal <error>.
+    Found 32-bit register for signal <block_number>.
+    Found 8-bit register for signal <cpu_dout>.
+    Found 1-bit register for signal <sd_op_wr>.
+    Found 2-bit register for signal <exec_state>.
+    Found 32-bit register for signal <sd_op_block_number>.
+    Found 1-bit register for signal <exec_response>.
+    Found 1-bit register for signal <exec_result>.
+    Found 1-bit register for signal <sd_arb_req>.
+    Found 9-bit register for signal <sdram_addr>.
+    Found 1-bit register for signal <cpu_wr_prev>.
+    Found finite state machine <FSM_5> for signal <exec_state>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 9                                              |
+    | Inputs             | 4                                              |
+    | Outputs            | 2                                              |
+    | Clock              | clock_108_000 (rising_edge)                    |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | state_ready                                    |
+    | Power Up State     | state_ready                                    |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 9-bit adder for signal <cpuram_addr[8]_GND_123_o_add_1_OUT> created at line 1241.
+    Found 9-bit adder for signal <sdram_addr[8]_GND_123_o_add_54_OUT> created at line 1241.
+    Found 9-bit 4-to-1 multiplexer for signal <cpu_din[1]_cpuram_addr[8]_wide_mux_9_OUT> created at line 170.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred 103 D-type flip-flop(s).
+	inferred  28 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <DiskControllerPcu> synthesized.
+
+Synthesizing Unit <Dac>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/FPGABeeCore/Dac.vhd".
+        SAMPLE_WIDTH = 8
+    Found 1-bit register for signal <DACout_q>.
+    Found 10-bit register for signal <SigmaLatch_q>.
+    Found 10-bit adder for signal <DeltaAdder_s> created at line 50.
+    Found 10-bit adder for signal <SigmaAdder_s> created at line 51.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  11 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <Dac> synthesized.
+
+Synthesizing Unit <sn76489_top>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_top.vhd".
+        clock_div_16_g = 1
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_top.vhd" line 142: Output port <ff_o> of the instance <tone1_b> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_top.vhd" line 157: Output port <ff_o> of the instance <tone2_b> is unconnected or connected to loadless signal.
+    Found 8-bit adder for signal <n0014> created at line 200.
+    Found 8-bit adder for signal <n0017> created at line 200.
+    Found 8-bit adder for signal <aout_o> created at line 200.
+    Summary:
+	inferred   3 Adder/Subtractor(s).
+Unit <sn76489_top> synthesized.
+
+Synthesizing Unit <sn76489_clock_div>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_clock_div.vhd".
+        clock_div_16_g = 1
+    Found 4-bit register for signal <cnt_q>.
+    Found 4-bit subtractor for signal <GND_127_o_GND_127_o_sub_3_OUT<3:0>> created at line 1308.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   4 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <sn76489_clock_div> synthesized.
+
+Synthesizing Unit <sn76489_latch_ctrl>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_latch_ctrl.vhd".
+WARNING:Xst:647 - Input <d_i<4:7>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 3-bit register for signal <reg_q>.
+    Found 1-bit register for signal <we_q>.
+    Found 1-bit register for signal <ready_q>.
+    Summary:
+	inferred   5 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <sn76489_latch_ctrl> synthesized.
+
+Synthesizing Unit <sn76489_tone>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_tone.vhd".
+WARNING:Xst:647 - Input <d_i<1:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 4-bit register for signal <a_q>.
+    Found 10-bit register for signal <freq_cnt_q>.
+    Found 10-bit register for signal <f_q>.
+    Found 1-bit register for signal <freq_ff_q>.
+    Found 10-bit subtractor for signal <GND_129_o_GND_129_o_sub_9_OUT<9:0>> created at line 1308.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  25 D-type flip-flop(s).
+	inferred  12 Multiplexer(s).
+Unit <sn76489_tone> synthesized.
+
+Synthesizing Unit <sn76489_attenuator>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_attenuator.vhd".
+    Found 8-bit subtractor for signal <GND_130_o_unary_minus_2_OUT<7:0>> created at line 0.
+    Found 8-bit 4-to-1 multiplexer for signal <product_o> created at line 101.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Multiplexer(s).
+Unit <sn76489_attenuator> synthesized.
+
+Synthesizing Unit <sn76489_noise>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/sn76489-1.0/sn76489_noise.vhd".
+WARNING:Xst:647 - Input <d_i<0:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 4-bit register for signal <a_q>.
+    Found 7-bit register for signal <freq_cnt_q>.
+    Found 16-bit register for signal <lfsr_q>.
+    Found 2-bit register for signal <nf_q>.
+    Found 1-bit register for signal <fb_q>.
+    Found 1-bit register for signal <freq_ff_q>.
+    Found 1-bit register for signal <shift_source_q>.
+    Found 7-bit subtractor for signal <GND_133_o_GND_133_o_sub_9_OUT<6:0>> created at line 1308.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  32 D-type flip-flop(s).
+	inferred   5 Multiplexer(s).
+Unit <sn76489_noise> synthesized.
+
+Synthesizing Unit <BootRom>.
+    Related source file is "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo/BootRom.vhd".
+WARNING:Xst:2999 - Signal 'rom', unconnected in block 'BootRom', is tied to its initial value.
+    Found 4096x8-bit single-port Read Only RAM <Mram_rom> for signal <rom>.
+    Found 8-bit register for signal <dout>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   8 D-type flip-flop(s).
+Unit <BootRom> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 24
+ 1024x8-bit dual-port RAM                              : 1
+ 16384x8-bit dual-port RAM                             : 1
+ 16x2-bit single-port Read Only RAM                    : 1
+ 16x25-bit single-port Read Only RAM                   : 1
+ 2048x8-bit dual-port RAM                              : 3
+ 2048x8-bit single-port Read Only RAM                  : 1
+ 256x1-bit single-port Read Only RAM                   : 1
+ 256x25-bit single-port Read Only RAM                  : 1
+ 256x8-bit single-port Read Only RAM                   : 1
+ 4096x8-bit dual-port Read Only RAM                    : 1
+ 4096x8-bit single-port Read Only RAM                  : 1
+ 4x1-bit single-port Read Only RAM                     : 1
+ 4x5-bit single-port Read Only RAM                     : 1
+ 512x8-bit dual-port RAM                               : 4
+ 8x4-bit single-port Read Only RAM                     : 1
+ 8x8-bit dual-port RAM                                 : 4
+# Multipliers                                          : 1
+ 9x6-bit multiplier                                    : 1
+# Adders/Subtractors                                   : 95
+ 10-bit adder                                          : 4
+ 10-bit subtractor                                     : 5
+ 11-bit adder                                          : 7
+ 11-bit subtractor                                     : 3
+ 12-bit subtractor                                     : 1
+ 13-bit subtractor                                     : 2
+ 14-bit adder                                          : 4
+ 16-bit adder                                          : 4
+ 16-bit addsub                                         : 2
+ 16-bit subtractor                                     : 3
+ 17-bit adder                                          : 2
+ 24-bit adder                                          : 1
+ 27-bit adder                                          : 1
+ 3-bit adder                                           : 4
+ 32-bit adder                                          : 2
+ 4-bit adder                                           : 4
+ 4-bit subtractor                                      : 1
+ 5-bit adder                                           : 5
+ 6-bit adder                                           : 3
+ 6-bit subtractor                                      : 1
+ 7-bit adder                                           : 3
+ 7-bit subtractor                                      : 5
+ 8-bit adder                                           : 11
+ 8-bit subtractor                                      : 9
+ 9-bit adder                                           : 7
+ 9-bit subtractor                                      : 1
+# Registers                                            : 364
+ 1-bit register                                        : 149
+ 10-bit register                                       : 14
+ 11-bit register                                       : 9
+ 13-bit register                                       : 1
+ 14-bit register                                       : 6
+ 15-bit register                                       : 4
+ 16-bit register                                       : 9
+ 2-bit register                                        : 11
+ 24-bit register                                       : 1
+ 27-bit register                                       : 1
+ 3-bit register                                        : 9
+ 32-bit register                                       : 16
+ 4-bit register                                        : 20
+ 5-bit register                                        : 10
+ 56-bit register                                       : 1
+ 6-bit register                                        : 4
+ 7-bit register                                        : 9
+ 74-bit register                                       : 2
+ 8-bit register                                        : 81
+ 9-bit register                                        : 6
+ 96-bit register                                       : 1
+# Comparators                                          : 37
+ 10-bit comparator equal                               : 1
+ 11-bit comparator equal                               : 1
+ 11-bit comparator greater                             : 4
+ 11-bit comparator lessequal                           : 2
+ 14-bit comparator equal                               : 1
+ 2-bit comparator lessequal                            : 1
+ 24-bit comparator greater                             : 1
+ 3-bit comparator equal                                : 2
+ 3-bit comparator lessequal                            : 1
+ 32-bit comparator equal                               : 1
+ 4-bit comparator greater                              : 2
+ 4-bit comparator not equal                            : 1
+ 5-bit comparator equal                                : 1
+ 5-bit comparator greater                              : 1
+ 5-bit comparator lessequal                            : 2
+ 6-bit comparator lessequal                            : 1
+ 7-bit comparator greater                              : 4
+ 8-bit comparator equal                                : 4
+ 8-bit comparator greater                              : 2
+ 8-bit comparator not equal                            : 1
+ 9-bit comparator equal                                : 1
+ 9-bit comparator greater                              : 1
+ 9-bit comparator lessequal                            : 1
+# Multiplexers                                         : 1859
+ 1-bit 2-to-1 multiplexer                              : 893
+ 1-bit 3-to-1 multiplexer                              : 12
+ 1-bit 4-to-1 multiplexer                              : 2
+ 1-bit 64-to-1 multiplexer                             : 2
+ 1-bit 74-to-1 multiplexer                             : 1
+ 1-bit 8-to-1 multiplexer                              : 5
+ 10-bit 2-to-1 multiplexer                             : 19
+ 11-bit 2-to-1 multiplexer                             : 33
+ 13-bit 2-to-1 multiplexer                             : 1
+ 14-bit 2-to-1 multiplexer                             : 8
+ 16-bit 2-to-1 multiplexer                             : 45
+ 16-bit 7-to-1 multiplexer                             : 1
+ 17-bit 2-to-1 multiplexer                             : 6
+ 2-bit 2-to-1 multiplexer                              : 36
+ 3-bit 2-to-1 multiplexer                              : 122
+ 3-bit 3-to-1 multiplexer                              : 3
+ 32-bit 2-to-1 multiplexer                             : 14
+ 32-bit 8-to-1 multiplexer                             : 1
+ 4-bit 2-to-1 multiplexer                              : 190
+ 4-bit 3-to-1 multiplexer                              : 4
+ 4-bit 8-to-1 multiplexer                              : 1
+ 5-bit 2-to-1 multiplexer                              : 138
+ 5-bit 21-to-1 multiplexer                             : 1
+ 56-bit 2-to-1 multiplexer                             : 10
+ 6-bit 2-to-1 multiplexer                              : 63
+ 7-bit 2-to-1 multiplexer                              : 18
+ 74-bit 2-to-1 multiplexer                             : 1
+ 8-bit 11-to-1 multiplexer                             : 1
+ 8-bit 2-to-1 multiplexer                              : 202
+ 8-bit 3-to-1 multiplexer                              : 2
+ 8-bit 4-to-1 multiplexer                              : 6
+ 8-bit 8-to-1 multiplexer                              : 2
+ 9-bit 2-to-1 multiplexer                              : 15
+ 9-bit 4-to-1 multiplexer                              : 1
+# Tristates                                            : 10
+ 1-bit tristate buffer                                 : 10
+# FSMs                                                 : 6
+# Xors                                                 : 19
+ 1-bit xor2                                            : 13
+ 1-bit xor8                                            : 5
+ 8-bit xor2                                            : 1
+
+=========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <BootRom>.
+INFO:Xst:3226 - The RAM <Mram_rom> will be implemented as a BLOCK RAM, absorbing the following register(s): <dout>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 4096-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock>         | rise     |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <addr>          |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <dout>          |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <BootRom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <CharRom>.
+INFO:Xst:3226 - The RAM <Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <dout_b> <dout_a>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 4096-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_b>       | rise     |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <addr_b>        |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <dout_b>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 4096-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_a>       | rise     |
+    |     weB            | connected to signal <GND>           | high     |
+    |     addrB          | connected to signal <addr_a>        |          |
+    |     diB            | connected to signal <GND>           |          |
+    |     doB            | connected to signal <dout_a>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <CharRom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <Crtc6545>.
+The following registers are absorbed into accumulator <accum_vert_resolution>: 1 register on signal <accum_vert_resolution>.
+The following registers are absorbed into accumulator <vram_addr_row>: 1 register on signal <vram_addr_row>.
+The following registers are absorbed into counter <retrace_counter>: 1 register on signal <retrace_counter>.
+The following registers are absorbed into counter <blink_counter>: 1 register on signal <blink_counter>.
+The following registers are absorbed into counter <key_scan_addr>: 1 register on signal <key_scan_addr>.
+The following registers are absorbed into counter <key_scan_disable>: 1 register on signal <key_scan_disable>.
+The following registers are absorbed into counter <current_char_row>: 1 register on signal <current_char_row>.
+Unit <Crtc6545> synthesized (advanced).
+
+Synthesizing (advanced) Unit <Dac>.
+The following registers are absorbed into accumulator <SigmaLatch_q>: 1 register on signal <SigmaLatch_q>.
+Unit <Dac> synthesized (advanced).
+
+Synthesizing (advanced) Unit <DiskControllerMultiplier>.
+	Found pipelined multiplier on signal <R_mul>:
+		- 2 pipeline level(s) found in a register connected to the multiplier macro output.
+		Pushing register(s) into the multiplier macro.
+Unit <DiskControllerMultiplier> synthesized (advanced).
+
+Synthesizing (advanced) Unit <DiskControllerPcu>.
+The following registers are absorbed into counter <sdram_addr>: 1 register on signal <sdram_addr>.
+INFO:Xst:3226 - The RAM <ram/Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <ram/dout_a> <ram/dout_b>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_108_000> | rise     |
+    |     weA            | connected to signal <cpuram_we>     | high     |
+    |     addrA          | connected to signal <cpuram_addr>   |          |
+    |     diA            | connected to signal <cpu_din>       |          |
+    |     doA            | connected to signal <cpuram_dout>   |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_108_000> | rise     |
+    |     weB            | connected to signal <sdram_we>      | high     |
+    |     addrB          | connected to signal <sdram_addr>    |          |
+    |     diB            | connected to signal <sd_dout>       |          |
+    |     doB            | connected to signal <sd_din>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <DiskControllerPcu> synthesized (advanced).
+
+Synthesizing (advanced) Unit <DiskControllerWD1793>.
+The following registers are absorbed into counter <track_bytes_remaining>: 1 register on signal <track_bytes_remaining>.
+INFO:Xst:3231 - The small RAM <Mram_GND_117_o_GND_117_o_mux_53_OUT> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 4-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <reg_cmd<7:5>>  |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <DiskControllerWD1793> synthesized (advanced).
+
+Synthesizing (advanced) Unit <FpgaBeeCore>.
+The following registers are absorbed into counter <clken_3_375_divider>: 1 register on signal <clken_3_375_divider>.
+INFO:Xst:3226 - The RAM <pcu_color_ram/ramImpl/Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <pcu_color_ram/ramImpl/dout_a> <pcu_color_ram/ramImpl/dout_b> <PcuVideoController/color_delayed>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_108_000> | rise     |
+    |     weA            | connected to signal <pcu_color_ram_wea> | high     |
+    |     addrA          | connected to signal <z80_addr<8:0>> |          |
+    |     diA            | connected to signal <z80_dout>      |          |
+    |     doA            | connected to signal <pcu_color_ram_dout> |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_40_000>  | rise     |
+    |     weB            | connected to signal <GND>           | high     |
+    |     addrB          | connected to signal <pcu_char_ram_addr_b> |          |
+    |     diB            | connected to signal <GND>           |          |
+    |     doB            | connected to signal <PcuVideoController/color_delayed> |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3226 - The RAM <pcu_char_ram/ramImpl/Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <pcu_char_ram/ramImpl/dout_a> <pcu_char_ram/ramImpl/dout_b>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_108_000> | rise     |
+    |     weA            | connected to signal <pcu_char_ram_wea> | high     |
+    |     addrA          | connected to signal <z80_addr<8:0>> |          |
+    |     diA            | connected to signal <z80_dout>      |          |
+    |     doA            | connected to signal <pcu_char_ram_dout> |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_40_000>  | rise     |
+    |     weB            | connected to signal <GND>           | high     |
+    |     addrB          | connected to signal <pcu_char_ram_addr_b> |          |
+    |     diB            | connected to signal <GND>           |          |
+    |     doB            | connected to signal <pcu_char_ram_dout_b> |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <FpgaBeeCore> synthesized (advanced).
+
+Synthesizing (advanced) Unit <PcuCharRom>.
+INFO:Xst:3226 - The RAM <Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <dout>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 2048-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock>         | rise     |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <addr>          |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <dout>          |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <PcuCharRom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <PcuVideoController>.
+The following registers are absorbed into counter <current_char_row>: 1 register on signal <current_char_row>.
+Unit <PcuVideoController> synthesized (advanced).
+
+Synthesizing (advanced) Unit <RamInferred_1>.
+INFO:Xst:3226 - The RAM <Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <dout_a> <dout_b>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 2048-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_a>       | rise     |
+    |     weA            | connected to signal <wr_a>          | high     |
+    |     addrA          | connected to signal <addr_a>        |          |
+    |     diA            | connected to signal <din_a>         |          |
+    |     doA            | connected to signal <dout_a>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 2048-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_b>       | rise     |
+    |     weB            | connected to signal <wr_b>          | high     |
+    |     addrB          | connected to signal <addr_b>        |          |
+    |     diB            | connected to signal <din_b>         |          |
+    |     doB            | connected to signal <dout_b>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <RamInferred_1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <RamInferred_2>.
+INFO:Xst:3226 - The RAM <Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <dout_a> <dout_b>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16384-word x 8-bit                  |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_a>       | rise     |
+    |     weA            | connected to signal <wr_a>          | high     |
+    |     addrA          | connected to signal <addr_a>        |          |
+    |     diA            | connected to signal <din_a>         |          |
+    |     doA            | connected to signal <dout_a>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 16384-word x 8-bit                  |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_b>       | rise     |
+    |     weB            | connected to signal <GND>           | high     |
+    |     addrB          | connected to signal <addr_b>        |          |
+    |     diB            | connected to signal <GND>           |          |
+    |     doB            | connected to signal <dout_b>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <RamInferred_2> synthesized (advanced).
+
+Synthesizing (advanced) Unit <RamInferred_3>.
+INFO:Xst:3212 - HDL ADVISOR - Asynchronous or synchronous initialization of the register <opram_addr> prevents it from being combined with the RAM <Mram_ram> for implementation as read-only block RAM.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     clkA           | connected to signal <clock_a>       | rise     |
+    |     weA            | connected to signal <wr_a>          | high     |
+    |     addrA          | connected to signal <addr_a>        |          |
+    |     diA            | connected to signal <din_a>         |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     clkB           | connected to signal <clock_b>       | rise     |
+    |     weB            | connected to signal <wr_b>          | high     |
+    |     addrB          | connected to signal <addr_b>        |          |
+    |     diB            | connected to signal <din_b>         |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <RamInferred_3> synthesized (advanced).
+
+Synthesizing (advanced) Unit <SDCardController>.
+The following registers are absorbed into counter <clock_div>: 1 register on signal <clock_div>.
+Unit <SDCardController> synthesized (advanced).
+
+Synthesizing (advanced) Unit <StatusCharRom>.
+INFO:Xst:3226 - The RAM <Mram_rom> will be implemented as a BLOCK RAM, absorbing the following register(s): <dout>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 256-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock>         | rise     |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <addr>          |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <dout>          |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <StatusCharRom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <T80>.
+The following registers are absorbed into counter <TState>: 1 register on signal <TState>.
+Unit <T80> synthesized (advanced).
+
+Synthesizing (advanced) Unit <T80_MCode>.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram__n2085> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 256-word x 25-bit                   |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <IR>            |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <T80_MCode> synthesized (advanced).
+
+Synthesizing (advanced) Unit <T80_Reg>.
+INFO:Xst:3231 - The small RAM <Mram_RegsH1> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     clkA           | connected to signal <Clk>           | rise     |
+    |     weA            | connected to signal <WEH_1>         | high     |
+    |     addrA          | connected to signal <AddrA>         |          |
+    |     diA            | connected to signal <DIH>           |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     addrB          | connected to signal <AddrC>         |          |
+    |     doB            | connected to signal <DOCH>          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3231 - The small RAM <Mram_RegsL1> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     clkA           | connected to signal <Clk>           | rise     |
+    |     weA            | connected to signal <WEL_1>         | high     |
+    |     addrA          | connected to signal <AddrA>         |          |
+    |     diA            | connected to signal <DIL>           |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     addrB          | connected to signal <AddrC>         |          |
+    |     doB            | connected to signal <DOCL>          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_RegsH> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     clkA           | connected to signal <Clk>           | rise     |
+    |     weA            | connected to signal <WEH_0>         | high     |
+    |     addrA          | connected to signal <AddrA>         |          |
+    |     diA            | connected to signal <DIH>           |          |
+    |     doA            | connected to signal <DOAH>          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     addrB          | connected to signal <AddrB>         |          |
+    |     doB            | connected to signal <DOBH>          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_RegsL> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     clkA           | connected to signal <Clk>           | rise     |
+    |     weA            | connected to signal <WEL_0>         | high     |
+    |     addrA          | connected to signal <AddrA>         |          |
+    |     diA            | connected to signal <DIL>           |          |
+    |     doA            | connected to signal <DOAL>          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 8-word x 8-bit                      |          |
+    |     addrB          | connected to signal <AddrB>         |          |
+    |     doB            | connected to signal <DOBL>          |          |
+    -----------------------------------------------------------------------
+Unit <T80_Reg> synthesized (advanced).
+
+Synthesizing (advanced) Unit <TapeController>.
+The following registers are absorbed into counter <audio_phaseCounter>: 1 register on signal <audio_phaseCounter>.
+INFO:Xst:3231 - The small RAM <Mram__n1299> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 4-word x 5-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <exec_cmd>      |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3212 - HDL ADVISOR - Asynchronous or synchronous initialization of the register <cpuram_addr> prevents it from being combined with the RAM <ram/Mram_ram> for implementation as read-only block RAM.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 1024-word x 8-bit                   |          |
+    |     clkA           | connected to signal <clock_108_000> | rise     |
+    |     weA            | connected to signal <cpuram_we>     | high     |
+    |     addrA          | connected to signal <cpuram_addr>   |          |
+    |     diA            | connected to signal <cpuram_din>    |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 1024-word x 8-bit                   |          |
+    |     clkB           | connected to signal <clock_108_000> | rise     |
+    |     weB            | connected to signal <sdram_we>      | high     |
+    |     addrB          | connected to signal <(sdram_addr,sdram_addr_01)> |          |
+    |     diB            | connected to signal <sd_dout>       |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3226 - The RAM <ram/Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <ram/dout_a> <ram/dout_b>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 1024-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_108_000> | rise     |
+    |     weA            | connected to signal <cpuram_we>     | high     |
+    |     addrA          | connected to signal <cpuram_addr>   |          |
+    |     diA            | connected to signal <cpuram_din>    |          |
+    |     doA            | connected to signal <cpuram_dout>   |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 1024-word x 8-bit                   |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_108_000> | rise     |
+    |     weB            | connected to signal <sdram_we>      | high     |
+    |     addrB          | connected to signal <(sdram_addr,sdram_addr_01)> |          |
+    |     diB            | connected to signal <sd_dout>       |          |
+    |     doB            | connected to signal <sd_din>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <TapeController> synthesized (advanced).
+
+Synthesizing (advanced) Unit <TrackParser>.
+The following registers are absorbed into counter <data_bytes_left>: 1 register on signal <data_bytes_left>.
+Unit <TrackParser> synthesized (advanced).
+
+Synthesizing (advanced) Unit <VirtualDiskController>.
+The following registers are absorbed into counter <sdram_addr>: 1 register on signal <sdram_addr>.
+INFO:Xst:3212 - HDL ADVISOR - Asynchronous or synchronous initialization of the register <exec_result> prevents it from being combined with the RAM <Mram_exec_result[1]_X_48_o_Mux_14_o> for implementation as read-only block RAM.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 4-word x 1-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <exec_result>   |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3231 - The small RAM <Mram__n0801> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16-word x 2-bit                     |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <cmd>           |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3226 - The RAM <ram/Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <ram/dout_a> <ram/dout_b>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clock_108_000> | rise     |
+    |     weA            | connected to internal node          | high     |
+    |     addrA          | connected to signal <opram_addr>    |          |
+    |     diA            | connected to signal <cmd_din>       |          |
+    |     doA            | connected to signal <opram_dout>    |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 512-word x 8-bit                    |          |
+    |     mode           | write-first                         |          |
+    |     clkB           | connected to signal <clock_108_000> | rise     |
+    |     weB            | connected to signal <sdram_we>      | high     |
+    |     addrB          | connected to signal <sdram_addr>    |          |
+    |     diB            | connected to signal <sd_dout>       |          |
+    |     doB            | connected to signal <sd_din>        |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <DiskGeometry/Mram__n0172> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16-word x 25-bit                    |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <disk_info_disk_type> |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <VirtualDiskController> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ps2interface>.
+The following registers are absorbed into counter <clk_count>: 1 register on signal <clk_count>.
+The following registers are absorbed into counter <data_count>: 1 register on signal <data_count>.
+The following registers are absorbed into counter <delay_100us_count>: 1 register on signal <delay_100us_count>.
+The following registers are absorbed into counter <delay_20us_count>: 1 register on signal <delay_20us_count>.
+The following registers are absorbed into counter <bit_count>: 1 register on signal <bit_count>.
+The following registers are absorbed into counter <delay_63clk_count>: 1 register on signal <delay_63clk_count>.
+INFO:Xst:3216 - HDL ADVISOR - LUT implementation is currently selected for the RAM <Mram_frame[8]_PWR_41_o_Mux_10_o>. If you want the register to be removed and the RAM to be implemented as block RAM, please change the RAM implementation style accordingly.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 256-word x 1-bit                    |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <frame<8:1>>    |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <ps2interface> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sn76489_clock_div>.
+The following registers are absorbed into counter <cnt_q>: 1 register on signal <cnt_q>.
+Unit <sn76489_clock_div> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sn76489_noise>.
+The following registers are absorbed into counter <freq_cnt_q>: 1 register on signal <freq_cnt_q>.
+Unit <sn76489_noise> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sn76489_tone>.
+The following registers are absorbed into counter <freq_cnt_q>: 1 register on signal <freq_cnt_q>.
+Unit <sn76489_tone> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sn76489_top>.
+	The following adders/subtractors are grouped into adder tree <Madd_aout_o1> :
+ 	<Madd_n0014> in block <sn76489_top>, 	<Madd_n0017> in block <sn76489_top>, 	<Madd_aout_o> in block <sn76489_top>.
+Unit <sn76489_top> synthesized (advanced).
+
+Synthesizing (advanced) Unit <vga_controller_800_60>.
+The following registers are absorbed into counter <hcounter>: 1 register on signal <hcounter>.
+The following registers are absorbed into counter <vcounter>: 1 register on signal <vcounter>.
+Unit <vga_controller_800_60> synthesized (advanced).
+WARNING:Xst:2677 - Node <port_08_0> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_08_1> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_08_2> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_08_3> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_08_4> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_08_5> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_08_7> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_50_6> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_50_7> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_D0_5> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <port_D0_6> of sequential type is unconnected in block <FpgaBeeCore>.
+WARNING:Xst:2677 - Node <frame_0> of sequential type is unconnected in block <ps2interface>.
+WARNING:Xst:2677 - Node <shifted_67> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_66> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_65> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_64> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_63> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_62> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_61> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_60> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_59> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_58> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_57> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_56> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_55> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_54> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_53> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_52> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_51> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_50> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_49> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_48> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_47> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_46> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_45> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_44> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_43> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_42> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_37> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_36> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_35> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_33> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_31> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_30> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_29> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_28> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_27> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_26> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_25> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_24> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_23> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_22> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_21> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_20> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_19> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_18> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_17> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_16> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_15> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_14> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_13> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_12> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_11> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_10> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_9> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_8> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_7> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_6> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_5> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_4> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_3> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_2> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_1> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <shifted_0> of sequential type is unconnected in block <MicrobeeKeyboardDecoder>.
+WARNING:Xst:2677 - Node <reg_cmd_0> of sequential type is unconnected in block <DiskControllerWD1793>.
+WARNING:Xst:2677 - Node <reg_cmd_1> of sequential type is unconnected in block <DiskControllerWD1793>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 24
+ 1024x8-bit dual-port block RAM                        : 1
+ 16384x8-bit dual-port block RAM                       : 1
+ 16x2-bit single-port distributed Read Only RAM        : 1
+ 16x25-bit single-port distributed Read Only RAM       : 1
+ 2048x8-bit dual-port block RAM                        : 3
+ 2048x8-bit single-port block Read Only RAM            : 1
+ 256x1-bit single-port distributed Read Only RAM       : 1
+ 256x25-bit single-port distributed Read Only RAM      : 1
+ 256x8-bit single-port block Read Only RAM             : 1
+ 4096x8-bit dual-port block Read Only RAM              : 1
+ 4096x8-bit single-port block Read Only RAM            : 1
+ 4x1-bit single-port distributed Read Only RAM         : 1
+ 4x5-bit single-port distributed Read Only RAM         : 1
+ 512x8-bit dual-port block RAM                         : 4
+ 8x4-bit single-port distributed Read Only RAM         : 1
+ 8x8-bit dual-port distributed RAM                     : 4
+# Multipliers                                          : 1
+ 9x6-bit registered multiplier                         : 1
+# Adders/Subtractors                                   : 62
+ 10-bit adder                                          : 2
+ 10-bit subtractor                                     : 2
+ 11-bit adder                                          : 3
+ 11-bit subtractor                                     : 3
+ 12-bit subtractor                                     : 1
+ 14-bit adder                                          : 1
+ 16-bit adder                                          : 4
+ 16-bit addsub                                         : 2
+ 16-bit subtractor                                     : 3
+ 17-bit adder                                          : 2
+ 3-bit adder                                           : 3
+ 32-bit adder                                          : 2
+ 5-bit adder                                           : 5
+ 6-bit adder                                           : 1
+ 6-bit subtractor                                      : 1
+ 7-bit adder                                           : 1
+ 7-bit subtractor                                      : 3
+ 8-bit adder                                           : 8
+ 8-bit subtractor                                      : 9
+ 9-bit adder                                           : 5
+ 9-bit subtractor                                      : 1
+# Adder Trees                                          : 1
+ 8-bit / 4-inputs adder tree                           : 1
+# Counters                                             : 27
+ 10-bit down counter                                   : 4
+ 10-bit up counter                                     : 1
+ 11-bit up counter                                     : 3
+ 13-bit down counter                                   : 1
+ 14-bit up counter                                     : 1
+ 24-bit up counter                                     : 1
+ 27-bit up counter                                     : 1
+ 3-bit up counter                                      : 1
+ 4-bit down counter                                    : 1
+ 4-bit up counter                                      : 4
+ 6-bit up counter                                      : 2
+ 7-bit down counter                                    : 2
+ 7-bit up counter                                      : 2
+ 8-bit up counter                                      : 1
+ 9-bit up counter                                      : 2
+# Accumulators                                         : 3
+ 10-bit up loadable accumulator                        : 1
+ 11-bit up loadable accumulator                        : 1
+ 14-bit up loadable accumulator                        : 1
+# Registers                                            : 1937
+ Flip-Flops                                            : 1937
+# Comparators                                          : 37
+ 10-bit comparator equal                               : 1
+ 11-bit comparator equal                               : 1
+ 11-bit comparator greater                             : 4
+ 11-bit comparator lessequal                           : 2
+ 14-bit comparator equal                               : 1
+ 2-bit comparator lessequal                            : 1
+ 24-bit comparator greater                             : 1
+ 3-bit comparator equal                                : 2
+ 3-bit comparator lessequal                            : 1
+ 32-bit comparator equal                               : 1
+ 4-bit comparator greater                              : 2
+ 4-bit comparator not equal                            : 1
+ 5-bit comparator equal                                : 1
+ 5-bit comparator greater                              : 1
+ 5-bit comparator lessequal                            : 2
+ 6-bit comparator lessequal                            : 1
+ 7-bit comparator greater                              : 4
+ 8-bit comparator equal                                : 4
+ 8-bit comparator greater                              : 2
+ 8-bit comparator not equal                            : 1
+ 9-bit comparator equal                                : 1
+ 9-bit comparator greater                              : 1
+ 9-bit comparator lessequal                            : 1
+# Multiplexers                                         : 1926
+ 1-bit 2-to-1 multiplexer                              : 997
+ 1-bit 3-to-1 multiplexer                              : 12
+ 1-bit 4-to-1 multiplexer                              : 2
+ 1-bit 64-to-1 multiplexer                             : 2
+ 1-bit 74-to-1 multiplexer                             : 1
+ 1-bit 8-to-1 multiplexer                              : 13
+ 10-bit 2-to-1 multiplexer                             : 14
+ 11-bit 2-to-1 multiplexer                             : 30
+ 14-bit 2-to-1 multiplexer                             : 6
+ 16-bit 2-to-1 multiplexer                             : 45
+ 16-bit 7-to-1 multiplexer                             : 1
+ 17-bit 2-to-1 multiplexer                             : 6
+ 2-bit 2-to-1 multiplexer                              : 36
+ 3-bit 2-to-1 multiplexer                              : 121
+ 3-bit 3-to-1 multiplexer                              : 3
+ 32-bit 2-to-1 multiplexer                             : 12
+ 32-bit 8-to-1 multiplexer                             : 1
+ 4-bit 2-to-1 multiplexer                              : 189
+ 4-bit 3-to-1 multiplexer                              : 4
+ 4-bit 8-to-1 multiplexer                              : 1
+ 5-bit 2-to-1 multiplexer                              : 138
+ 5-bit 21-to-1 multiplexer                             : 1
+ 56-bit 2-to-1 multiplexer                             : 9
+ 6-bit 2-to-1 multiplexer                              : 63
+ 7-bit 2-to-1 multiplexer                              : 14
+ 74-bit 2-to-1 multiplexer                             : 1
+ 8-bit 11-to-1 multiplexer                             : 1
+ 8-bit 2-to-1 multiplexer                              : 180
+ 8-bit 3-to-1 multiplexer                              : 2
+ 8-bit 4-to-1 multiplexer                              : 6
+ 8-bit 8-to-1 multiplexer                              : 1
+ 9-bit 2-to-1 multiplexer                              : 13
+ 9-bit 4-to-1 multiplexer                              : 1
+# FSMs                                                 : 6
+# Xors                                                 : 19
+ 1-bit xor2                                            : 13
+ 1-bit xor8                                            : 5
+ 8-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <clken_3_375_divider_mask_0> (without init value) has a constant value of 1 in block <FpgaBeeCore>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <clken_3_375_divider_mask_1> (without init value) has a constant value of 1 in block <FpgaBeeCore>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <cpu_dout_0> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu_dout_1> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu_dout_2> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu_dout_3> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu_dout_4> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu_dout_5> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu_dout_6> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu_dout_7> (without init value) has a constant value of 0 in block <VirtualDiskController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <cpu_rd_prev> is unconnected in block <VirtualDiskController>.
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FpgaBeeCore/KeyboardPort/ps2interface/FSM_0> on signal <state[1:3]> with gray encoding.
+----------------------------------------
+ State                      | Encoding
+----------------------------------------
+ idle                       | 000
+ rx_clk_h                   | 011
+ rx_clk_l                   | 111
+ rx_down_edge               | 001
+ rx_error_parity            | 110
+ rx_data_ready              | 010
+ tx_force_clk_l             | unreached
+ tx_bring_data_down         | unreached
+ tx_release_clk             | unreached
+ tx_first_wait_down_edge    | unreached
+ tx_clk_l                   | unreached
+ tx_wait_up_edge            | unreached
+ tx_clk_h                   | unreached
+ tx_wait_up_edge_before_ack | unreached
+ tx_wait_ack                | unreached
+ tx_received_ack            | unreached
+ tx_error_no_ack            | unreached
+----------------------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FpgaBeeCore/TapeController/FSM_1> on signal <exec_state[1:3]> with user encoding.
+------------------------------
+ State            | Encoding
+------------------------------
+ state_ready      | 000
+ state_sd_arbwait | 001
+ state_sd_busy    | 010
+ state_playing    | 011
+ state_recording  | 100
+------------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/FSM_2> on signal <state[1:4]> with user encoding.
+-------------------------------------------------------
+ State                                     | Encoding
+-------------------------------------------------------
+ state_idle                                | 0000
+ state_waiting_for_lead_byte               | 0001
+ state_waiting_for_second_lead_byte        | 0010
+ state_waiting_for_secid_track             | 0011
+ state_waiting_for_secid_side              | 0100
+ state_waiting_for_secid_sector            | 0101
+ state_waiting_for_secid_seclen            | 0110
+ state_expecting_address_terminator        | 0111
+ state_waiting_for_sector_lead_byte        | 1000
+ state_waiting_for_sector_second_lead_byte | 1001
+ state_sector_data                         | 1010
+ state_expecting_tail                      | 1011
+ state_sector_received                     | 1100
+-------------------------------------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FpgaBeeCore/VirtualDiskController/FSM_4> on signal <state[1:3]> with user encoding.
+-------------------------
+ State       | Encoding
+-------------------------
+ state_ready | 000
+ mul_pipe_1  | 001
+ mul_pipe_2  | 010
+ mul_pipe_3  | 011
+ mul_pipe_4  | 100
+ mul_pipe_5  | 101
+-------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FpgaBeeCore/VirtualDiskController/FSM_3> on signal <exec_state[1:3]> with user encoding.
+----------------------------------
+ State                | Encoding
+----------------------------------
+ state_ready          | 000
+ state_geo_wait_start | 001
+ state_geo_wait       | 010
+ state_sd_arbwait     | 011
+ state_sd_busy        | 100
+----------------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FpgaBeeCore/DiskControllerPcu/FSM_5> on signal <exec_state[1:2]> with user encoding.
+------------------------------
+ State            | Encoding
+------------------------------
+ state_ready      | 00
+ state_sd_arbwait | 01
+ state_sd_busy    | 10
+------------------------------
+WARNING:Xst:1293 - FF/Latch <ps2_data_h> has a constant value of 1 in block <ps2interface>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <ps2_clk_h> has a constant value of 1 in block <ps2interface>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <delay_100us_done> of sequential type is unconnected in block <ps2interface>.
+WARNING:Xst:2677 - Node <delay_20us_done> of sequential type is unconnected in block <ps2interface>.
+WARNING:Xst:2677 - Node <delay_63clk_done> of sequential type is unconnected in block <ps2interface>.
+WARNING:Xst:1710 - FF/Latch <clock_div_limit_0> (without init value) has a constant value of 1 in block <SDCardController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <clock_div_limit_7> (without init value) has a constant value of 0 in block <SDCardController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <return_state_5> (without init value) has a constant value of 0 in block <SDCardController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <tx_buf_0> (without init value) has a constant value of 1 in block <SDCardController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <rx_buf_31> of sequential type is unconnected in block <SDCardController>.
+WARNING:Xst:1710 - FF/Latch <cmd_3> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:1901 - Instance clock_core1/pll_base_inst in unit clock_core1/pll_base_inst of type PLL_BASE has been replaced by PLL_ADV
+INFO:Xst:2261 - The FF/Latch <clock_div_limit_2> in Unit <SDCardController> is equivalent to the following 4 FFs/Latches, which will be removed : <clock_div_limit_3> <clock_div_limit_4> <clock_div_limit_5> <clock_div_limit_6> 
+INFO:Xst:2261 - The FF/Latch <sd_op_cmd_int_1> in Unit <TapeController> is equivalent to the following FF/Latch, which will be removed : <is_recording> 
+
+Optimizing unit <DiskControllerMultiplier> ...
+
+Optimizing unit <FpgaBee_PapilioDuo> ...
+
+Optimizing unit <T80se> ...
+
+Optimizing unit <T80> ...
+
+Optimizing unit <T80_ALU> ...
+
+Optimizing unit <T80_MCode> ...
+
+Optimizing unit <Crtc6545> ...
+
+Optimizing unit <MicrobeeKeyboardDecoder> ...
+
+Optimizing unit <SDCardController> ...
+
+Optimizing unit <PriorityArbiter> ...
+
+Optimizing unit <TapeController> ...
+WARNING:Xst:1710 - FF/Latch <sampleRateDivideCounter_9> (without init value) has a constant value of 0 in block <TapeController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <sampleRateDivideCounter_10> (without init value) has a constant value of 0 in block <TapeController>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <sampleRateDivideCounter_8> (without init value) has a constant value of 0 in block <TapeController>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <DiskControllerSelector> ...
+
+Optimizing unit <DiskControllerWD1002> ...
+WARNING:Xst:1710 - FF/Latch <regfile_7_0> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_1> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_2> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_3> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_4> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_5> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_6> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_7> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_0> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_1> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_2> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_3> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_4> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_5> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_6> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_7> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <regfile_7_0> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_1> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_2> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_3> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_4> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_5> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_6> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_7_7> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_0> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_1> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_2> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_3> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_4> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_5> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_6> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <regfile_0_7> (without init value) has a constant value of 0 in block <DiskControllerWD1002>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <DiskControllerWD1793> ...
+
+Optimizing unit <TrackParser> ...
+
+Optimizing unit <VirtualDiskController> ...
+
+Optimizing unit <DiskControllerPcu> ...
+
+Optimizing unit <sn76489_latch_ctrl> ...
+
+Optimizing unit <sn76489_attenuator> ...
+
+Optimizing unit <sn76489_noise> ...
+
+Optimizing unit <vga_controller_800_60> ...
+
+Optimizing unit <StatusPanel> ...
+WARNING:Xst:2677 - Node <FpgaBeeCore/z80_core/u0/IntE_FF1> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/z80_core/u0/RFSH_n> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/SDCardController/status_7> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/SDCardController/status_6> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/SDCardController/status_5> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_7> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_6> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_5> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_4> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_3> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_2> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_1> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/r_sector_count_0> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_7> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_6> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_5> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_4> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_3> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_2> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_1> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:2677 - Node <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/TrackParser/sector_id_seclen_0> of sequential type is unconnected in block <FpgaBee_PapilioDuo>.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/pcu_key_data_9> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/silent_sample_count_15> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/silent_sample_count_14> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/audio4800DivideCounter_15> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/audio4800DivideCounter_14> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/audio4800DivideCounter_13> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/audio4800DivideCounter_12> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/audio4800DivideCounter_11> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <FpgaBeeCore/TapeController/audio4800DivideCounter_10> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <FpgaBeeCore/MicrobeeKeyboardDecoder/keys_42> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <FpgaBeeCore/MicrobeeKeyboardDecoder/keys_43> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <FpgaBeeCore/MicrobeeKeyboardDecoder/keys_45> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <FpgaBeeCore/MicrobeeKeyboardDecoder/keys_57> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <FpgaBeeCore/MicrobeeKeyboardDecoder/keys_60> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <FpgaBeeCore/MicrobeeKeyboardDecoder/keys_61> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <FpgaBeeCore/MicrobeeKeyboardDecoder/keys_63> (without init value) has a constant value of 0 in block <FpgaBee_PapilioDuo>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_0> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_0> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_1> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_1> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_2> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_2> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_3> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_3> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_4> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_4> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_5> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_5> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_6> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_6> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_7> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_7> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1002/cpu_rd_prev> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerSelector/DiskControllerWD1793/cpu_rd_prev> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/VirtualDiskController/sdram_addr_8> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/DiskControllerPcu/sdram_addr_8> 
+INFO:Xst:2261 - The FF/Latch <FpgaBeeCore/TapeController/audio4800DivideCounter_0> in Unit <FpgaBee_PapilioDuo> is equivalent to the following FF/Latch, which will be removed : <FpgaBeeCore/TapeController/sampleRateDivideCounter_0> 
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block FpgaBee_PapilioDuo, actual ratio is 93.
+FlipFlop FpgaBeeCore/DiskControllerSelector/DiskControllerWD1002/regfile_6_3 has been replicated 3 time(s)
+FlipFlop FpgaBeeCore/DiskControllerSelector/DiskControllerWD1002/regfile_6_4 has been replicated 3 time(s)
+FlipFlop FpgaBeeCore/KeyboardPort/KeyboardMessage_0 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/KeyboardPort/KeyboardMessage_1 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/KeyboardPort/KeyboardMessage_4 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/KeyboardPort/KeyboardMessage_5 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/system_flags_5 has been replicated 3 time(s)
+FlipFlop FpgaBeeCore/system_flags_6 has been replicated 3 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/F_0 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_0 has been replicated 5 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_1 has been replicated 8 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_2 has been replicated 7 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_3 has been replicated 5 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_4 has been replicated 5 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_5 has been replicated 5 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_6 has been replicated 7 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/IR_7 has been replicated 6 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/ISet_1 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/MCycle_0 has been replicated 3 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/MCycle_1 has been replicated 2 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/MCycle_2 has been replicated 3 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/TState_0 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/TState_1 has been replicated 1 time(s)
+FlipFlop FpgaBeeCore/z80_core/u0/TState_2 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+Processing Unit <FpgaBee_PapilioDuo> :
+	Found 2-bit shift register for signal <FpgaBeeCore/KeyboardPort/ps2interface/frame_9>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_23>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_22>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_21>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_20>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_19>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_18>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_17>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_7>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_6>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_5>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_4>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_3>.
+	Found 2-bit shift register for signal <FpgaBeeCore/TapeController/block_numbers_2>.
+Unit <FpgaBee_PapilioDuo> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 2155
+ Flip-Flops                                            : 2155
+# Shift Registers                                      : 14
+ 2-bit shift register                                  : 14
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clock                              | DCM_SP:CLKFX           | 2123  |
+clock_core1/pll_base_inst/CLKOUT0  | BUFG                   | 120   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 41.766ns (Maximum Frequency: 23.943MHz)
+   Minimum input arrival time before clock: 9.651ns
+   Maximum output required time after clock: 14.542ns
+   Maximum combinational path delay: No path found
+
+=========================================================================

@@ -76,7 +76,7 @@ async function Main()
                 
             case "build":
             case "rebuild":
-                build();
+                await build();
                 break;
         
             case "clean":
@@ -124,7 +124,7 @@ function clean()
     rm(path.join(settings.intDir, settings.projectName + ".bit"));
 }
 
-function build()
+async function build()
 {
     // Ensure folder exist
     createDirectories();
@@ -141,11 +141,11 @@ function build()
     createXstCommandFile();
 
     // Run the build...
-    runXst();
-    runNgdBuild();
-    runMap();
-    runPar();
-    runBitGen();
+    await runXst();
+    await runNgdBuild();
+    await runMap();
+    await runPar();
+    await runBitGen();
 }
 
 function launchXilinxTool(name)
@@ -158,8 +158,12 @@ function launchXilinxTool(name)
 
 // ------------ Xilinx Build Actions ------------
 
+function xst_filter(data)
+{
+    console.log(data);
+}
 
-function runXst()
+async function runXst()
 {
     // Check if up to date
     let outputFile = path.join(settings.intDir, settings.projectName + ".ngc")
@@ -169,7 +173,7 @@ function runXst()
         return;
 
     // Run it
-    run(`${xilinxBin}/xst`, 
+    await run(`${xilinxBin}/xst`, 
         [ 
             "-intstyle", intStyle, 
             "-ifn", `${settings.projectName}.xst`,
@@ -177,11 +181,12 @@ function runXst()
         ],
         {
             cwd: settings.intDir,
-        }
+        },
+        verbose ? null : xst_filter
     );
 }
 
-function runNgdBuild()
+async function runNgdBuild()
 {
     let outputFile = path.join(settings.intDir, settings.projectName + ".ngd")
     let inputFiles = [
@@ -203,14 +208,15 @@ function runNgdBuild()
     
 
     // Run it
-    run(`${xilinxBin}/ngdbuild`, flags,  
+    await run(`${xilinxBin}/ngdbuild`, flags,  
         {
             cwd: settings.intDir,
-        }
+        },
+        console.log
     );    
 }
 
-function runMap()
+async function runMap()
 {
     let outputFile = path.join(settings.intDir, settings.projectName + "_map.ncd")
     let inputFiles = [
@@ -230,15 +236,16 @@ function runMap()
     
 
     // Run it
-    run(`${xilinxBin}/map`, flags,  
+    await run(`${xilinxBin}/map`, flags,  
         {
             cwd: settings.intDir,
-        }
+        },
+        console.log
     );    
 }
 
 
-function runPar()
+async function runPar()
 {
     let outputFile = path.join(settings.intDir, settings.projectName + ".ncd")
     let inputFiles = [
@@ -256,15 +263,16 @@ function runPar()
     ]);
 
     // Run it
-    run(`${xilinxBin}/par`, flags,  
+    await run(`${xilinxBin}/par`, flags,  
         {
             cwd: settings.intDir,
-        }
+        },
+        console.log
     );    
 }
 
 
-function runBitGen()
+async function runBitGen()
 {
     let outputFile = path.join(settings.outDir, settings.projectName + ".bit")
     let inputFiles = [
@@ -282,10 +290,11 @@ function runBitGen()
     ]);
 
     // Run it
-    run(`${xilinxBin}/bitgen`, flags,  
+    await run(`${xilinxBin}/bitgen`, flags,  
         {
             cwd: settings.intDir,
-        }
+        },
+        console.log
     );    
 }
 
@@ -318,20 +327,24 @@ function createXstProjectFile()
     fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".prj"), sb);
 }
 
-function createXstCommandFile()
+function createXstCommandFile(elaborate)
 {
+    elaborate = true;
     let sb = "";
     sb += `set -tmpdir .\n`;
     sb += `set -xsthdpdir "xst"\n`;
-    sb += `run\n`;
+    sb += elaborate ? `elaborate\n` : `run\n`;
     sb += `-ifn "${settings.projectName}.prj"\n`;
     sb += `-ifmt mixed\n`;
-    sb += `-ofn "${settings.projectName}"\n`;
-    sb += `-ofmt NGC\n`
-    sb += `-top ${settings.topModule}\n`;
-    sb += `-p ${settings.device}\n`;
-    sb += `-opt_mode Speed\n`;
-    sb += `-opt_level 1\n`;
+    if (!elaborate)
+    {
+        sb += `-ofn "${settings.projectName}"\n`;
+        sb += `-ofmt NGC\n`
+        sb += `-top ${settings.topModule}\n`;
+        sb += `-p ${settings.device}\n`;
+        sb += `-opt_mode Speed\n`;
+        sb += `-opt_level 1\n`;
+    }
     fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".xst"), sb);
 }
 
@@ -804,32 +817,67 @@ function isUpToDate(outputFile, inputFiles)
 
 
 // Run a command
-function run(cmd, args, opts)
+async function run(cmd, args, opts, stdioCallback)
 {
-    let opts = merge({
-//    	stdio: 'inherit',
-		shell: true,
-    }, opts);
-
     if (verbose)
     {
         console.log(`>${cmd} ${args.join(' ')}`);
     }
 
-    // Spawn process
-    let r = child_process.spawnSync(cmd, args, opts);
+    // Merge options
+    opts = merge({
+		shell: true,
+    }, opts);
 
-    // Failed to launch
-    if (r.error)
+    // Inherit stdio or filter it?
+    if (!stdioCallback)
     {
-		console.log("\nFailed", r.error.message);
-		process.exit(7);
+        opts.stdio = 'inherit';
     }
 
-    // Failed exit code?
-	if (r.status != 0)
-	{
-		console.log("\nFailed with exit code", r);
-		process.exit(7);
-	}
+    var sb = "";
+    function stdio(data)
+    {
+        sb += data;
+        while (true)
+        {
+            let nlPos = sb.indexOf('\n');
+            if (nlPos < 0)
+                break;
+
+            stdioCallback(sb.substring(0, nlPos));
+            sb = sb.substring(nlPos+1);
+        }
+    }
+
+    function stdflush()
+    {
+        if (sb.length > 0)
+        {
+            stdioCallback(sb);
+            sb = "";
+        }
+    }
+
+    return new Promise((resolve, reject) => {
+
+        // Spawn process
+        var child = child_process.spawn(cmd, args, opts);
+
+        child.on('exit', code => {
+            stdflush();
+            resolve(code);
+        });
+
+        child.on('error', err => {
+            stdflush();
+            reject(err);
+        });
+    
+        if (stdioCallback)
+        {
+            child.stdout.on('data', stdio);
+            child.stderr.on('data', stdio);
+        }
+    });
 }
