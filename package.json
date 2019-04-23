@@ -1,0 +1,14 @@
+{
+  "author": "Topten Software",
+  "license": "BSD",
+  "name": "xilt",
+  "description": "Xilinx Command Line ToolKit",
+  "bin": {
+    "xilt": "./bin/xilt.js"
+  },
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "expand-home-dir": "0.0.3"
+  }
+}
