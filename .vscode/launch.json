@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/bin/xilt.js",
+            "cwd": "${workspaceFolder}/../tuts/tut1/",
+            "args": [
+                "--projectName:tut1",
+                "--device:xc6slx9-2-tqg144",
+                "--intDir:./build",
+                "--map_w",
+                "--map_logic_opt:off",
+                "--map_register_duplication:off",
+                "--map_r:4",
+                "--map_global_opt:off",
+                "--map_ir:off",
+                "--map_pr:off",
+                "--map_xt:0",
+                "--map_mt:off",
+                "--map_lc:off",
+                "--map_ol:high",
+                "--map_t:1",
+                "--map_power:off",
+                "--par_w",
+                "--par_ol:high",
+                "--par_mt:off",
+                "--bitgen_w",
+                "--bitgen_g:StartupClk:CCLK",
+                "--bitgen_g:CRC:Enable",
+                "--bitgen_g:INIT_9K:Yes",
+                "tut1.vhd",
+            ]   
+        }
+    ]
+}

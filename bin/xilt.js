@@ -138,7 +138,7 @@ async function build()
 
     // Create XST files
     createXstProjectFile();
-    createXstCommandFile();
+    createXstCommandFile(false);
 
     // Run the build...
     await runXst();
@@ -146,6 +146,8 @@ async function build()
     await runMap();
     await runPar();
     await runBitGen();
+
+    console.log('\nFinished!\n');
 }
 
 function launchXilinxTool(name)
@@ -158,13 +160,46 @@ function launchXilinxTool(name)
 
 // ------------ Xilinx Build Actions ------------
 
-function xst_filter(data)
+let inErrorBlock = false;
+let blankLinePending = true;
+
+function xilinx_filter(line)
 {
-    console.log(data);
+    let match = line.match(/^(ERROR|WARNING)\:(.*)/i);
+    if (match)
+    {
+        console.log(line);
+        inErrorBlock = true;
+        blankLinePending = false;
+        return;
+    }
+
+    if (inErrorBlock)
+    {
+        if (line == '')
+        {
+            blankLinePending = true;
+            return;
+        }
+        if (line.startsWith(' ') || line.startsWith('\t'))
+        {
+            if (blankLinePending)
+                console.log();
+
+            console.log(line);
+            blankLinePending = false;
+            return;
+        }
+    }
+
+    inErrorBlock = false;
+    blankLinePending = false;
 }
 
 async function runXst()
 {
+    console.log('Synthesize...');
+
     // Check if up to date
     let outputFile = path.join(settings.intDir, settings.projectName + ".ngc")
     let inputFiles = settings.sourceFiles.slice();
@@ -182,12 +217,14 @@ async function runXst()
         {
             cwd: settings.intDir,
         },
-        verbose ? null : xst_filter
+        verbose ? null : xilinx_filter
     );
 }
 
 async function runNgdBuild()
 {
+    console.log('NGD Build...');
+
     let outputFile = path.join(settings.intDir, settings.projectName + ".ngd")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + ".ngc"),
@@ -212,12 +249,14 @@ async function runNgdBuild()
         {
             cwd: settings.intDir,
         },
-        console.log
+        verbose ? null : xilinx_filter
     );    
 }
 
 async function runMap()
 {
+    console.log('Map...');
+
     let outputFile = path.join(settings.intDir, settings.projectName + "_map.ncd")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + ".ngd"),
@@ -240,13 +279,15 @@ async function runMap()
         {
             cwd: settings.intDir,
         },
-        console.log
+        verbose ? null : xilinx_filter
     );    
 }
 
 
 async function runPar()
 {
+    console.log('Place and Route...');
+
     let outputFile = path.join(settings.intDir, settings.projectName + ".ncd")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + "_map.ncd"),
@@ -267,13 +308,15 @@ async function runPar()
         {
             cwd: settings.intDir,
         },
-        console.log
+        verbose ? null : xilinx_filter
     );    
 }
 
 
 async function runBitGen()
 {
+    console.log('BitGen...');
+
     let outputFile = path.join(settings.outDir, settings.projectName + ".bit")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + ".ncd"),
@@ -294,7 +337,7 @@ async function runBitGen()
         {
             cwd: settings.intDir,
         },
-        console.log
+        verbose ? null : xilinx_filter
     );    
 }
 
@@ -329,7 +372,6 @@ function createXstProjectFile()
 
 function createXstCommandFile(elaborate)
 {
-    elaborate = true;
     let sb = "";
     sb += `set -tmpdir .\n`;
     sb += `set -xsthdpdir "xst"\n`;
@@ -866,7 +908,10 @@ async function run(cmd, args, opts, stdioCallback)
 
         child.on('exit', code => {
             stdflush();
-            resolve(code);
+            if (code == 0)
+                resolve(code);
+            else
+                reject(new Error(`FAILED: ${path.basename(cmd)} with exit code ${code}\n`));
         });
 
         child.on('error', err => {
