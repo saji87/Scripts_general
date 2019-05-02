@@ -19,7 +19,7 @@ Xilt can be used to:
 
 Install with:
 
-    npm install -g xilt
+    sudo npm install -g xilt
 
 (Requires Node 8 or later)
 
