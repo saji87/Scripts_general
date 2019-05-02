@@ -27,6 +27,17 @@ if (!fs.existsSync(xilinxDir))
 }
 let xilinxBin = path.join(xilinxDir, "ISE_DS/ISE/bin/lin64");
 
+let startTime = Date.now();
+
+function elapsed()
+{
+    let ms = Date.now() - startTime;
+    let seconds = parseInt(ms / 1000);
+    let minutes = parseInt(seconds / 60);
+    let hours = parseInt(minutes / 60);
+    return `${hours.toString().padStart(2, '0')}:${(minutes % 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, 0)}`;
+}
+
 
 // ------------ Settings --------------
 
@@ -147,7 +158,7 @@ async function build()
     await runPar();
     await runBitGen();
 
-    console.log('\nFinished!\n');
+    console.log(`\n[${elapsed()}]: Finished!\n`);
 }
 
 function launchXilinxTool(name)
@@ -198,14 +209,14 @@ function xilinx_filter(line)
 
 async function runXst()
 {
-    console.log('Synthesize...');
-
     // Check if up to date
     let outputFile = path.join(settings.intDir, settings.projectName + ".ngc")
     let inputFiles = settings.sourceFiles.slice();
     inputFiles.push(settings.ucfFile);
     if (isUpToDate(outputFile, inputFiles))
         return;
+
+    console.log(`[${elapsed()}]: Synthesize...`);
 
     // Run it
     await run(`${xilinxBin}/xst`, 
@@ -223,8 +234,6 @@ async function runXst()
 
 async function runNgdBuild()
 {
-    console.log('NGD Build...');
-
     let outputFile = path.join(settings.intDir, settings.projectName + ".ngd")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + ".ngc"),
@@ -232,6 +241,8 @@ async function runNgdBuild()
     ];
     if (isUpToDate(outputFile, inputFiles))
         return;
+
+    console.log(`[${elapsed()}]: NGD Build...`);
 
     let flags = settings.ngdBuildFlags.concat([
         "-intstyle", intStyle, 
@@ -255,8 +266,6 @@ async function runNgdBuild()
 
 async function runMap()
 {
-    console.log('Map...');
-
     let outputFile = path.join(settings.intDir, settings.projectName + "_map.ncd")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + ".ngd"),
@@ -264,6 +273,8 @@ async function runMap()
     ];
     if (isUpToDate(outputFile, inputFiles))
         return;
+
+    console.log(`[${elapsed()}]: Map...`);
 
     let flags = settings.mapFlags.concat([
         "-intstyle", intStyle, 
@@ -286,8 +297,6 @@ async function runMap()
 
 async function runPar()
 {
-    console.log('Place and Route...');
-
     let outputFile = path.join(settings.intDir, settings.projectName + ".ncd")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + "_map.ncd"),
@@ -295,6 +304,8 @@ async function runPar()
     ];
     if (isUpToDate(outputFile, inputFiles))
         return;
+
+    console.log(`[${elapsed()}]: Place and Route...`);
 
     let flags = settings.parFlags.concat([
         "-intstyle", intStyle, 
@@ -315,8 +326,6 @@ async function runPar()
 
 async function runBitGen()
 {
-    console.log('BitGen...');
-
     let outputFile = path.join(settings.outDir, settings.projectName + ".bit")
     let inputFiles = [
         path.join(settings.intDir, settings.projectName + ".ncd"),
@@ -324,6 +333,8 @@ async function runBitGen()
     ];
     if (isUpToDate(outputFile, inputFiles))
         return;
+
+    console.log(`[${elapsed()}]: BitGen...`);
 
     let flags = settings.bitGenFlags.concat([
         "-intstyle", intStyle, 
