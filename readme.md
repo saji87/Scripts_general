@@ -52,7 +52,7 @@ To pass arguments to the underlying tools invoked by xilt, specify those options
 
 For example to invoke  bitgen with `-g StartupClk:CCLK` use:
 
-    --bitgen_g:StartupClk:CCLK'
+    --bitgen_g:StartupClk:CCLK
     
 
 ## Launching Xilinx GUI Tools
