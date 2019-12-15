@@ -1,14 +1,27 @@
 {
-  "author": "Topten Software",
-  "license": "BSD",
   "name": "xilt",
+  "version": "0.0.3",
+  "author": "Topten Software",
+  "contributors": [
+    { 
+      "name": "Brad Robinson", 
+      "email": "contact@toptensoftware.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/toptensoftware/xilt"
+  },
   "description": "Xilinx Command Line ToolKit",
+  "license": "Apache",
   "bin": {
     "xilt": "./bin/xilt.js"
   },
   "preferGlobal": true,
-  "version": "0.0.2",
+  "keywords": [
+    "xilinx",
+    "vhdl"
+  ],
   "dependencies": {
-    "expand-home-dir": "0.0.3"
   }
 }
