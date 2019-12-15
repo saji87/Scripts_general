@@ -4,6 +4,7 @@ let child_process = require('child_process');
 let path = require('path');
 let fs = require('fs');
 let os = require('os');
+let parseArgs = require('./parseArgs');
 
 // Work out current folder
 let cwd = process.cwd();
@@ -14,7 +15,7 @@ let folderName = path.parse(cwd).name;
 // Check supported platform
 if (os.platform() != "linux")
 {
-    console.log("xilt is only supported on linux");
+    console.log("xilt is only supported on Linux");
     process.exit(7);
 }
 
@@ -398,7 +399,23 @@ function processCommandLine(argv)
 {
 	for (let i=0; i<argv.length; i++)
 	{
-		let a = argv[i];
+        let a = argv[i];
+        
+        // Response file?
+        if (a.startsWith("@"))
+        {
+            var responseFile = a.substring(1);
+            if (fs.existsSync(responseFile))
+            {
+                var content = fs.readFileSync(responseFile, 'UTF8');                
+                processCommandLine(parseArgs(content));
+            }
+            else
+            {
+                throw new Error(`Response file ${responseFile} not found`);
+            }
+            continue;
+        }
 
 		let isSwitch = false;
 		if (a.startsWith("--"))
@@ -602,7 +619,7 @@ function resolveDefaultSettings()
     if (!settings.hdlLanguage)
         settings.hdlLanguage = "VHDL";
     if (!action)
-        action = "build";
+        action = "help";
     if (!settings.intDir)
         settings.intDir = "./build";
     if (!settings.outDir)
@@ -620,13 +637,13 @@ function showHelp()
     console.log();
     console.log("Actions:");
     console.log("    build                   build the project");
-    console.log("    clean                   remove all output files and folders");
-    console.log("    coregen                 launch Xilinx Core Generator");
-    console.log("    help                    show this help");
-    console.log("    ise                     launch Xilinx ISE");
     console.log("    rebuild                 force rebuild the project");
+    console.log("    clean                   remove all output files and folders");
     console.log("    settings                show all resolved build settings");
+    console.log("    ise                     launch Xilinx ISE");
+    console.log("    coregen                 launch Xilinx Core Generator");
     console.log("    xlcm                    launch Xilinx license manager");
+    console.log("    help                    show this help");
     console.log();
     console.log("Options:");
     console.log("    --debug                 show file dependency checks");
@@ -926,3 +943,24 @@ async function run(cmd, args, opts, stdioCallback)
         }
     });
 }
+
+
+/*
+wget https://raw.githubusercontent.com/numato/samplecode/master/FPGA/MimasV2/tools/configuration/python/MimasV2Config.py
+sudo apt-get install python3-pip
+python3 -m pip install pyserial
+
+
+See: https://ewen.mcneill.gen.nz/blog/entry/2017-03-06-numato-mimas-v2-from-linux/
+
+See: https://github.com/jimmo/numato-mimasv2-pic-firmware
+
+See: https://community.numato.com/attachments/firmwaredownloader-zip.18/
+
+See: https://community.numato.com/attachments/miamsv2-115200-zip.28/
+
+ls /dev > notplugged
+# plug in device
+ls /dev > plugged
+diff notplugged plugged
+*/

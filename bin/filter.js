@@ -3,7 +3,7 @@ let path = require('path');
 
 let lines = fs.readFileSync('../xst.log', 'utf8').split('\n');
 
-let relBase = "/home/brad/Projects/fpgabee3/Hardware/PapilioDuo";
+let relBase = ".";
 let curUnit;
 var unitToFileMap = {};
 

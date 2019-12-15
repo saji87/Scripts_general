@@ -7,7 +7,7 @@
     "xilt": "./bin/xilt.js"
   },
   "preferGlobal": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "expand-home-dir": "0.0.3"
   }
