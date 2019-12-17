@@ -114,6 +114,7 @@ async function Main()
     catch (err)
     {
         console.log(`${err.message}`);
+        process.exit(7);
     }
 }
 
