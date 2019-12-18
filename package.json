@@ -1,10 +1,10 @@
 {
   "name": "xilt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Topten Software",
   "contributors": [
-    { 
-      "name": "Brad Robinson", 
+    {
+      "name": "Brad Robinson",
       "email": "contact@toptensoftware.com"
     }
   ],
@@ -23,5 +23,6 @@
     "vhdl"
   ],
   "dependencies": {
+    "glob": "^7.1.6"
   }
 }

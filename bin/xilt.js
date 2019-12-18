@@ -5,6 +5,7 @@ let path = require('path');
 let fs = require('fs');
 let os = require('os');
 let parseArgs = require('./parseArgs');
+let scanDeps = require('./scanDeps');
 
 // Work out current folder
 let cwd = process.cwd();
@@ -55,6 +56,7 @@ let settings = {
     device: null,
     hdlLanguage: null,
     ucfFile: null,
+    depPath: [],
     xstFlags: [],
     ngdBuildFlags: [],
     mapFlags: [],
@@ -87,14 +89,21 @@ async function Main()
                 break;
                 
             case "build":
-            case "rebuild":
                 await build();
                 break;
-        
-            case "clean":
-                clean();
-                break;
 
+            case "scandeps":
+                var filespecs = settings.sourceFiles.slice();
+                if (settings.ucfFile)
+                    filespecs.push(settings.ucfFile);
+                settings.debug = debug;
+                var files = scanDeps(cwd, filespecs, settings);
+                for (let i =0; i<files.length; i++)
+                {
+                    console.log(files[i]);
+                }
+                break;
+        
             case "coregen":
                 launchXilinxTool("coregen");
                 break;
@@ -113,7 +122,7 @@ async function Main()
     }
     catch (err)
     {
-        console.log(`${err.message}`);
+        console.error(`${err.message}`);
         process.exit(7);
     }
 }
@@ -131,23 +140,10 @@ function createDirectories()
     mkdirp(settings.outDir);
 }
 
-function clean()
-{
-    rmdir(settings.intDir);
-    rm(path.join(settings.intDir, settings.projectName + ".bit"));
-}
-
 async function build()
 {
     // Ensure folder exist
     createDirectories();
-
-    // Check if settings have changed
-    if (action == "build" && haveSettingsChanged())
-    {
-        console.log("Settings have changed, rebuilding...");
-        action = "rebuild";
-    }
 
     // Create XST files
     createXstProjectFile();
@@ -211,13 +207,6 @@ function xilinx_filter(line)
 
 async function runXst()
 {
-    // Check if up to date
-    let outputFile = path.join(settings.intDir, settings.projectName + ".ngc")
-    let inputFiles = settings.sourceFiles.slice();
-    inputFiles.push(settings.ucfFile);
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
     console.log(`[${elapsed()}]: Synthesize...`);
 
     // Run it
@@ -236,14 +225,6 @@ async function runXst()
 
 async function runNgdBuild()
 {
-    let outputFile = path.join(settings.intDir, settings.projectName + ".ngd")
-    let inputFiles = [
-        path.join(settings.intDir, settings.projectName + ".ngc"),
-        settings.ucfFile,
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
     console.log(`[${elapsed()}]: NGD Build...`);
 
     let flags = settings.ngdBuildFlags.concat([
@@ -268,14 +249,6 @@ async function runNgdBuild()
 
 async function runMap()
 {
-    let outputFile = path.join(settings.intDir, settings.projectName + "_map.ncd")
-    let inputFiles = [
-        path.join(settings.intDir, settings.projectName + ".ngd"),
-        settings.ucfFile,
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
     console.log(`[${elapsed()}]: Map...`);
 
     let flags = settings.mapFlags.concat([
@@ -299,14 +272,6 @@ async function runMap()
 
 async function runPar()
 {
-    let outputFile = path.join(settings.intDir, settings.projectName + ".ncd")
-    let inputFiles = [
-        path.join(settings.intDir, settings.projectName + "_map.ncd"),
-        path.join(settings.intDir, settings.projectName + ".pcf"),
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
-
     console.log(`[${elapsed()}]: Place and Route...`);
 
     let flags = settings.parFlags.concat([
@@ -328,16 +293,10 @@ async function runPar()
 
 async function runBitGen()
 {
-    let outputFile = path.join(settings.outDir, settings.projectName + ".bit")
-    let inputFiles = [
-        path.join(settings.intDir, settings.projectName + ".ncd"),
-        path.join(settings.intDir, settings.projectName + ".pcf"),
-    ];
-    if (isUpToDate(outputFile, inputFiles))
-        return;
 
     console.log(`[${elapsed()}]: BitGen...`);
 
+    let outputFile = path.join(settings.outDir, settings.projectName + ".bit")
     let flags = settings.bitGenFlags.concat([
         "-intstyle", intStyle, 
         `${settings.projectName}.ncd`,
@@ -538,6 +497,12 @@ function processCommandLine(argv)
                     settings.outDir = parts[1];
                     break;
 
+                case "deppath":
+                    if (parts.length < 2)
+                        throw new Error("depPath argument missing");
+                    settings.depPath.push(parts[1]);
+                    break;
+
                 case "help":
                     showHelp();
                     process.exit(0);
@@ -592,33 +557,6 @@ function processCommandLine(argv)
 
 
 
-// ------------ Settings -----------
-
-function haveSettingsChanged()
-{
-    // Settings file
-    let settingsFile = path.join(settings.intDir, "xilt.json"); 
-
-    // Get new settings
-    let newSettingsStr = JSON.stringify(settings);
-
-    // Get old settings
-    let oldSettingsStr = null;
-    if (fs.existsSync(settingsFile))
-         oldSettingsStr = fs.readFileSync(settingsFile, 'utf8');
-
-    // If they changed, clean the int dir
-    let changed = newSettingsStr != oldSettingsStr;
-    if (changed)
-    {
-        clean();
-        createDirectories();
-    }
-
-    // Save the new settings
-    fs.writeFileSync(settingsFile, newSettingsStr, 'utf8');
-    return changed;
-}
 
 function resolveDefaultSettings()
 {
@@ -626,7 +564,7 @@ function resolveDefaultSettings()
         settings.projectName = folderName;
     if (!settings.topModule)
         settings.topModule = settings.projectName;
-    if (!settings.ucfFile)
+    if (!settings.ucfFile && action != "scandeps")
         settings.ucfFile = settings.projectName + ".ucf";
     if (!settings.hdlLanguage)
         settings.hdlLanguage = "VHDL";
@@ -649,9 +587,8 @@ function showHelp()
     console.log();
     console.log("Actions:");
     console.log("    build                   build the project");
-    console.log("    rebuild                 force rebuild the project");
-    console.log("    clean                   remove all output files and folders");
     console.log("    settings                show all resolved build settings");
+    console.log("    scandeps                scan for dependencies");
     console.log("    ise                     launch Xilinx ISE");
     console.log("    coregen                 launch Xilinx Core Generator");
     console.log("    xlcm                    launch Xilinx license manager");
@@ -661,6 +598,7 @@ function showHelp()
     console.log("    --debug                 show file dependency checks");
     console.log("    --device:val            set the Xilinx device name (required)");
     console.log("    --help                  show this help");
+    console.log("    --depPath:val           set a folder to search for dependencies"),
     console.log("    --intDir:val            set the intermediate build directory (default: ./build");
     console.log("    --outDir:val            set the output folder for .bit file (default: intermediate directory)");
     console.log("    --projectName:val       set the name of the project (default: folder name)");
@@ -839,52 +777,6 @@ function filetime(filename)
 
 
 
-// Check if a file is up to date with respect to a set of input files
-function isUpToDate(outputFile, inputFiles)
-{
-	if (action == 'rebuild')
-	{
-		if (debug)
-			console.log(`Forcing update of target file ${outputFile}...`);
-		return false;
-	}
-	
-	// Get the target file time
-	let targetTime = filetime(outputFile);
-	if (targetTime == 0)
-	{
-		if (debug)
-			console.log(`Target file ${outputFile} doesn't exist, needs update...`);
-
-		return false;
-	}
-
-	// Any input files?
-	if (!inputFiles || inputFiles.length == 0)
-		return false;
-
-	// Check each
-	for (let f of inputFiles)
-	{
-		if (filetime(f) > targetTime)
-		{
-			if (debug)
-				console.log(`Target file '${outputFile}' is stale compared to '${f}', needs update...`)
-			return false;
-		}
-	}
-
-	if (debug)
-	{
-		console.log(`Target file '${outputFile}' is update to date with respect to:`);
-		for (let f of inputFiles)
-		{
-			console.log(`    ${f}`);
-		}
-	}
-
-	return true;
-}
 
 
 // Run a command
