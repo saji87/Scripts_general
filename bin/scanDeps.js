@@ -2,6 +2,14 @@ var fs = require('fs');
 var path = require('path');
 var glob = require('glob');
 
+function path_join(a, b)
+{
+    if (b.startsWith("/"))
+        return b;
+    else
+        return path.join(a, b);
+}
+
 // Given a file name, scan it for dependency names
 // and return a list of names.
 function findDeps(filename, options)
@@ -15,10 +23,18 @@ function findDeps(filename, options)
         {
             // Read the file content
             var content = fs.readFileSync(filename, "utf8");
-            var depFinder = /(?:(?:(?:entity|use)\swork\.)|(?:--xilt:require:))([^\.\s]+)/gim;
+            var depFinder = /(?:(?:entity|use)\swork\.)([^\.\s]+)/gim;
             var match;
             while (match = depFinder.exec(content))
+            {
                 deps.push(match[1]);
+            }
+
+            var reqFinder = /--xilt:require:(.*)/g;
+            while (match = reqFinder.exec(content))
+            {
+                deps.push(">" + match[1]);
+            }
         }
         catch (x)
         {
@@ -59,16 +75,20 @@ function resolveDepFile(dep, referencingFileName, depPath, options)
     if (options.debug)
         console.log("resolving dependency:", dep, "from", referencingFileName);
 
-    // Look in the same folder as the referencing file
     var refFolder = path.dirname(referencingFileName);
-    var resolvedName = doesFileExistWithSuitableExtension(path.join(refFolder, dep), options);
+
+    if (dep.startsWith(">"))
+        return path_join(refFolder, dep.substring(1));
+
+    // Look in the same folder as the referencing file
+    var resolvedName = doesFileExistWithSuitableExtension(path_join(refFolder, dep), options);
     if (resolvedName)
         return resolvedName;
 
     // Search the dep path
     for (let i=0; i<depPath.length; i++)
     {
-        var resolvedName = doesFileExistWithSuitableExtension(path.join(depPath[i], dep), options);
+        var resolvedName = doesFileExistWithSuitableExtension(path_join(depPath[i], dep), options);
         if (resolvedName)
             return resolvedName;
     }
@@ -102,7 +122,7 @@ function scanDeps(baseDir, rootFiles, options)
 
         // Qualify it
         if (!rootFile.startsWith('/'))
-            rootFile = path.join(baseDir, rootFile);
+            rootFile = path_join(baseDir, rootFile);
 
         // Find matching files
         let files;
@@ -139,7 +159,7 @@ function scanDeps(baseDir, rootFiles, options)
         for (let i=0; i<depPath.length; i++)
         {
             if (!depPath[i].startsWith("/"))
-                depPath[i] = path.join(baseDir, depPath[i]);
+                depPath[i] = path_join(baseDir, depPath[i]);
         }
     }
 
@@ -151,7 +171,7 @@ function scanDeps(baseDir, rootFiles, options)
         var deps = findDeps(allFiles[i]);
         for (let j=0; j<deps.length; j++)
         {
-            // Get the depenencies name
+            // Get the depenency's name
             var dep = deps[j];
 
             // Already processed?

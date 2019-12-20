@@ -91,11 +91,12 @@ Note that if SevenSegmentHexDisplay entity also referenced other entities, the
 scandep function would also try to locate those.
 
 Dependency scanning is a simple regex search and looks for `entity` and `use` 
-statements the use components from the `work` library.  You can also explicitly
-declare a required file with a comment of the form:
+statements the use components from the `work` library.  
+
+You can also explicitly declare a required file with a comment of the form:
 
 ```
---xilt:require:MyRequiredFile
+--xilt:require:../lib/somefolder/my_oddly_named_component.vhd
 ```
 
 Dependency scanning is completely separate from the build process and 

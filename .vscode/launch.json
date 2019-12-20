@@ -8,7 +8,14 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/bin/scanDeps.js",
+            "program": "${workspaceFolder}/bin/xilt.js",
+            "cwd": "/home/brad/Projects/MimasV2/10-cpu",
+            "args": [
+                "--verbose",
+                "scandeps",
+                "*.vhd",
+                "--deppath:../modules/"
+            ]
         }
     ]
 }
