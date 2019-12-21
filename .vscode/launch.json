@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/bin/xilt.js",
-            "cwd": "/home/brad/Projects/MimasV2/10-cpu",
+            "cwd": "/home/brad/Projects/MimasV2/09-sim-basics",
             "args": [
                 "--verbose",
                 "scandeps",
