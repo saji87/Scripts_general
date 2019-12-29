@@ -54,7 +54,7 @@ For example to invoke  bitgen with `-g StartupClk:CCLK` use:
     
 ## Dependency Scanning
 
-xilt includes a simple dependency scanning capability that assumes the names
+Xilt includes a simple dependency scanning capability that assumes the names
 of VHDL entities and packages are located in files with the same name as the
 required entity/package.
 
@@ -104,6 +104,66 @@ is intended to be used by a make file to build a list of input files to the buil
 (which would then be passed back to xilt to do the actual build).
 
 
+## Suppressing Warnings
+
+Xilt can suppress warnings that have been deemed to be benign.  To suppress
+a warning, include a comment of the following form in any of the VHDL source 
+files.
+
+~~~
+--xilt:nowarn:<text>
+~~~
+
+or
+
+~~~
+--xilt:nowarn:~<regexp>
+~~~
+
+Any warning messages that match the text or regular expression will be suppressed
+from the stdout.  The messages will still be included in the report files.
+
+Note that any directives to suppress warnings apply to all source files being
+compiled - not just the file in which they appear.  Be careful to not suppress 
+warnings you don't intend by including specific details from the warning  such 
+as the block and the signal name.
+
+Periodically you should check the full reports for warnings, or use the --nofilter
+command line switch to disable this feature and report all warnings.
+
+The following are some common benign warnings you might like to suppress globally.
+
+~~~
+-- Input <X> is never used. This port will be preserved and left unconnected if it 
+-- belongs to a top-level block or it belongs to a sub-block and the hierarchy of this 
+-- sub-block is preserved.
+--xilt:nowarn:~^WARNING:Xst:647
+
+-- FF/Latch <X> (without init value) has a constant value of <Y> in block <Z>. 
+-- This FF/Latch will be trimmed during the optimization process.
+--xilt:nowarn:~^WARNING:Xst:1710
+
+-- Due to other FF/Latch trimming, FF/Latch <X> (without init value) has a constant
+-- value of Y in block <Z>. This FF/Latch will be trimmed during the optimization process.
+--xilt:nowarn:~^WARNING:Xst:1895
+
+-- FFs/Latches <o_sd_op_cmd<1:1>> (without init value) have a constant value of <X> in 
+-- block <Y>.
+--xilt:nowarn:~^WARNING:Xst:2404
+
+-- Node <X> of sequential type is unconnected in block <Y>.
+--xilt:nowarn:~^WARNING:Xst:2677
+
+-- WARNING:PhysDesignRules:2410 - This design is using one or more 9K Block RAMs
+--   (RAMB8BWER).  9K Block RAM initialization data, both user defined and
+--   default, may be incorrect and should not be used.  For more information,
+--   please reference Xilinx Answer Record 39999.
+--xilt:nowarn:~^WARNING:PhysDesignRules:2410
+~~~
+
+
+
+
 ## Launching Xilinx GUI Tools
 
 To launch Xilinx GUI Tools, use `xilt <toolname>`.
@@ -121,3 +181,4 @@ Other command line options include:
 * `--verbose` Displays lots of output and disables default output filtering
 * `--help` Displays help
 * `--deppath` Sets a path to be searched for dependency files.
+* `--nofilter` Ignores all `--xilt:nowarn` directives

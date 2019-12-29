@@ -47,6 +47,7 @@ let action = "";
 let debug = false;
 let verbose = false;
 let intStyle = "ise";
+let filterRules = [];
 let settings = {
     projectName: null,
     intDir: null,
@@ -56,6 +57,7 @@ let settings = {
     device: null,
     hdlLanguage: null,
     ucfFile: null,
+    filterWarnings: true,
     depPath: [],
     xstFlags: [],
     ngdBuildFlags: [],
@@ -150,6 +152,7 @@ async function build()
     createXstCommandFile(false);
 
     // Run the build...
+    scanForFilterRules()
     await runXst();
     await runNgdBuild();
     await runMap();
@@ -174,12 +177,40 @@ let blankLinePending = true;
 
 function xilinx_filter(line)
 {
-    let match = line.match(/^(ERROR|WARNING)\:(.*)/i);
+    let match = line.match(/^(ERROR|WARNING)\:(.*?)\:(.*)/i);
     if (match)
     {
+        if (match[1].toLowerCase() == 'warning')
+        {
+            for (let r=0; r<filterRules.length; r++)
+            {
+                if (filterRules[r] instanceof RegExp)
+                    filtered = !!line.match(filterRules[r]);
+                else
+                    filtered = line.indexOf(filterRules[r]) >= 0;
+
+                    if (filtered)
+                    return;
+            }
+        }
+
+        /*
+        let matchBetter = line.match(/^(ERROR|WARNING)\:(.*?)\:(\d+) - \"(.*?)\" Line (\d+): (.*)/i);
+        if (matchBetter && (matchBetter[2]="HDLCompiler" || matchBetter[2]=="Xst"))
+        {
+            var relFile = path.relative(process.cwd(), matchBetter[4]);
+            console.log(`${relFile}(${matchBetter[5]}): ${matchBetter[1]}:${matchBetter[2]}:${matchBetter[3]}: ${matchBetter[6]}`);
+            return;
+        }
+        */
+
         console.log(line);
-        inErrorBlock = true;
-        blankLinePending = false;
+
+        if (match[2] != "HDLCompiler" && match[2] != "Xst")
+        {
+            inErrorBlock = true;
+            blankLinePending = false;
+        }
         return;
     }
 
@@ -203,6 +234,34 @@ function xilinx_filter(line)
 
     inErrorBlock = false;
     blankLinePending = false;
+}
+
+function scanForFilterRules()
+{
+    if (verbose)
+         return;
+
+    for (let i=0; i<settings.sourceFiles.length; i++)
+    {
+        let ext = path.extname(settings.sourceFiles[i]).toLowerCase();
+        if (ext == ".vhdl" || ext == ".vhd")
+        {
+            var src = fs.readFileSync(settings.sourceFiles[i], "utf8");
+
+            var ruleFinder = /--xilt:nowarn:(.*)/g;
+            while (match = ruleFinder.exec(src))
+            {
+                if (match[1].startsWith("~"))
+                {
+                    filterRules.push(new RegExp(match[1].substring(1)));
+                }
+                else
+                {
+                    filterRules.push(match[1]);
+                }
+            }
+        }
+    }
 }
 
 async function runXst()
@@ -503,6 +562,11 @@ function processCommandLine(argv)
                     settings.depPath.push(parts[1]);
                     break;
 
+                case "nofilter":
+                    settings.filterWarnings = false;
+                    break;
+
+
                 case "help":
                     showHelp();
                     process.exit(0);
@@ -603,6 +667,7 @@ function showHelp()
     console.log("    --outDir:val            set the output folder for .bit file (default: intermediate directory)");
     console.log("    --projectName:val       set the name of the project (default: folder name)");
     console.log("    --topModule:val         set the name of the top module (default: project name)");
+    console.log("    --nofilter              disable filtering of warnings");
     console.log("    --verbose               show verbose output");
     console.log();
     console.log("Xilinx Tools Passthrough:")
