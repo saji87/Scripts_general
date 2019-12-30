@@ -6,6 +6,7 @@ let fs = require('fs');
 let os = require('os');
 let parseArgs = require('./parseArgs');
 let scanDeps = require('./scanDeps');
+let parseMessage = require('./parseMessage');
 
 // Work out current folder
 let cwd = process.cwd();
@@ -58,6 +59,8 @@ let settings = {
     hdlLanguage: null,
     ucfFile: null,
     filterWarnings: true,
+    infoMessages: true,
+    msgFormat: "ise",
     depPath: [],
     xstFlags: [],
     ngdBuildFlags: [],
@@ -175,38 +178,60 @@ function launchXilinxTool(name)
 let inErrorBlock = false;
 let blankLinePending = true;
 
+function is_filtered(message)
+{
+    for (let r=0; r<filterRules.length; r++)
+    {
+        if (filterRules[r] instanceof RegExp)
+            filtered = !!message.match(filterRules[r]);
+        else
+            filtered = message.indexOf(filterRules[r]) >= 0;
+
+        if (filtered)
+            return true;
+    }
+
+    return false;
+}
+
 function xilinx_filter(line)
 {
-    let match = line.match(/^(ERROR|WARNING)\:(.*?)\:(.*)/i);
-    if (match)
+    // Parse the message
+    let msg = parseMessage(line, settings.sourceFiles);
+    if (msg)
     {
-        if (match[1].toLowerCase() == 'warning')
-        {
-            for (let r=0; r<filterRules.length; r++)
-            {
-                if (filterRules[r] instanceof RegExp)
-                    filtered = !!line.match(filterRules[r]);
-                else
-                    filtered = line.indexOf(filterRules[r]) >= 0;
+        // Filter info messages?
+        if (msg.severity == 'info' && !settings.infoMessages)
+            return;
 
-                    if (filtered)
-                    return;
+        // Filtered?
+        if (msg.severity != 'error' && is_filtered(line))
+            return;
+
+        // Reformat message?
+        if (msg.file)
+        {
+            switch (settings.messageFormat)
+            {
+                case "ms":
+                case "mscompile":
+                    line =`${msg.file}(${msg.line},1) : ${msg.severity} ${msg.code} : ${msg.message}`
+                    if (msg.severity != 'error' && is_filtered(line))
+                        return;
+                    break;
+
+                case "gcc":
+                    line = `${msg.file}:${msg.line}:1 ${msg.severity}: ${msg.message}`;
+                    if (msg.severity != 'error' && is_filtered(line))
+                        return;
+                    break;
             }
         }
-
-        /*
-        let matchBetter = line.match(/^(ERROR|WARNING)\:(.*?)\:(\d+) - \"(.*?)\" Line (\d+): (.*)/i);
-        if (matchBetter && (matchBetter[2]="HDLCompiler" || matchBetter[2]=="Xst"))
-        {
-            var relFile = path.relative(process.cwd(), matchBetter[4]);
-            console.log(`${relFile}(${matchBetter[5]}): ${matchBetter[1]}:${matchBetter[2]}:${matchBetter[3]}: ${matchBetter[6]}`);
-            return;
-        }
-        */
-
+        
+        // Output it
         console.log(line);
 
-        if (match[2] != "HDLCompiler" && match[2] != "Xst")
+        if (msg.tool != "HDLCompiler" && msg.tool != "Xst")
         {
             inErrorBlock = true;
             blankLinePending = false;
@@ -566,6 +591,19 @@ function processCommandLine(argv)
                     settings.filterWarnings = false;
                     break;
 
+                case "noinfo":
+                    settings.infoMessages = false;
+                    break;
+
+                case "messageformat":
+                    if (parts[1].toLowerCase() != "ise" &&
+                        parts[1].toLowerCase() != "gcc" && 
+                        parts[1].toLowerCase() != "mscompile" && 
+                        parts[1].toLowerCase() != "ms")
+                        throw new Error(`unknown message format '${parts[1]}'`);
+                    
+                    settings.messageFormat = parts[1].toLowerCase();
+                    break;
 
                 case "help":
                     showHelp();
@@ -574,14 +612,6 @@ function processCommandLine(argv)
 
                 default:
                     throw new Error(`Unrecognized switch: --${parts[0]}`)
-                    /*
-                let xstFlags = [];
-                let ngdBuildFlags = [];
-                let mapFlags = [];
-                let parFlags = [];
-                let bitGenFlags = [];
-                let sourceFiles = [];
-                      */          
             }
 		}
 		else
@@ -668,6 +698,7 @@ function showHelp()
     console.log("    --projectName:val       set the name of the project (default: folder name)");
     console.log("    --topModule:val         set the name of the top module (default: project name)");
     console.log("    --nofilter              disable filtering of warnings");
+    console.log("    --messageFormat:val     reformat errors and warnings to 'mscompile' or 'gcc' format");
     console.log("    --verbose               show verbose output");
     console.log();
     console.log("Xilinx Tools Passthrough:")

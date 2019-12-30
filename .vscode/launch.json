@@ -8,29 +8,9 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/bin/xilt.js",
-            "cwd": "/home/brad/Projects/big80/boards/mimasv2/12-trs80-cassette-player",
-            "args": [
-                "build",
-                "--projectName:12-trs80-cassette-player",
-                "--intDir:./build", 
-                "--topModule:top", 
-                "@../mimasv2-xilt.txt", 
-                "mimasv2.ucf", 
-                "top.vhd", 
-                "coregen/ClockDCM.vhd", 
-                "../../../shared/SDCardController.vhd", 
-                "../../../shared/FunctionLib.vhd", 
-                "../../../shared/SevenSegmentHexDecoder.vhd", 
-                "../../../shared-trs80/Trs80CassetteRenderer.vhd", 
-                "../../../shared/RamDualPortInferred.vhd", 
-                "../../../shared/ClockDivider.vhd", 
-                "../../../shared/DebounceFilterWithEdge.vhd", 
-                "../../../shared/SevenSegmentHexDisplay.vhd", 
-                "../../../shared-trs80/Trs80CassetteStreamer.vhd", 
-                "../../../shared/SevenSegmentHexDisplayWithClockDivider.vhd", 
-                "../../../shared-trs80/Trs80CassettePlayer.vhd",
-            ]
+            "program": "${workspaceFolder}/bin/sourceRef.js",
+            "cwd": "",
+            "args": []
         }
     ]
 }

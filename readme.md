@@ -161,7 +161,24 @@ The following are some common benign warnings you might like to suppress globall
 --xilt:nowarn:~^WARNING:PhysDesignRules:2410
 ~~~
 
+## Message Reformatting
 
+Xilt can reformat Xilinx error, warning and informational messages into a more commonly
+used formats with the `--messageFormat:val` command line switch.    This can make 
+it easier to integrate with editor problem matchers.
+
+Available formats include:
+
+* `ms` | `msCompile` - Microsoft compiler error format (works with $msCompile problem match in VS Code)
+* `gcc` - The gcc compiler error format (works with $gcc problem matcher in VS Code if installed).
+
+Also, when messages are reformatted xilt tries to locate various signals, entities etc... in the input source files to provide file and line number information for 
+many messages that the Xilinx tools don't normally provide.  This depends on the
+unit/block/entity names matching the name of the file they're declared in and uses
+a simple regex to locate the signal/port being referenced.
+
+If message filtering is being used (see above), the filters are matched against both
+the original message string and the reformatted message.
 
 
 ## Launching Xilinx GUI Tools
@@ -180,5 +197,6 @@ Other command line options include:
 * `--debug` Logs file dependency checks
 * `--verbose` Displays lots of output and disables default output filtering
 * `--help` Displays help
-* `--deppath` Sets a path to be searched for dependency files.
+* `--deppath` Sets a path to be searched for dependency files
 * `--nofilter` Ignores all `--xilt:nowarn` directives
+* `--messageFormat:msCompile|gcc|ise` Reformats messages to Microsoft of GCC message format
