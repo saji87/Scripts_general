@@ -52,6 +52,33 @@ For example to invoke  bitgen with `-g StartupClk:CCLK` use:
 
     --bitgen_g:StartupClk:CCLK
     
+## Response Files
+
+You can pass additional command line arguments via a response file.  A response file
+is a simple text file that lists out additional command line options.  To reference
+a response file on the command line, preceeed the file name with an `@` symbol.
+
+Response files are a great way to collect all the settings required for a particular
+FPGA board into one central location.  eg: the following will load additional command 
+line arguments from the file `./boards/mimasv2-xilt/txt`.
+
+```
+xilt build --projectName:blah @./boards/mimasv2-xilt.txt 
+```
+
+The `mimasv2-xilt.txt` can contain all the require Xilinx command line switches 
+required for that board:
+
+```
+--device:xc6slx9-2-CSG324
+--map_w
+--par_w
+--bitgen_w
+--bitgen_g:Binary:yes
+... etc ... etc ...
+```
+
+
 ## Dependency Scanning
 
 Xilt includes a simple dependency scanning capability that assumes the names
