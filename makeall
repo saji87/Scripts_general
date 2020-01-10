@@ -1,0 +1,10 @@
+set -e
+
+for d in */ ; do
+    echo
+    echo "----- Building $d -----"
+    echo
+    pushd "$d" > /dev/null
+    make
+    popd > /dev/null
+done
