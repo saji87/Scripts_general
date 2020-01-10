@@ -7,6 +7,7 @@ let os = require('os');
 let parseArgs = require('./parseArgs');
 let scanDeps = require('./scanDeps');
 let parseMessage = require('./parseMessage');
+let misc = require('./misc');
 
 // Work out current folder
 let cwd = process.cwd();
@@ -76,6 +77,11 @@ let settings = {
 
 async function Main()
 {
+    if (process.argv.length > 2 && process.argv[2] == "ghdl-filter")
+    {
+        return await (require('./ghdlFilter'))(process.argv.slice(3));
+    }
+        
     try
     {
         // Process settings
@@ -98,11 +104,11 @@ async function Main()
                 break;
 
             case "scandeps":
-                var filespecs = settings.sourceFiles.slice();
+                let filespecs = settings.sourceFiles.slice();
                 if (settings.ucfFile)
                     filespecs.push(settings.ucfFile);
                 settings.debug = debug;
-                var files = scanDeps(cwd, filespecs, settings);
+                let files = scanDeps(cwd, filespecs, settings);
                 for (let i =0; i<files.length; i++)
                 {
                     console.log(files[i]);
@@ -141,8 +147,8 @@ Main();
 function createDirectories()
 {
     // Ensure folders exist
-    mkdirp(settings.intDir);
-    mkdirp(settings.outDir);
+    misc.mkdirp(settings.intDir);
+    misc.mkdirp(settings.outDir);
 }
 
 async function build()
@@ -167,7 +173,7 @@ async function build()
 
 function launchXilinxTool(name)
 {
-    var cp = child_process.spawn("bash", ['-c', `source ${xilinxDir}/ISE_DS/settings64.sh; ${name}`], {detached: true, stdio: 'ignore', shell: false});
+    let cp = child_process.spawn("bash", ['-c', `source ${xilinxDir}/ISE_DS/settings64.sh; ${name}`], {detached: true, stdio: 'ignore', shell: false});
     cp.unref();
     console.log(`Launched ${name}`);
 }
@@ -271,9 +277,9 @@ function scanForFilterRules()
         let ext = path.extname(settings.sourceFiles[i]).toLowerCase();
         if (ext == ".vhdl" || ext == ".vhd")
         {
-            var src = fs.readFileSync(settings.sourceFiles[i], "utf8");
+            let src = fs.readFileSync(settings.sourceFiles[i], "utf8");
 
-            var ruleFinder = /--xilt:nowarn:(.*)/g;
+            let ruleFinder = /--xilt:nowarn:(.*)/g;
             while (match = ruleFinder.exec(src))
             {
                 if (match[1].startsWith("~"))
@@ -380,7 +386,7 @@ async function runBitGen()
 
     console.log(`[${elapsed()}]: BitGen...`);
 
-    let outputFile = path.join(settings.outDir, settings.projectName + ".bit")
+    let outputFile = misc.smartJoin(settings.outDir, settings.projectName + ".bit")
     let flags = settings.bitGenFlags.concat([
         "-intstyle", intStyle, 
         `${settings.projectName}.ncd`,
@@ -423,7 +429,7 @@ function createXstProjectFile()
         }
     }
 
-    fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".prj"), sb);
+    fs.writeFileSync(misc.smartJoin(settings.intDir, settings.projectName + ".prj"), sb);
 }
 
 function createXstCommandFile(elaborate)
@@ -443,7 +449,7 @@ function createXstCommandFile(elaborate)
         sb += `-opt_mode Speed\n`;
         sb += `-opt_level 1\n`;
     }
-    fs.writeFileSync(path.join(settings.intDir, settings.projectName + ".xst"), sb);
+    fs.writeFileSync(misc.smartJoin(settings.intDir, settings.projectName + ".xst"), sb);
 }
 
 
@@ -459,10 +465,10 @@ function processCommandLine(argv)
         // Response file?
         if (a.startsWith("@"))
         {
-            var responseFile = a.substring(1);
+            let responseFile = a.substring(1);
             if (fs.existsSync(responseFile))
             {
-                var content = fs.readFileSync(responseFile, 'UTF8');                
+                let content = fs.readFileSync(responseFile, 'UTF8');                
                 processCommandLine(parseArgs(content));
             }
             else
@@ -477,11 +483,6 @@ function processCommandLine(argv)
 		{
 			isSwitch = true;
 			a = a.substring(2);
-		}
-		else if (a.startsWith("/"))
-		{
-			isSwitch = true;
-			a = a.substring(1);
 		}
 
 		if (isSwitch)
@@ -683,6 +684,7 @@ function showHelp()
     console.log("    build                   build the project");
     console.log("    settings                show all resolved build settings");
     console.log("    scandeps                scan for dependencies");
+    console.log("    ghdl-filter             filters ghdl output to $msCompile message format");
     console.log("    ise                     launch Xilinx ISE");
     console.log("    coregen                 launch Xilinx Core Generator");
     console.log("    xlcm                    launch Xilinx license manager");
@@ -715,61 +717,8 @@ function showHelp()
 
 
 
-function merge(x, y)
-{
-    if (!y)
-        return x;
 
-    let keys = Object.keys(y);
-    for (let i=0; i<keys.length; i++)
-    {
-        x[keys[i]] = y[keys[i]];
-    }
-
-    return x;
-}
-
-function mergeMissing(x, y)
-{
-    if (!y)
-        return x;
-
-    let keys = Object.keys(y);
-    for (let i=0; i<keys.length; i++)
-    {
-        if (!x[keys[i]])
-        {
-            x[keys[i]] = y[keys[i]];
-        }
-    }
-
-    return x;
-}
-
-function parseOptions(file)
-{
-    if (!fs.existsSync(file))
-        return {};
-
-    try
-    {
-        let options = JSON.parse(fs.readFileSync(file, 'UTF8'));
-
-        if (options[os.platform()])
-        {
-            merge(options, options[os.platform()]);
-            delete options[os.platform()];
-        }
-
-        return options;
-    }
-    catch (err)
-    {
-        console.error(`Error parsing options file '${file}' - ${err}`);
-        process.exit(7);
-    }
-}
-
+/*
 function escapeArg(x)  
 {
     if (os.platform() == "win32")
@@ -816,61 +765,7 @@ function pushOneOrArray(target, arg, value)
     }
 
 }
-
-function mkdirp(targetDir)
-{
-    const sep = path.sep;
-    const initDir = path.isAbsolute(targetDir) ? sep : '';
-    targetDir.split(sep).reduce((parentDir, childDir) => {
-      const curDir = path.resolve(parentDir, childDir);
-      if (!fs.existsSync(curDir)) {
-        fs.mkdirSync(curDir);
-      }
-
-      return curDir;
-    }, initDir);
-}
-
-function rmdir(folder) 
-{
-    if (fs.existsSync(folder)) 
-    {
-        fs.readdirSync(folder).forEach(function(file,index)
-        {
-            let curPath = path.join(folder, file);
-            if(fs.lstatSync(curPath).isDirectory()) 
-            { 
-                rmdir(curPath);
-            } 
-            else 
-            { 
-                fs.unlinkSync(curPath);
-            }
-        });
-
-        fs.rmdirSync(folder);
-    }
-};
-
-function rm(file)
-{
-    if (fs.existsSync(file))
-        fs.unlinkSync(file);
-}
-
-// Get the filetime for a file, or return 0 if doesn't exist
-function filetime(filename)
-{
-	try
-	{
-		return fs.statSync(filename).mtime.getTime();
-	}
-	catch (x)
-	{
-		return 0;
-	}
-}
-
+*/
 
 
 
@@ -883,84 +778,7 @@ async function run(cmd, args, opts, stdioCallback)
         console.log(`>${cmd} ${args.join(' ')}`);
     }
 
-    // Merge options
-    opts = merge({
-		shell: true,
-    }, opts);
-
-    // Inherit stdio or filter it?
-    if (!stdioCallback)
-    {
-        opts.stdio = 'inherit';
-    }
-
-    var sb = "";
-    function stdio(data)
-    {
-        sb += data;
-        while (true)
-        {
-            let nlPos = sb.indexOf('\n');
-            if (nlPos < 0)
-                break;
-
-            stdioCallback(sb.substring(0, nlPos));
-            sb = sb.substring(nlPos+1);
-        }
-    }
-
-    function stdflush()
-    {
-        if (sb.length > 0)
-        {
-            stdioCallback(sb);
-            sb = "";
-        }
-    }
-
-    return new Promise((resolve, reject) => {
-
-        // Spawn process
-        var child = child_process.spawn(cmd, args, opts);
-
-        child.on('exit', code => {
-            stdflush();
-            if (code == 0)
-                resolve(code);
-            else
-                reject(new Error(`FAILED: ${path.basename(cmd)} with exit code ${code}\n`));
-        });
-
-        child.on('error', err => {
-            stdflush();
-            reject(err);
-        });
-    
-        if (stdioCallback)
-        {
-            child.stdout.on('data', stdio);
-            child.stderr.on('data', stdio);
-        }
-    });
+    return misc.run(cmd, args, opts, stdioCallback);
 }
 
 
-/*
-wget https://raw.githubusercontent.com/numato/samplecode/master/FPGA/MimasV2/tools/configuration/python/MimasV2Config.py
-sudo apt-get install python3-pip
-python3 -m pip install pyserial
-
-
-See: https://ewen.mcneill.gen.nz/blog/entry/2017-03-06-numato-mimas-v2-from-linux/
-
-See: https://github.com/jimmo/numato-mimasv2-pic-firmware
-
-See: https://community.numato.com/attachments/firmwaredownloader-zip.18/
-
-See: https://community.numato.com/attachments/miamsv2-115200-zip.28/
-
-ls /dev > notplugged
-# plug in device
-ls /dev > plugged
-diff notplugged plugged
-*/

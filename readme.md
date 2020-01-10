@@ -207,6 +207,40 @@ a simple regex to locate the signal/port being referenced.
 If message filtering is being used (see above), the filters are matched against both
 the original message string and the reformatted message.
 
+## Message Reformatting for GHDL
+
+Similarly to the message filtering for the Xilinx tools described above, xilt can
+also filter the messages fom GHDL and reformat them into $msCompile format.
+
+```
+xilt ghdl-filter [ghdl command line]
+```
+
+There are no other command line options to the action and you must include the ghdl
+command (including its full path if not on system path) on the command line.
+
+## GIT Root Paths
+
+Sometimes it's handy to reference files relative to the root of the project workspace.
+
+To support this, most filenames and paths handled by xilt can use the special double
+slash file prefix to mean the project root - which is determined by walking the parent
+directory chain from the current directory until a .git folder is found.
+
+eg: suppose you have this project structure
+
+~~~
+$/Projects/MyProject/
+    .git
+    shared/
+    Project1/
+    Project2/
+        part1
+        part2
+~~~
+
+Using the path `//shared` will work from within any of the project sub-folders such as
+`/Project1` and `/Project2/part1/`.
 
 ## Launching Xilinx GUI Tools
 

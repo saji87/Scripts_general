@@ -1,20 +1,13 @@
-var fs = require('fs');
-var path = require('path');
-var glob = require('glob');
-
-function path_join(a, b)
-{
-    if (b.startsWith("/"))
-        return b;
-    else
-        return path.join(a, b);
-}
+let fs = require('fs');
+let path = require('path');
+let glob = require('glob');
+let misc = require('./misc');
 
 // Given a file name, scan it for dependency names
 // and return a list of names.
 function findDeps(filename, options)
 {
-    var deps = [];
+    let deps = [];
 
     // VHDL file?
     if (filename.toLowerCase().endsWith(".vhd") || filename.toLowerCase().endsWith(".vhdl"))
@@ -22,15 +15,15 @@ function findDeps(filename, options)
         try
         {
             // Read the file content
-            var content = fs.readFileSync(filename, "utf8");
-            var depFinder = /(?:(?:entity|use)\swork\.)([^\.\s]+)/gim;
-            var match;
+            let content = fs.readFileSync(filename, "utf8");
+            let depFinder = /(?:(?:entity|use)\swork\.)([^\.\s]+)/gim;
+            let match;
             while (match = depFinder.exec(content))
             {
                 deps.push(match[1]);
             }
 
-            var reqFinder = /--xilt:require:(.*)/g;
+            let reqFinder = /--xilt:require:(.*)/g;
             while (match = reqFinder.exec(content))
             {
                 deps.push(">" + match[1]);
@@ -53,7 +46,7 @@ function doesFileExistWithSuitableExtension(name, options)
 {
     for (let i=0; i<depExtensions.length; i++)
     {
-        var finalName = name + depExtensions[i];
+        let finalName = name + depExtensions[i];
         if (fs.existsSync(finalName))
         {
             if (options.debug)
@@ -75,20 +68,20 @@ function resolveDepFile(dep, referencingFileName, depPath, options)
     if (options.debug)
         console.log("resolving dependency:", dep, "from", referencingFileName);
 
-    var refFolder = path.dirname(referencingFileName);
+    let refFolder = path.dirname(referencingFileName);
 
     if (dep.startsWith(">"))
-        return path_join(refFolder, dep.substring(1));
+        return misc.smartJoin(refFolder, dep.substring(1));
 
     // Look in the same folder as the referencing file
-    var resolvedName = doesFileExistWithSuitableExtension(path_join(refFolder, dep), options);
+    let resolvedName = doesFileExistWithSuitableExtension(misc.smartJoin(refFolder, dep), options);
     if (resolvedName)
         return resolvedName;
 
     // Search the dep path
     for (let i=0; i<depPath.length; i++)
     {
-        var resolvedName = doesFileExistWithSuitableExtension(path_join(depPath[i], dep), options);
+        let resolvedName = doesFileExistWithSuitableExtension(misc.smartJoin(depPath[i], dep), options);
         if (resolvedName)
             return resolvedName;
     }
@@ -110,10 +103,10 @@ function resolveDepFile(dep, referencingFileName, depPath, options)
 function scanDeps(baseDir, rootFiles, options)
 {
     // Glob the root files to build fully qualified list
-    var allFiles = [];
+    let allFiles = [];
     for (let i=0; i<rootFiles.length; i++)
     {
-        var rootFile = rootFiles[i];
+        let rootFile = rootFiles[i];
 
         // Is this an exclude spec?
         let exclude = rootFile.startsWith("!");
@@ -121,8 +114,7 @@ function scanDeps(baseDir, rootFiles, options)
             rootFile = rootFile.substring(1);
 
         // Qualify it
-        if (!rootFile.startsWith('/'))
-            rootFile = path_join(baseDir, rootFile);
+        rootFile = misc.smartJoin(baseDir, rootFile);
 
         // Find matching files
         let files;
@@ -152,36 +144,35 @@ function scanDeps(baseDir, rootFiles, options)
     }
 
     // Build full list of absolute dependency paths
-    var depPath = [];
+    let depPath = [];
     if (options.depPath)
     {
         depPath = options.depPath.slice();
         for (let i=0; i<depPath.length; i++)
         {
-            if (!depPath[i].startsWith("/"))
-                depPath[i] = path_join(baseDir, depPath[i]);
+            depPath[i] = misc.smartJoin(baseDir, depPath[i]);
         }
     }
 
     // A map of filename to array of other files that it depends on
-    var fileDepMap = {};
+    let fileDepMap = {};
 
     // Scan for dependencies
     for (let i=0; i<allFiles.length; i++)
     {
         // Create an array of dependencies for this file
-        var fileDeps = [];
+        let fileDeps = [];
         fileDepMap[allFiles[i]] = fileDeps;
 
         // Find the dependencies for this file
-        var deps = findDeps(allFiles[i]);
+        let deps = findDeps(allFiles[i]);
         for (let j=0; j<deps.length; j++)
         {
             // Get the depenency's name
-            var dep = deps[j];
+            let dep = deps[j];
 
             // Try to resolve it
-            var resolved = resolveDepFile(dep, allFiles[i], depPath, options);
+            let resolved = resolveDepFile(dep, allFiles[i], depPath, options);
             if (resolved)
             {
                 // Add to map for this file
@@ -200,16 +191,16 @@ function scanDeps(baseDir, rootFiles, options)
     // ie: Topological sort.  Use Kahn's algorithm for simplicity
 
     // L ← Empty list that will contain the sorted elements
-    var L = [];
+    let L = [];
 
     // S ← Set of all nodes with no incoming edge
-    var S = allFiles.filter(x => fileDepMap[x].length == 0);
+    let S = allFiles.filter(x => fileDepMap[x].length == 0);
 
     // while S is non-empty do
     while (S.length != 0)
     {
         // remove a node n from S
-        var n = S.shift();
+        let n = S.shift();
 
         // add n to tail of L
         L.push(n);
@@ -217,9 +208,9 @@ function scanDeps(baseDir, rootFiles, options)
         // for each node m with an edge e from n to m do
         for (let i=0; i<allFiles.length; i++)
         {
-            var m = allFiles[i];
-            var mdeps = fileDepMap[m];
-            var index = mdeps.indexOf(n);
+            let m = allFiles[i];
+            let mdeps = fileDepMap[m];
+            let index = mdeps.indexOf(n);
 
             // remove edge e from the graph
             if (index >= 0)
@@ -248,7 +239,7 @@ function scanDeps(baseDir, rootFiles, options)
     return L;
 }
 
-//var files = scanDeps(
+//let files = scanDeps(
 //    "/home/brad/Projects/MimasV2/05-seven-segment-3", 
 //    [ "**/*.vhd", "*.ucf" ], 
 //    { 
