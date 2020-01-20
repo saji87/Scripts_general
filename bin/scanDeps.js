@@ -176,7 +176,8 @@ function scanDeps(baseDir, rootFiles, options)
             if (resolved)
             {
                 // Add to map for this file
-                fileDeps.push(resolved);
+                if (fileDeps.indexOf(resolved) < 0)
+                    fileDeps.push(resolved);
 
                 // If it's a file we haven't seen, add it to the list still
                 // to be processed.
@@ -185,6 +186,8 @@ function scanDeps(baseDir, rootFiles, options)
             }
         }
     }
+
+    console.log(JSON.stringify(fileDepMap, 0, 4));
 
     // Build a sorted list where all files appear after any files they
     // depend on.  (circular references shouldn't happen but handle it anyway)

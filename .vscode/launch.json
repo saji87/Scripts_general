@@ -9,15 +9,11 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/bin/xilt.js",
-            "cwd": "/home/brad/Projects/big80/sims/06-sim_trs80-cassette-parser",
+            "cwd": "/home/brad/Projects/big80/fpgakit/sims/08-psx-controller",
             "args": [
-                "ghdl-filter", 
-                "ghdl", 
-                "-a",
-                "--workdir=./build",
-                "../../shared-trs80/Trs80CassetteRenderer.vhd",
-                "../../shared-trs80/Trs80CassetteParser.vhd" ,
-                "TestBench.vhd"
+                "scandeps", 
+                "*.vhd", 
+                "--deppath://shared"
             ]
         }
     ]
