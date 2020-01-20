@@ -187,8 +187,6 @@ function scanDeps(baseDir, rootFiles, options)
         }
     }
 
-    console.log(JSON.stringify(fileDepMap, 0, 4));
-
     // Build a sorted list where all files appear after any files they
     // depend on.  (circular references shouldn't happen but handle it anyway)
     // ie: Topological sort.  Use Kahn's algorithm for simplicity
