@@ -9,11 +9,13 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/bin/xilt.js",
-            "cwd": "/home/brad/Projects/big80/fpgakit/sims/08-psx-controller",
+            "cwd": "/home/brad/Projects/big80/fpgakit/sims/01-basics",
             "args": [
-                "scandeps", 
-                "*.vhd", 
-                "--deppath://shared"
+                "buildsim", 
+                "--topmodule:TestBench",
+                "TestBench.vhd",
+                "../../shared/ClockDividerPow2.vhd",
+                "../../shared/FunctionLib.vhd"
             ]
         }
     ]

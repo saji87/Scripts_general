@@ -25,7 +25,7 @@ Install with:
 
 ## Building with Xilt
 
-To build a project, run `xilt build` or specifying the following options (most optional) and a list of vhdl, verilog files (and one .ucf file)
+To build a project for an FPGA device, run `xilt build`, specifying the following options (most optional) and a list of vhdl, verilog files (and one .ucf file)
 
 * `--device:val`            set the Xilinx device name (required)
 * `--intDir:val`            set the intermediate build directory (default: ./build)
@@ -36,6 +36,26 @@ To build a project, run `xilt build` or specifying the following options (most o
 eg:
 
     xilt build --device:xc6slx9-2-tqg144 myproj.vhd myproj.ucf
+
+## Building ISim Simulations
+
+To build a project for simulation, run `xilt buildsim` specifying the following options (most optional) and a list of vhdl, verilog files (and one .ucf file)
+
+* `--intDir:val`            set the intermediate build directory (default: ./build)
+* `--outDir:val`            set the output folder for .bit file (default: intermediate directory)
+* `--projectName:val`       set the name of the project (default: folder name)
+* `--topModule:val`         set the name of the top module (default: project name)
+
+The output directory will contain two files: (where "MyTopModule" is the name of your top module)
+
+* MyTopModule-sim - the generated ISim executable
+* MyTopModule-isim - a bash script to setup the xilinx environment path and run the executable
+
+Run the simulator like so:
+
+```
+$ cd buildDir; ./MyTopModule-isim -gui
+```
 
 ## Passing Arguments to Xilinx Toolchain
 

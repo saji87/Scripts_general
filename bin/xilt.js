@@ -103,6 +103,10 @@ async function Main()
                 await build();
                 break;
 
+            case "buildsim":
+                await build_sim();
+                break;
+
             case "scandeps":
                 let filespecs = settings.sourceFiles.slice();
                 if (settings.ucfFile)
@@ -168,6 +172,38 @@ async function build()
     await runPar();
     await runBitGen();
 
+    console.log(`\n[${elapsed()}]: Finished!\n`);
+}
+
+async function build_sim()
+{
+    createDirectories();
+    createXstProjectFile();
+    console.log(`[${elapsed()}]: Building Simulator...`);
+
+    // Run it
+    await run(`${xilinxBin}/fuse`, 
+        [ 
+            "-intstyle", intStyle, 
+            "-prj", `${settings.projectName}.prj`,
+            "-o", `${settings.topModule}-sim`,
+            `${settings.topModule}`
+        ],
+        {
+            cwd: settings.intDir,
+        },
+        verbose ? null : xilinx_filter
+    );
+
+    // Create a shell script to launch it
+    let sb = "#!/bin/bash\n";
+    sb += `source ${xilinxDir}ISE_DS/settings64.sh ${xilinxDir}ISE_DS > /dev/null\n`;
+    sb += `./${settings.topModule}-sim $*\n`;
+    let scriptFile = misc.smartJoin(settings.intDir, settings.topModule +"-isim");
+    fs.writeFileSync(scriptFile, sb);
+    fs.chmodSync(scriptFile, 0775);
+
+    // Done
     console.log(`\n[${elapsed()}]: Finished!\n`);
 }
 
