@@ -647,6 +647,10 @@ function processCommandLine(argv)
                     process.exit(0);
                     break;
 
+                case "version":
+                    showVersion();
+                    process.exit(0);
+        
                 default:
                     throw new Error(`Unrecognized switch: --${parts[0]}`)
             }
@@ -709,15 +713,23 @@ function resolveDefaultSettings()
 
 // ------------ Help --------------
 
+function showVersion()
+{
+    let pkg = require('../package.json');
+
+    console.log(`xilt v${pkg.version} - Xilinx Command Line Tools`);
+    console.log("Copyright (C) 2019 Topten Software.  All Rights Reserved");
+}
+
 function showHelp()
 {
-    console.log("xilt - Xilinx Command Line Tools");
-    console.log("Copyright (C) 2019 Topten Software.  All Rights Reserved");
+    showVersion();
     console.log();
     console.log("USAGE: xilt action [Options] [SourceFiles] [UCFFile]");
     console.log();
     console.log("Actions:");
     console.log("    build                   build the project");
+    console.log("    buildsim                build the project as an ISim simulation");
     console.log("    settings                show all resolved build settings");
     console.log("    scandeps                scan for dependencies");
     console.log("    ghdl-filter             filters ghdl output to $msCompile message format");
@@ -730,6 +742,7 @@ function showHelp()
     console.log("    --debug                 show file dependency checks");
     console.log("    --device:val            set the Xilinx device name (required)");
     console.log("    --help                  show this help");
+    console.log("    --version               show current version number");
     console.log("    --depPath:val           set a folder to search for dependencies"),
     console.log("    --intDir:val            set the intermediate build directory (default: ./build");
     console.log("    --outDir:val            set the output folder for .bit file (default: intermediate directory)");
