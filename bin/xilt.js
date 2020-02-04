@@ -242,6 +242,8 @@ function xilinx_filter(line)
     let msg = parseMessage(line, settings.sourceFiles);
     if (msg)
     {
+        inErrorBlock = false;
+
         // Filter info messages?
         if (msg.severity == 'info' && !settings.infoMessages)
             return;

@@ -9,13 +9,26 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/bin/xilt.js",
-            "cwd": "/home/brad/Projects/big80/fpgakit/sims/01-basics",
+            "cwd": "/home/brad/Projects/big80/fpgakit/boards/mimasv2/18-fifo",
             "args": [
-                "buildsim", 
-                "--topmodule:TestBench",
-                "TestBench.vhd",
-                "../../shared/ClockDividerPow2.vhd",
-                "../../shared/FunctionLib.vhd"
+                "build",
+                "--projectName:18-fifo",
+                "--intDir:./build",
+                "--outDir:./build",
+                "--topModule:top",
+                "--messageFormat:msCompile",
+                "--noinfo",
+                "@/home/brad/Projects/big80/fpgakit/boardspecs/mimasv2-xilt.txt",
+                "../../../shared/FunctionLib.vhd",
+                "../../../shared/RamDualPortInferred.vhd",
+                "../../../shared/Fifo.vhd",
+                "../../../shared/ClockDivider.vhd",
+                "../../../shared/UartTx.vhd",
+                "../../../shared/BitPatternTx.vhd",
+                "../../../shared/LogicCapture.vhd",
+                "top.vhd",
+                "mimasv2.ucf",
+                "/home/brad/Projects/big80/fpgakit/shared/SuppressBenignWarnings.vhd",
             ]
         }
     ]
