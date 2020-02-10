@@ -217,11 +217,12 @@ function launchXilinxTool(name)
 
 // ------------ Xilinx Build Actions ------------
 
-let inErrorBlock = false;
-let blankLinePending = true;
 
 function is_filtered(message)
 {
+    // For filtering purposes replace all whitespace with a single space
+    message = message.replace(/\s+/gm, " ");
+
     for (let r=0; r<filterRules.length; r++)
     {
         if (filterRules[r] instanceof RegExp)
@@ -236,14 +237,12 @@ function is_filtered(message)
     return false;
 }
 
-function xilinx_filter(line)
+function xilinx_filter_2(line)
 {
     // Parse the message
     let msg = parseMessage(line, settings.sourceFiles);
     if (msg)
     {
-        inErrorBlock = false;
-
         // Filter info messages?
         if (msg.severity == 'info' && !settings.infoMessages)
             return;
@@ -274,36 +273,61 @@ function xilinx_filter(line)
         
         // Output it
         console.log(line);
+    }
+}
 
-        if (msg.tool != "HDLCompiler" && msg.tool != "Xst")
+let reIsMessage = /^(ERROR|WARNING|INFO)\:(.*?)\:(\d+) - (.*)/i
+let rebuiltLine;
+
+function xilinx_filter(line)
+{
+    if (line.startsWith("INFO:"))
+        debugger;
+
+    // Is it a message?
+    let m = line.match(reIsMessage);
+    if (m)
+    {
+        // Flush last line
+        if (rebuiltLine)
         {
-            inErrorBlock = true;
-            blankLinePending = false;
+            xilinx_filter_2(rebuiltLine);
         }
+
+        // We don't need to handle multiline messages for these
+        if (m[2] == "HDLCompiler" || m[2] == "Xst")
+        {
+            xilinx_filter_2(line);
+            return;
+        }
+
+        // Start building new line
+        rebuiltLine = line;
         return;
     }
 
-    if (inErrorBlock)
+    // Currently rebuilding a multiline message?
+    if (!rebuiltLine)
     {
-        if (line == '')
-        {
-            blankLinePending = true;
-            return;
-        }
-        if (line.startsWith(' ') || line.startsWith('\t'))
-        {
-            if (blankLinePending)
-                console.log();
-
-            console.log(line);
-            blankLinePending = false;
-            return;
-        }
+        // Nope, process this line immediately
+        xilinx_filter_2(line);
+        return;
     }
 
-    inErrorBlock = false;
-    blankLinePending = false;
+    // Is it a continued line?
+    if (line.length == 0 || line.startsWith(' ') || line.startsWith('\t'))
+    {
+        // Continue building the line
+        rebuiltLine += "\n" + line;
+    }
+    else
+    {
+        // Process it
+        xilinx_filter_2(rebuiltLine);
+        rebuiltLine = null;
+    }
 }
+
 
 function scanForFilterRules()
 {
