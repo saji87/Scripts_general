@@ -1,7 +1,9 @@
 set -e
 
 for d in */ ; do
-    pushd "$d" > /dev/null
-    make clean
-    popd > /dev/null
+    if test -f "$d/makefile"; then
+        pushd "$d" > /dev/null
+        make clean
+        popd > /dev/null
+    fi
 done

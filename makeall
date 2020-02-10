@@ -1,10 +1,12 @@
 set -e
 
 for d in */ ; do
-    echo
-    echo "----- Building $d -----"
-    echo
-    pushd "$d" > /dev/null
-    make
-    popd > /dev/null
+    if test -f "$d/makefile"; then
+        echo
+        echo "----- Building $d -----"
+        echo
+        pushd "$d" > /dev/null
+        make
+        popd > /dev/null
+    fi
 done
