@@ -26,3 +26,7 @@ $ make
 
 README repo : https://www.npmjs.com/package/xilt
             https://bitbucket.org/toptensoftware/xilt/src/master/
+#SSH to linux
+1. install openssh server  : sudo apt-get install openssh-server <-br-/>
+2. Enable port forwarding in anon active adapter : Host ID :3022 ::: Port :22 (donot use 2)
+3. ssh -p 3022 username@127.0.0.1
