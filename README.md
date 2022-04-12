@@ -8,7 +8,7 @@ General purpose scripts for automation and installations
       $ sudo ./xilsetup --step2 --no-opera
  If you've already have the installer downloaded you can just copy it to your ~/Downloads folder and the script will pick it up from there.  The file that's needed is Xilinx_ISE_DS_Lin_14.7_1015_1.tar.
 
-$ xilt ise
+a. $ xilt ise  / xilt coregen
 
 b. $ mkdir Projects
 $ cd Projects
