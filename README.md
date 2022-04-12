@@ -1,11 +1,13 @@
 # Scripts_general
 General purpose scripts for automation and installations
 1. xilsetup script from Xilinx ise installation webpage
+2. 
       https://www.toptensoftware.com/blog/the-ultimate-xilinx-ise-14-7-setup-guide/
       $ wget https://bitbucket.org/toptensoftware/xilsetup/raw/master/xilsetup
-      $ chmod +x xilsetup
+      $ chmod +x xilsetup      
       $ sudo ./xilsetup --step1
       $ sudo ./xilsetup --step2 --no-opera
+      
  If you've already have the installer downloaded you can just copy it to your ~/Downloads folder and the script will pick it up from there.  The file that's needed is Xilinx_ISE_DS_Lin_14.7_1015_1.tar.
 
 a. $ xilt ise  / xilt coregen
